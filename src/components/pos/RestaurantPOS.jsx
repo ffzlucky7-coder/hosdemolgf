@@ -1,0 +1,440 @@
+import React, { useState } from 'react';
+import { useApp } from '../../context/AppContext';
+import {
+  UtensilsCrossed,
+  Plus,
+  Minus,
+  Trash2,
+  Receipt,
+  Search,
+  Sparkles,
+  ShoppingBag,
+  CreditCard,
+  CheckCircle2,
+  Printer,
+  LayoutGrid,
+  Clock,
+  Percent,
+  ChefHat,
+  X
+} from 'lucide-react';
+
+export default function RestaurantPOS() {
+  const {
+    posMenu,
+    cart,
+    addToCart,
+    removeFromCart,
+    updateCartQty,
+    clearCart,
+    placeOrder,
+    setCurrentView,
+    restaurantTables,
+    setRestaurantTables,
+    kdsOrders,
+    setKdsOrders,
+    showToast
+  } = useApp();
+
+  const [activeTab, setActiveTab] = useState('menu'); // 'menu' | 'tables' | 'kds'
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [orderDestination, setOrderDestination] = useState('Villa 204 (Rohit Sharma - Presidential Fort Villa)');
+  const [promoCode, setPromoCode] = useState('');
+  const [discountPercent, setDiscountPercent] = useState(0);
+
+  const categories = ['All', 'Beverages', 'Starters', 'Main Course', 'Desserts'];
+
+  const filteredItems = posMenu.filter(item => {
+    if (selectedCategory !== 'All' && item.category !== selectedCategory) return false;
+    if (searchTerm && !item.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
+    return true;
+  });
+
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const discountAmount = subtotal * (discountPercent / 100);
+  const taxableSubtotal = subtotal - discountAmount;
+  const gst = taxableSubtotal * 0.05; // 5% GST for F&B
+  const total = taxableSubtotal + gst;
+
+  const handleApplyPromo = (e) => {
+    e.preventDefault();
+    if (promoCode.toUpperCase() === 'ROYAL10') {
+      setDiscountPercent(10);
+      showToast('Promo Code ROYAL10 Applied: 10% Royal Discount!');
+    } else if (promoCode.toUpperCase() === 'VIP20') {
+      setDiscountPercent(20);
+      showToast('VIP20 Applied: 20% Privilege Discount!');
+    } else {
+      showToast('Invalid Promo Code. Try ROYAL10 or VIP20', 'warning');
+    }
+  };
+
+  const handleKdsComplete = (kotId) => {
+    setKdsOrders(prev => prev.map(k => k.id === kotId ? { ...k, status: 'Served & Closed' } : k));
+    showToast(`Order ${kotId} marked as Served!`);
+  };
+
+  return (
+    <div className="p-8 max-w-7xl mx-auto space-y-6 animate-in fade-in duration-200">
+      {/* Top Header & Navigation Tabs */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Restaurant & In-Villa Dining POS</h1>
+          <p className="text-sm text-slate-500 mt-1">Live order dispatch, kitchen display sync (KDS), table management, and villa folio billing.</p>
+        </div>
+
+        <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+          <button
+            onClick={() => setActiveTab('menu')}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              activeTab === 'menu' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            🍽️ Order POS Menu
+          </button>
+          <button
+            onClick={() => setActiveTab('tables')}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              activeTab === 'tables' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            🪑 Table Layout ({restaurantTables.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('kds')}
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+              activeTab === 'kds' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <ChefHat className="w-3.5 h-3.5 text-rose-500" />
+            <span>Kitchen KDS ({kdsOrders.filter(k => k.status !== 'Served & Closed').length})</span>
+          </button>
+        </div>
+      </div>
+
+      {/* 1. POS MENU ORDERING VIEW */}
+      {activeTab === 'menu' && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left: Menu & Categories */}
+          <div className="lg:col-span-8 space-y-5">
+            {/* Category Tabs & Search Bar */}
+            <div className="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+              <div className="flex items-center gap-2 overflow-x-auto text-xs font-bold">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-4 py-2 rounded-xl transition-all whitespace-nowrap ${
+                      selectedCategory === cat
+                        ? 'bg-indigo-600 text-white shadow-xs'
+                        : 'text-slate-600 hover:bg-slate-100'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              <div className="relative min-w-[220px]">
+                <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  placeholder="Search Laal Maas, Biryani, Chai..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500/20"
+                />
+              </div>
+            </div>
+
+            {/* Menu Items Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {filteredItems.map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => addToCart(item)}
+                  className="custom-card p-4 hover:shadow-lg hover:border-indigo-300 transition-all cursor-pointer flex flex-col justify-between h-44 group"
+                >
+                  <div>
+                    <div className="flex items-start justify-between">
+                      <span className="text-4xl p-2 rounded-2xl bg-slate-50 group-hover:scale-110 transition-transform">
+                        {item.image}
+                      </span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 uppercase">
+                        {item.category}
+                      </span>
+                    </div>
+
+                    <h3 className="font-bold text-slate-900 text-sm mt-3 group-hover:text-indigo-600 transition-colors">
+                      {item.name}
+                    </h3>
+                  </div>
+
+                  <div className="flex items-center justify-between pt-2.5 border-t border-slate-100">
+                    <span className="font-extrabold text-base text-slate-900">₹{item.price}</span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(item);
+                      }}
+                      className="px-3 py-1.5 rounded-xl bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white flex items-center gap-1 font-bold text-xs transition-colors shadow-2xs"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      <span>Add</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: Live Cart & Bill Folio */}
+          <div className="lg:col-span-4 custom-card p-6 space-y-5 sticky top-20 shadow-xl border border-slate-200">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div className="flex items-center gap-2">
+                <ShoppingBag className="w-5 h-5 text-indigo-600" />
+                <h2 className="font-bold text-base text-slate-900">Active Dining Order</h2>
+              </div>
+              {cart.length > 0 && (
+                <button
+                  onClick={clearCart}
+                  className="text-xs text-rose-500 hover:text-rose-700 font-bold"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+
+            {/* Destination Dropdown */}
+            <div>
+              <label className="block text-slate-500 text-xs font-bold mb-1">Deliver / Bill To</label>
+              <select
+                value={orderDestination}
+                onChange={(e) => setOrderDestination(e.target.value)}
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 outline-none cursor-pointer"
+              >
+                <option value="Villa 204 (Rohit Sharma - Presidential Fort Villa)">Villa 204 — Rohit Sharma (Presidential Villa)</option>
+                <option value="Treehouse 101 (Amit Patel)">Treehouse 101 — Amit Patel</option>
+                <option value="Poolside Cabana 1">Poolside Cabana 1 (Dr. Vivek Mehra)</option>
+                <option value="Royal Gazebo Private Dining">Royal Gazebo Private Dining</option>
+                <option value="Indoor Marwar Table 1">Indoor Marwar Table 1 (Sunita Roy)</option>
+                <option value="The Grand Aravali Lawn VIP">The Grand Aravali Lawn VIP Lounge</option>
+              </select>
+            </div>
+
+            {/* Cart Items List */}
+            <div className="space-y-3 max-h-56 overflow-y-auto divide-y divide-slate-100">
+              {cart.length === 0 ? (
+                <div className="py-10 text-center text-xs text-slate-400 space-y-2">
+                  <UtensilsCrossed className="w-8 h-8 text-slate-300 mx-auto" />
+                  <p>Order is empty. Tap dishes on the left to add items.</p>
+                </div>
+              ) : (
+                cart.map((item) => (
+                  <div key={item.id} className="pt-3 flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-xl">{item.image}</span>
+                      <div>
+                        <div className="font-bold text-slate-900">{item.name}</div>
+                        <div className="text-[11px] text-slate-400">₹{item.price} each</div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex items-center border border-slate-200 rounded-lg overflow-hidden bg-slate-50 shadow-2xs">
+                        <button
+                          onClick={() => updateCartQty(item.id, -1)}
+                          className="px-2 py-1 hover:bg-slate-200 text-slate-600 font-bold"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                        <span className="px-2 py-1 text-xs font-bold text-slate-900 bg-white">
+                          {item.qty}
+                        </span>
+                        <button
+                          onClick={() => updateCartQty(item.id, 1)}
+                          className="px-2 py-1 hover:bg-slate-200 text-slate-600 font-bold"
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
+
+                      <span className="font-extrabold text-slate-900 w-14 text-right">
+                        ₹{item.price * item.qty}
+                      </span>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Promo Code Input (Module 9) */}
+            <form onSubmit={handleApplyPromo} className="flex gap-2 text-xs pt-2">
+              <input
+                type="text"
+                placeholder="Enter Promo (e.g. ROYAL10)"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                className="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold uppercase outline-none"
+              />
+              <button
+                type="submit"
+                className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl"
+              >
+                Apply
+              </button>
+            </form>
+
+            {/* Summary */}
+            {cart.length > 0 && (
+              <div className="space-y-1.5 pt-3 border-t border-slate-200 text-xs">
+                <div className="flex justify-between text-slate-500">
+                  <span>Subtotal:</span>
+                  <span className="font-semibold text-slate-800">₹{subtotal.toFixed(2)}</span>
+                </div>
+                {discountPercent > 0 && (
+                  <div className="flex justify-between text-emerald-600 font-bold">
+                    <span>Discount ({discountPercent}%):</span>
+                    <span>-₹{discountAmount.toFixed(2)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between text-slate-500">
+                  <span>GST (5% Restaurant Tax):</span>
+                  <span className="font-semibold text-slate-800">₹{gst.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-sm font-black text-slate-900 pt-2 border-t border-slate-200">
+                  <span>Total Amount:</span>
+                  <span className="text-indigo-600 text-base">₹{total.toFixed(2)}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Place Order Trigger */}
+            <button
+              onClick={() => placeOrder(orderDestination)}
+              disabled={cart.length === 0}
+              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold text-xs rounded-2xl shadow-md transition-all flex items-center justify-center gap-2"
+            >
+              <Receipt className="w-4 h-4" />
+              <span>Charge to {orderDestination.split(' ')[0]} & Send KOT</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 2. TABLE LAYOUT MATRIX VIEW */}
+      {activeTab === 'tables' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200">
+            <h3 className="font-bold text-base text-slate-900">Resort Table & Gazebo Dining Grid</h3>
+            <div className="flex items-center gap-3 text-xs font-bold">
+              <span className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
+                <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Available (2)
+              </span>
+              <span className="flex items-center gap-1.5 text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">
+                <span className="w-2 h-2 rounded-full bg-indigo-600"></span> Occupied (3)
+              </span>
+              <span className="flex items-center gap-1.5 text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg border border-amber-200">
+                <span className="w-2 h-2 rounded-full bg-amber-500"></span> Reserved (1)
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {restaurantTables.map((t) => (
+              <div
+                key={t.id}
+                className={`custom-card p-6 border-2 transition-all space-y-4 ${
+                  t.status === 'Available' ? 'border-emerald-200 bg-emerald-50/20' : t.status === 'Occupied' ? 'border-indigo-200 bg-indigo-50/20' : 'border-amber-200 bg-amber-50/20'
+                }`}
+              >
+                <div className="flex items-start justify-between">
+                  <div>
+                    <h4 className="font-bold text-base text-slate-900">{t.name}</h4>
+                    <span className="text-xs text-slate-400">{t.section} • {t.seats} Guests Max</span>
+                  </div>
+                  <span className={`custom-badge ${t.status === 'Available' ? 'badge-clean' : t.status === 'Occupied' ? 'badge-occupied' : 'badge-pending'}`}>
+                    {t.status}
+                  </span>
+                </div>
+
+                {t.guest && (
+                  <div className="p-3 bg-white rounded-xl border border-slate-200 text-xs space-y-1">
+                    <div className="text-slate-500 font-medium">Seated Guest:</div>
+                    <div className="font-bold text-slate-900">{t.guest}</div>
+                    <div className="font-extrabold text-indigo-600 pt-1">Live Tab: ₹{t.orderValue.toLocaleString()}</div>
+                  </div>
+                )}
+
+                <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+                  <button
+                    onClick={() => {
+                      setOrderDestination(t.name);
+                      setActiveTab('menu');
+                      showToast(`Selected ${t.name} for dining order.`);
+                    }}
+                    className="text-indigo-600 font-bold hover:underline"
+                  >
+                    + Take Order on this Table →
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 3. KITCHEN KDS LIVE DISPLAY VIEW */}
+      {activeTab === 'kds' && (
+        <div className="space-y-6">
+          <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200">
+            <div>
+              <h3 className="font-bold text-base text-slate-900">Live Kitchen Display System (KDS)</h3>
+              <p className="text-xs text-slate-400">Directly synchronized with In-Villa Dining & Restaurant Orders.</p>
+            </div>
+            <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Kitchen Display Active
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {kdsOrders.map((k) => (
+              <div key={k.id} className="custom-card p-6 border-t-4 border-t-rose-500 space-y-4">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <span className="font-mono text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded">{k.id}</span>
+                    <h4 className="font-bold text-base text-slate-900 mt-1">{k.tableOrRoom}</h4>
+                  </div>
+                  <span className={`custom-badge ${k.status === 'Ready to Serve' ? 'badge-clean' : 'badge-dirty'}`}>
+                    {k.status}
+                  </span>
+                </div>
+
+                <div className="bg-slate-50 p-3.5 rounded-xl space-y-1.5 text-xs font-semibold text-slate-800 divide-y divide-slate-200">
+                  {k.items.map((it, idx) => (
+                    <div key={idx} className="pt-1">{it}</div>
+                  ))}
+                </div>
+
+                <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-100">
+                  <span>Chef: <strong>{k.chef}</strong></span>
+                  <span>{k.time}</span>
+                </div>
+
+                {k.status !== 'Served & Closed' && (
+                  <button
+                    onClick={() => handleKdsComplete(k.id)}
+                    className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors"
+                  >
+                    ✓ Mark as Served & Complete
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
