@@ -53,14 +53,17 @@ export default function AnalyticsReports() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Executive Analytics & Revenue Intelligence</h1>
-          <p className="text-sm text-slate-500 mt-1">Multi-dimensional financial reporting, channel mix, and guest satisfaction.</p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 14 • Financial & Occupancy Analytics</span>
+          </div>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Executive Analytics & Revenue Intelligence</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Multi-dimensional financial reporting, channel mix, and guest satisfaction.</p>
         </div>
         <div className="flex items-center gap-3">
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
-            className="text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-xl px-3.5 py-2 outline-none shadow-xs cursor-pointer"
+            className="text-xs font-bold text-slate-700 bg-white border border-slate-200 rounded-xl px-3.5 py-2 outline-none shadow-xs cursor-pointer"
           >
             <option value="Last 7 Days">Last 7 Days</option>
             <option value="Last 30 Days">Last 30 Days</option>
@@ -69,7 +72,7 @@ export default function AnalyticsReports() {
           </select>
           <button
             onClick={() => showToast('Exporting Analytics Report to PDF & CSV...')}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-xl shadow-sm transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition-colors cursor-pointer"
           >
             <Download className="w-4 h-4" />
             <span>Export Report</span>
@@ -77,65 +80,65 @@ export default function AnalyticsReports() {
         </div>
       </div>
 
-      {/* KPI Cards (Matches Page 16) */}
+      {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Average Daily Rate (ADR)</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">₹5,420</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Average Daily Rate (ADR)</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">₹5,420</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" /> +6.4% YoY
             </div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
             <IndianRupee className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">RevPAR</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">₹4,120</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">RevPAR</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">₹4,120</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1">Per Available Room</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">
             <BarChart3 className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Average Occupancy</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">78.4%</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Average Occupancy</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">78.4%</div>
             <div className="text-xs text-indigo-600 font-semibold mt-1">94 rooms occupied/day</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
             <Percent className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Guest CSAT Score</div>
-            <div className="text-3xl font-bold text-amber-500 mt-2 flex items-center gap-1">
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Guest CSAT Score</div>
+            <div className="text-3xl font-mono font-black text-amber-500 mt-2 flex items-center gap-1">
               4.8 <Star className="w-5 h-5 fill-amber-500 text-amber-500" />
             </div>
-            <div className="text-xs text-slate-500 font-semibold mt-1">Based on 482 reviews</div>
+            <div className="text-xs text-slate-500 font-semibold mt-1">Based on 482 verified reviews</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
             <Star className="w-6 h-6" />
           </div>
         </div>
       </div>
 
-      {/* 2 Charts Grid (Matches Page 16) */}
+      {/* 2 Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Revenue Trend Area Chart (8 cols) */}
         <div className="lg:col-span-8 custom-card p-6">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="font-bold text-base text-slate-900">Revenue Breakdown by Department</h3>
-              <p className="text-xs text-slate-400">Rooms vs F&B vs Spa & Banquets revenue over time</p>
+              <h3 className="font-display font-bold text-base text-slate-900">Revenue Breakdown by Department</h3>
+              <p className="text-xs text-slate-400 font-medium">Rooms vs F&B vs Spa & Banquets revenue over time</p>
             </div>
             <div className="flex items-center gap-4 text-xs font-semibold">
               <span className="flex items-center gap-1.5 text-indigo-600">
@@ -168,7 +171,7 @@ export default function AnalyticsReports() {
                 <YAxis stroke="#94A3B8" fontSize={12} tickLine={false} tickFormatter={(v) => `₹${v/1000}k`} />
                 <Tooltip
                   formatter={(value) => [`₹${value.toLocaleString()}`, '']}
-                  contentStyle={{ backgroundColor: '#1E293B', borderRadius: '10px', color: '#fff', border: 'none' }}
+                  contentStyle={{ backgroundColor: '#1E293B', borderRadius: '12px', color: '#fff', border: 'none' }}
                 />
                 <Area type="monotone" dataKey="room" stroke="#4F46E5" strokeWidth={2} fillOpacity={1} fill="url(#colorRoom)" name="Room Revenue" />
                 <Area type="monotone" dataKey="fnb" stroke="#14B8A6" strokeWidth={2} fillOpacity={1} fill="url(#colorFnb)" name="F&B Dining" />
@@ -177,11 +180,11 @@ export default function AnalyticsReports() {
           </div>
         </div>
 
-        {/* Booking Channel Distribution (4 cols - Page 16) */}
+        {/* Booking Channel Distribution (4 cols) */}
         <div className="lg:col-span-4 custom-card p-6 flex flex-col justify-between">
           <div>
-            <h3 className="font-bold text-base text-slate-900">Booking Channel Mix</h3>
-            <p className="text-xs text-slate-400 mt-0.5">Where your guest reservations originate</p>
+            <h3 className="font-display font-bold text-base text-slate-900">Booking Channel Mix</h3>
+            <p className="text-xs text-slate-400 font-medium mt-0.5">Where your guest reservations originate</p>
 
             <div className="h-56 w-full mt-2">
               <ResponsiveContainer width="100%" height="100%">
@@ -201,7 +204,7 @@ export default function AnalyticsReports() {
                   </Pie>
                   <Tooltip
                     formatter={(v) => [`${v}% of bookings`, '']}
-                    contentStyle={{ backgroundColor: '#1E293B', borderRadius: '10px', color: '#fff', border: 'none' }}
+                    contentStyle={{ backgroundColor: '#1E293B', borderRadius: '12px', color: '#fff', border: 'none' }}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -215,7 +218,7 @@ export default function AnalyticsReports() {
                   <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c.color }}></span>
                   <span className="text-slate-600 font-medium">{c.name}</span>
                 </div>
-                <span className="font-bold text-slate-900">{c.value}%</span>
+                <span className="font-mono font-bold text-slate-900">{c.value}%</span>
               </div>
             ))}
           </div>

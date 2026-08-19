@@ -12,7 +12,13 @@ import {
   ShieldCheck,
   Edit,
   X,
-  Check
+  Check,
+  Building2,
+  Plane,
+  Compass,
+  Home,
+  Layers,
+  Sparkles
 } from 'lucide-react';
 
 export default function ChannelManagerView() {
@@ -29,7 +35,8 @@ export default function ChannelManagerView() {
   const [channels, setChannels] = useState([
     {
       name: 'STAAH Max Channel Gateway',
-      logo: '🌐',
+      icon: Globe,
+      color: 'text-indigo-600 bg-indigo-50 border-indigo-200',
       status: 'Connected & Synced',
       lastSync: '12 seconds ago',
       activeRooms: 120,
@@ -39,7 +46,8 @@ export default function ChannelManagerView() {
     },
     {
       name: 'Booking.com',
-      logo: '🏨',
+      icon: Building2,
+      color: 'text-blue-600 bg-blue-50 border-blue-200',
       status: 'Live & Direct Sync',
       lastSync: '1 min ago',
       activeRooms: 80,
@@ -49,7 +57,8 @@ export default function ChannelManagerView() {
     },
     {
       name: 'MakeMyTrip / Goibibo',
-      logo: '✈️',
+      icon: Plane,
+      color: 'text-red-600 bg-red-50 border-red-200',
       status: 'Live & Direct Sync',
       lastSync: '2 mins ago',
       activeRooms: 95,
@@ -59,7 +68,8 @@ export default function ChannelManagerView() {
     },
     {
       name: 'Agoda',
-      logo: '🌏',
+      icon: Compass,
+      color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
       status: 'Live & Direct Sync',
       lastSync: '3 mins ago',
       activeRooms: 60,
@@ -69,7 +79,8 @@ export default function ChannelManagerView() {
     },
     {
       name: 'Expedia Group',
-      logo: '✈️',
+      icon: Layers,
+      color: 'text-amber-600 bg-amber-50 border-amber-200',
       status: 'Live & Direct Sync',
       lastSync: '4 mins ago',
       activeRooms: 50,
@@ -79,7 +90,8 @@ export default function ChannelManagerView() {
     },
     {
       name: 'Airbnb',
-      logo: '🏡',
+      icon: Home,
+      color: 'text-rose-600 bg-rose-50 border-rose-200',
       status: 'Live & Direct Sync',
       lastSync: '6 mins ago',
       activeRooms: 20,
@@ -126,10 +138,10 @@ export default function ChannelManagerView() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Module 14 • OTA & STAAH Engine</span>
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 14 • OTA & STAAH Engine</span>
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Channel Manager & OTA Rate Parity</h1>
-          <p className="text-sm text-slate-500 mt-0.5">Real-time 2-way rate parity, availability sync, and instant booking import.</p>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Channel Manager & OTA Rate Parity</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Real-time 2-way rate parity, availability sync, and instant booking import.</p>
         </div>
         <button
           onClick={handleSyncAll}
@@ -145,44 +157,44 @@ export default function ChannelManagerView() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">Connected Channels</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">6 Active</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Connected Channels</div>
+            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">6 Active</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1">100% Rate Parity</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
             <Globe className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">OTA Bookings (MTD)</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">342</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">OTA Bookings (MTD)</div>
+            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">342</div>
             <div className="text-xs text-indigo-600 font-semibold mt-1">₹18.4L Gross Revenue</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
             <TrendingUp className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">Sync Speed / Latency</div>
-            <div className="text-3xl font-bold text-emerald-600 mt-2">1.2s</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Sync Speed / Latency</div>
+            <div className="text-3xl font-mono font-bold text-emerald-600 mt-2">1.2s</div>
             <div className="text-xs text-emerald-700 font-semibold mt-1">Sub-second 2-way sync</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
             <Zap className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">Double-Booking Risk</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">0.0%</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Double-Booking Risk</div>
+            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">0.0%</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1">Automated Stop-Sell</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">
             <ShieldCheck className="w-6 h-6" />
           </div>
         </div>
@@ -190,49 +202,54 @@ export default function ChannelManagerView() {
 
       {/* Connected Channel Cards Grid */}
       <div className="space-y-4">
-        <h3 className="font-bold text-base text-slate-900">Active OTA Integrations & Gateways (Tap to Edit Rates)</h3>
+        <h3 className="font-display font-bold text-base text-slate-900">Active OTA Integrations & Gateways (Tap to Edit Rates)</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {channels.map((c, i) => (
-            <div
-              key={i}
-              onClick={() => {
-                setSelectedChannelForEdit(c);
-                setRateForm({ deluxeRate: c.rate, suiteRate: c.rate + 3500, minStay: 1, stopSell: false });
-              }}
-              className="custom-card p-5 hover:shadow-xl hover:border-indigo-400 transition-all space-y-4 border border-slate-200 cursor-pointer group"
-            >
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl p-2 bg-slate-50 rounded-2xl group-hover:scale-110 transition-transform">{c.logo}</span>
+          {channels.map((c, i) => {
+            const Icon = c.icon;
+            return (
+              <div
+                key={i}
+                onClick={() => {
+                  setSelectedChannelForEdit(c);
+                  setRateForm({ deluxeRate: c.rate, suiteRate: c.rate + 3500, minStay: 1, stopSell: false });
+                }}
+                className="custom-card p-5 hover:shadow-xl hover:border-indigo-400 transition-all space-y-4 border border-slate-200 cursor-pointer group"
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-12 h-12 rounded-2xl border flex items-center justify-center group-hover:scale-105 transition-transform ${c.color}`}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-bold text-sm text-slate-900 group-hover:text-indigo-600 transition-colors">{c.name}</h4>
+                      <div className="text-[11px] text-slate-400 font-medium">{c.type}</div>
+                    </div>
+                  </div>
+                  <span className="custom-badge badge-active text-[10px]">
+                    {c.status}
+                  </span>
+                </div>
+
+                <div className="pt-2 border-t border-slate-100 grid grid-cols-2 gap-3 text-xs">
                   <div>
-                    <h4 className="font-bold text-sm text-slate-900 group-hover:text-indigo-600 transition-colors">{c.name}</h4>
-                    <div className="text-[11px] text-slate-400">{c.type}</div>
+                    <span className="text-slate-400 font-medium">Live Published Rate:</span>
+                    <div className="font-mono font-extrabold text-slate-900 text-sm">₹{c.rate.toLocaleString()}/N</div>
+                  </div>
+                  <div>
+                    <span className="text-slate-400 font-medium">Sync Uptime:</span>
+                    <div className="font-mono font-bold text-emerald-600">{c.syncHealth}</div>
                   </div>
                 </div>
-                <span className="custom-badge badge-active text-[10px]">
-                  {c.status}
-                </span>
-              </div>
 
-              <div className="pt-2 border-t border-slate-100 grid grid-cols-2 gap-3 text-xs">
-                <div>
-                  <span className="text-slate-400 font-medium">Live Published Rate:</span>
-                  <div className="font-extrabold text-slate-900 text-sm">₹{c.rate.toLocaleString()}/N</div>
-                </div>
-                <div>
-                  <span className="text-slate-400 font-medium">Sync Uptime:</span>
-                  <div className="font-bold text-emerald-600">{c.syncHealth}</div>
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span className="text-slate-500 font-medium">Mapped: <strong>{c.activeRooms} Rooms</strong></span>
+                  <span className="text-indigo-600 font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                    Adjust Rate & Min-Stay →
+                  </span>
                 </div>
               </div>
-
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-500 font-medium">Mapped: <strong>{c.activeRooms} Rooms</strong></span>
-                <span className="text-indigo-600 font-bold group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                  Adjust Rate & Min-Stay →
-                </span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -240,10 +257,10 @@ export default function ChannelManagerView() {
       <div className="custom-card p-6 space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div>
-            <h3 className="font-bold text-base text-slate-900">Real-Time Channel Activity & Sync Logs</h3>
-            <p className="text-xs text-slate-400">Auditable trace of all inbound reservations and outbound rate changes.</p>
+            <h3 className="font-display font-bold text-base text-slate-900">Real-Time Channel Activity & Sync Logs</h3>
+            <p className="text-xs text-slate-400 font-medium">Auditable trace of all inbound reservations and outbound rate changes.</p>
           </div>
-          <span className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live Stream
           </span>
         </div>
@@ -282,10 +299,12 @@ export default function ChannelManagerView() {
           <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-slate-200 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <span className="text-2xl">{selectedChannelForEdit.logo}</span>
+                <div className={`w-8 h-8 rounded-xl border flex items-center justify-center ${selectedChannelForEdit.color}`}>
+                  {React.createElement(selectedChannelForEdit.icon, { className: 'w-4 h-4' })}
+                </div>
                 <div>
-                  <h3 className="font-bold text-base text-slate-900">Adjust Rates: {selectedChannelForEdit.name}</h3>
-                  <p className="text-[11px] text-slate-400">Push real-time rate updates via STAAH 2-way gateway.</p>
+                  <h3 className="font-display font-bold text-base text-slate-900">Adjust Rates: {selectedChannelForEdit.name}</h3>
+                  <p className="text-[11px] text-slate-400 font-medium">Push real-time rate updates via STAAH 2-way gateway.</p>
                 </div>
               </div>
               <button onClick={() => setSelectedChannelForEdit(null)} className="p-1 rounded-lg text-slate-400 hover:bg-slate-100">
@@ -300,7 +319,7 @@ export default function ChannelManagerView() {
                   type="number"
                   value={rateForm.deluxeRate}
                   onChange={(e) => setRateForm({ ...rateForm, deluxeRate: parseInt(e.target.value) })}
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-mono font-bold outline-none"
                 />
               </div>
 
@@ -309,7 +328,7 @@ export default function ChannelManagerView() {
                 <select
                   value={rateForm.minStay}
                   onChange={(e) => setRateForm({ ...rateForm, minStay: parseInt(e.target.value) })}
-                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold"
+                  className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold outline-none"
                 >
                   <option value={1}>1 Night (No Restriction)</option>
                   <option value={2}>2 Nights (Weekend Minimum)</option>

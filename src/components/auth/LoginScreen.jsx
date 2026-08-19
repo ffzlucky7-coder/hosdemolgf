@@ -14,7 +14,7 @@ import {
 
 export default function LoginScreen() {
   const { setCurrentRole, setCurrentView, showToast } = useApp();
-  const [email, setEmail] = useState('reception@grandhorizon.com');
+  const [email, setEmail] = useState('reception@lohagarhfortresort.in');
   const [password, setPassword] = useState('••••••••••••');
 
   const handleLogin = (role, defaultEmail) => {
@@ -33,14 +33,14 @@ export default function LoginScreen() {
       <div className="w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl border border-slate-100 relative z-10 space-y-6 animate-in zoom-in-95 duration-200">
         {/* Brand Header */}
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-indigo-600 text-white mx-auto flex items-center justify-center shadow-lg shadow-indigo-600/30">
+          <div className="w-14 h-14 rounded-2xl bg-indigo-600 text-white mx-auto flex items-center justify-center shadow-lg shadow-indigo-600/30 border border-indigo-500">
             <Building2 className="w-8 h-8" />
           </div>
-          <h1 className="text-2xl font-black text-slate-900 tracking-tight">PMS Hospitality OS</h1>
+          <h1 className="text-2xl font-display font-extrabold text-slate-900 tracking-tight">PMS Hospitality OS</h1>
           <p className="text-xs text-slate-500 font-medium">Enterprise Hotel Operations & SaaS Management</p>
         </div>
 
-        {/* Form (Page 19) */}
+        {/* Form */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -49,7 +49,7 @@ export default function LoginScreen() {
           className="space-y-4 text-xs"
         >
           <div>
-            <label className="block text-slate-600 font-semibold mb-1">Email Address</label>
+            <label className="block text-slate-600 font-bold mb-1">Email Address</label>
             <div className="relative">
               <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
@@ -65,7 +65,7 @@ export default function LoginScreen() {
 
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="block text-slate-600 font-semibold">Password</label>
+              <label className="block text-slate-600 font-bold">Password</label>
               <a href="#" className="text-indigo-600 font-bold hover:underline">Forgot?</a>
             </div>
             <div className="relative">
@@ -75,7 +75,7 @@ export default function LoginScreen() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium outline-none focus:ring-2 focus:ring-indigo-500/20"
+                className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-mono font-medium outline-none focus:ring-2 focus:ring-indigo-500/20"
                 placeholder="••••••••"
               />
             </div>
@@ -103,7 +103,7 @@ export default function LoginScreen() {
 
           <div className="grid grid-cols-2 gap-2 text-xs">
             <button
-              onClick={() => handleLogin('front-desk', 'frontdesk@grandhorizon.com')}
+              onClick={() => handleLogin('front-desk', 'reception@lohagarhfortresort.in')}
               className="p-2.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-xl text-indigo-700 font-bold text-left flex items-center gap-2 transition-colors"
             >
               <BedDouble className="w-4 h-4 text-indigo-600" />
@@ -111,15 +111,15 @@ export default function LoginScreen() {
             </button>
 
             <button
-              onClick={() => handleLogin('hotel-admin', 'hoteladmin@grandhorizon.com')}
+              onClick={() => handleLogin('hotel-admin', 'gm@lohagarhfortresort.in')}
               className="p-2.5 bg-blue-50 hover:bg-blue-100 border border-blue-100 rounded-xl text-blue-700 font-bold text-left flex items-center gap-2 transition-colors"
             >
               <Hotel className="w-4 h-4 text-blue-600" />
-              <span>Hotel Admin</span>
+              <span>Resort GM</span>
             </button>
 
             <button
-              onClick={() => handleLogin('area-manager', 'areamanager@grandhorizon.com')}
+              onClick={() => handleLogin('area-manager', 'cluster@lohagarhfortresort.in')}
               className="p-2.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-100 rounded-xl text-emerald-700 font-bold text-left flex items-center gap-2 transition-colors"
             >
               <MapPin className="w-4 h-4 text-emerald-600" />
@@ -127,7 +127,7 @@ export default function LoginScreen() {
             </button>
 
             <button
-              onClick={() => handleLogin('super-admin', 'superadmin@hos-saas.com')}
+              onClick={() => handleLogin('super-admin', 'owner@lohagarhfortresort.in')}
               className="p-2.5 bg-purple-50 hover:bg-purple-100 border border-purple-100 rounded-xl text-purple-700 font-bold text-left flex items-center gap-2 transition-colors"
             >
               <Crown className="w-4 h-4 text-purple-600" />

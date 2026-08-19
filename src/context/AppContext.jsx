@@ -115,8 +115,8 @@ export function AppProvider({ children }) {
 
   // POS Live Cart State
   const [cart, setCart] = useState([
-    { id: 'POS-01', name: 'Special Masala Chai & Mirchi Vada', price: 140, qty: 2, image: '☕' },
-    { id: 'POS-09', name: 'Laal Maas Royal Handi (Specialty)', price: 720, qty: 1, image: '🍛' }
+    { id: 'POS-01', name: 'Special Masala Chai & Mirchi Vada', price: 140, qty: 2, iconKey: 'coffee' },
+    { id: 'POS-09', name: 'Laal Maas Royal Handi (Specialty)', price: 720, qty: 1, iconKey: 'curry' }
   ]);
 
   // UI Modals & Drawers
@@ -318,7 +318,7 @@ export function AppProvider({ children }) {
       if (existing) {
         return prev.map(i => i.id === item.id ? { ...i, qty: i.qty + 1 } : i);
       }
-      return [...prev, { id: item.id, name: item.name, price: item.price, image: item.image, qty: 1 }];
+      return [...prev, { id: item.id, name: item.name, price: item.price, iconKey: item.iconKey || 'coffee', qty: 1 }];
     });
     showToast(`Added ${item.name} to order`);
   };
@@ -410,17 +410,17 @@ export function AppProvider({ children }) {
       const lower = text.toLowerCase();
       
       if (lower.includes('wifi') || lower.includes('internet') || lower.includes('passcode')) {
-        aiReply = "High-speed Wi-Fi network: 'Lohagarh_Royal_Guest' • Passcode: 'RoyalLohagarh2025'. High-speed streaming is active across all treehouses and private pool villas! 📶";
+        aiReply = "High-speed Wi-Fi network: 'Lohagarh_Royal_Guest' • Passcode: 'RoyalLohagarh2025'. High-speed streaming is active across all treehouses and private pool villas.";
       } else if (lower.includes('checkout') || lower.includes('late') || lower.includes('extend')) {
-        aiReply = "Complimentary late check-out till 01:30 PM confirmed! Your RFID wooden villa keycard has been updated automatically. ⏰";
+        aiReply = "Complimentary late check-out till 01:30 PM confirmed! Your RFID wooden villa keycard has been updated automatically.";
       } else if (lower.includes('cultural') || lower.includes('dance') || lower.includes('folk') || lower.includes('evening') || lower.includes('event')) {
-        aiReply = "Our traditional Rajasthani Folk Dance, Kalbeliya performance & Puppet Show starts daily at 7:30 PM at the Royal Central Courtyard, followed by live charcoal barbecue. 🎭🔥";
+        aiReply = "Our traditional Rajasthani Folk Dance, Kalbeliya performance & Puppet Show starts daily at 7:30 PM at the Royal Central Courtyard, followed by live charcoal barbecue.";
       } else if (lower.includes('pool') || lower.includes('jacuzzi') || lower.includes('spa') || lower.includes('massage')) {
-        aiReply = "Moksha Ayurvedic Spa & Balcony Jacuzzi services are available daily from 7:00 AM to 9:00 PM. Would you like to book our Signature Sandalwood Couple Therapy? 🌿💆‍♀️";
+        aiReply = "Moksha Ayurvedic Spa & Balcony Jacuzzi services are available daily from 7:00 AM to 9:00 PM. Would you like to book our Signature Sandalwood Couple Therapy?";
       } else if (lower.includes('food') || lower.includes('menu') || lower.includes('laal maas') || lower.includes('dinner') || lower.includes('chai')) {
-        aiReply = "24x7 in-villa royal dining is active! You can order Laal Maas, Dal Baati Churma, or Mirchi Vada directly to your private pool deck. 🍽️";
+        aiReply = "24x7 in-villa royal dining is active! You can order Laal Maas, Dal Baati Churma, or Mirchi Vada directly to your private pool deck.";
       } else if (lower.includes('cab') || lower.includes('taxi') || lower.includes('airport') || lower.includes('sightseeing')) {
-        aiReply = "Our royal concierge cab is booked for you. The chauffeur will be ready at the resort porch with cool refreshments. 🚗";
+        aiReply = "Our royal concierge cab is booked for you. The chauffeur will be ready at the resort porch with cool refreshments.";
       }
 
       const aiMsg = { id: Date.now() + 1, sender: 'ai', text: aiReply, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };

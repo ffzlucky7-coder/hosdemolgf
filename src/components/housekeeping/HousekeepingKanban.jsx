@@ -14,7 +14,8 @@ import {
   Search,
   PackageCheck,
   CheckSquare,
-  X
+  X,
+  Package
 } from 'lucide-react';
 
 export default function HousekeepingKanban() {
@@ -108,34 +109,40 @@ export default function HousekeepingKanban() {
       {/* Top Header & Sub-Tabs */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Housekeeping Operations & Turnover</h1>
-          <p className="text-sm text-slate-500 mt-1">Villa sanitation, 5-point inspection checklist, lost & found registry, and engineering tickets.</p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 8 & 9 • Housekeeping Turnover & Engineering</span>
+          </div>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Housekeeping Operations & Turnover</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Villa sanitation, 5-point inspection checklist, lost & found registry, and engineering tickets.</p>
         </div>
 
         <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
           <button
             onClick={() => setActiveTab('kanban')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === 'kanban' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            🧹 Room Turnover Kanban
+            <ClipboardList className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Room Turnover Kanban</span>
           </button>
           <button
             onClick={() => setActiveTab('lost-found')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === 'lost-found' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            📦 Lost & Found ({lostAndFoundItems.length})
+            <Package className="w-3.5 h-3.5 text-amber-500" />
+            <span>Lost & Found ({lostAndFoundItems.length})</span>
           </button>
           <button
             onClick={() => setActiveTab('maintenance')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === 'maintenance' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            🔧 Maintenance Tickets ({maintenanceTickets.length})
+            <Wrench className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Maintenance Tickets ({maintenanceTickets.length})</span>
           </button>
         </div>
       </div>
@@ -164,8 +171,8 @@ export default function HousekeepingKanban() {
                   <div>
                     {/* Column Header */}
                     <div className="flex items-center justify-between pb-3 border-b border-slate-100 mb-3">
-                      <span className="font-bold text-sm text-slate-900">{col.title}</span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-slate-200/80 text-slate-700 font-black text-xs">
+                      <span className="font-display font-bold text-sm text-slate-900">{col.title}</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-slate-200/80 text-slate-700 font-mono font-black text-xs">
                         {tasks.length}
                       </span>
                     </div>
@@ -180,7 +187,7 @@ export default function HousekeepingKanban() {
                             className="p-4 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all space-y-3"
                           >
                             <div className="flex items-center justify-between">
-                              <span className="font-black text-base text-slate-900">{task.room}</span>
+                              <span className="font-mono font-black text-base text-slate-900">{task.room}</span>
                               {getPriorityBadge(task.priority)}
                             </div>
 
@@ -200,7 +207,7 @@ export default function HousekeepingKanban() {
                               {task.status === 'inspected' ? (
                                 <button
                                   onClick={() => handleOpenInspection(task)}
-                                  className="flex items-center gap-1 px-3 py-1 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold rounded-xl text-xs transition-colors shadow-2xs border border-emerald-200"
+                                  className="flex items-center gap-1 px-3 py-1 bg-emerald-50 hover:bg-emerald-600 text-emerald-700 hover:text-white font-bold rounded-xl text-xs transition-colors shadow-2xs border border-emerald-200 cursor-pointer"
                                 >
                                   <CheckSquare className="w-3.5 h-3.5" />
                                   <span>Inspect ✓</span>
@@ -208,7 +215,7 @@ export default function HousekeepingKanban() {
                               ) : next ? (
                                 <button
                                   onClick={() => moveHousekeepingTask(task.id, next)}
-                                  className="flex items-center gap-1 px-3 py-1 bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white font-bold rounded-xl text-xs transition-colors shadow-2xs"
+                                  className="flex items-center gap-1 px-3 py-1 bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white font-bold rounded-xl text-xs transition-colors shadow-2xs cursor-pointer"
                                 >
                                   <span>Next</span>
                                   <ChevronRight className="w-3.5 h-3.5" />
@@ -229,7 +236,7 @@ export default function HousekeepingKanban() {
 
                   <button
                     onClick={() => setIsAddTaskModalOpen(true)}
-                    className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-600 text-xs font-bold rounded-xl border border-dashed border-slate-300 transition-colors"
+                    className="w-full py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-600 text-xs font-bold rounded-xl border border-dashed border-slate-300 transition-colors cursor-pointer"
                   >
                     + Assign Room
                   </button>
@@ -245,12 +252,12 @@ export default function HousekeepingKanban() {
         <div className="custom-card p-6 space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div>
-              <h3 className="font-bold text-base text-slate-900">Lost & Found Property Registry</h3>
-              <p className="text-xs text-slate-400">Track guest belongings left in treehouses, villas, or lawn banquets.</p>
+              <h3 className="font-display font-bold text-base text-slate-900">Lost & Found Property Registry</h3>
+              <p className="text-xs text-slate-400 font-medium">Track guest belongings left in treehouses, villas, or lawn banquets.</p>
             </div>
             <button
               onClick={() => showToast('New Lost & Found item logged in secure vault')}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs"
+              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs cursor-pointer"
             >
               + Log Found Item
             </button>
@@ -272,7 +279,7 @@ export default function HousekeepingKanban() {
                 {lostAndFoundItems.map((lf) => (
                   <tr key={lf.id} className="hover:bg-slate-50/70">
                     <td className="p-3 pl-4 font-mono font-bold text-indigo-600">{lf.id}</td>
-                    <td className="p-3 font-bold text-slate-900">{lf.item}</td>
+                    <td className="p-3 font-display font-bold text-slate-900">{lf.item}</td>
                     <td className="p-3 text-slate-600">{lf.room}</td>
                     <td className="p-3 text-slate-600">{lf.foundBy}</td>
                     <td className="p-3 font-semibold text-slate-700">{lf.guestName}</td>
@@ -294,12 +301,12 @@ export default function HousekeepingKanban() {
         <div className="custom-card p-6 space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div>
-              <h3 className="font-bold text-base text-slate-900">Resort Engineering & Maintenance Tickets</h3>
-              <p className="text-xs text-slate-400">Track pool pumps, jacuzzi heaters, and HVAC preventive maintenance.</p>
+              <h3 className="font-display font-bold text-base text-slate-900">Resort Engineering & Maintenance Tickets</h3>
+              <p className="text-xs text-slate-400 font-medium">Track pool pumps, jacuzzi heaters, and HVAC preventive maintenance.</p>
             </div>
             <button
               onClick={() => showToast('New Engineering maintenance ticket dispatched')}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs"
+              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-xs cursor-pointer"
             >
               + Raise Maintenance Ticket
             </button>
@@ -316,13 +323,13 @@ export default function HousekeepingKanban() {
                 </div>
 
                 <div>
-                  <h4 className="font-bold text-sm text-slate-900">{mt.room}</h4>
+                  <h4 className="font-display font-bold text-sm text-slate-900">{mt.room}</h4>
                   <p className="text-xs text-slate-600 mt-1 font-medium">{mt.issue}</p>
                 </div>
 
                 <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
                   <span>Tech: <strong>{mt.technician}</strong></span>
-                  <span>{mt.reportedAt}</span>
+                  <span className="font-mono">{mt.reportedAt}</span>
                 </div>
               </div>
             ))}
@@ -336,8 +343,8 @@ export default function HousekeepingKanban() {
           <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-slate-200 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div>
-                <h3 className="font-bold text-base text-slate-900">5-Point Villa Inspection Checklist</h3>
-                <p className="text-xs text-slate-400">{inspectingTask.room} • Ready Approval</p>
+                <h3 className="font-display font-bold text-base text-slate-900">5-Point Villa Inspection Checklist</h3>
+                <p className="text-xs text-slate-400 font-medium">{inspectingTask.room} • Ready Approval</p>
               </div>
               <button onClick={() => setIsInspectModalOpen(false)} className="p-1 rounded-lg text-slate-400 hover:bg-slate-100">
                 <X className="w-5 h-5" />
@@ -389,7 +396,7 @@ export default function HousekeepingKanban() {
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in">
           <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl border border-slate-200 space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h3 className="font-bold text-base text-slate-900">Dispatch Housekeeping Turnover</h3>
+              <h3 className="font-display font-bold text-base text-slate-900">Dispatch Housekeeping Turnover</h3>
               <button onClick={() => setIsAddTaskModalOpen(false)} className="p-1 rounded-lg text-slate-400 hover:bg-slate-100">
                 <X className="w-5 h-5" />
               </button>

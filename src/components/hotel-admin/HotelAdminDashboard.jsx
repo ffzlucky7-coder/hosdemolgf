@@ -20,19 +20,22 @@ export default function HotelAdminDashboard() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Hotel Chain Operations</h1>
-          <p className="text-sm text-slate-500 mt-1">Multi-property chain performance, area managers, and revenue.</p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 3 • Hotel Admin Management</span>
+          </div>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Hotel Chain Operations</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Multi-property chain performance, area managers, and revenue.</p>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={() => setCurrentView('areas')}
-            className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl shadow-xs transition-colors"
+            className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-xl shadow-2xs transition-colors"
           >
             Manage Areas
           </button>
           <button
             onClick={() => setIsAddHotelModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-sm transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>Add Hotel</span>
@@ -40,57 +43,57 @@ export default function HotelAdminDashboard() {
         </div>
       </div>
 
-      {/* KPI Metrics Cards (Matches Page 2 exact values) */}
+      {/* KPI Metrics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Rooms</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">324</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Rooms</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">324</div>
             <div className="text-xs text-indigo-600 font-semibold mt-1">Across 6 Properties</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
             <BedDouble className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Occupancy Rate</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">72%</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Occupancy Rate</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">72%</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1">+4.2% vs last week</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
             <Percent className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Today's Revenue</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">₹1,24,850</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Today's Revenue</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">₹1,24,850</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1">On track for month</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">
             <IndianRupee className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pending Payments</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">₹48,350</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Pending Payments</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">₹48,350</div>
             <div className="text-xs text-amber-600 font-semibold mt-1">6 corporate folios</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
             <AlertCircle className="w-6 h-6" />
           </div>
         </div>
       </div>
 
-      {/* Property Cards Grid (Matches Page 2) */}
+      {/* Property Cards Grid */}
       <div>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold text-base text-slate-900">Chain Properties</h3>
+          <h3 className="font-display font-bold text-base text-slate-900">Chain Properties</h3>
           <button
             onClick={() => setCurrentView('hotels')}
             className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
@@ -122,11 +125,11 @@ export default function HotelAdminDashboard() {
 
               <div className="p-5 space-y-3.5">
                 <div>
-                  <h4 className="font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors">
+                  <h4 className="font-display font-bold text-slate-900 text-base group-hover:text-indigo-600 transition-colors">
                     {hotel.name}
                   </h4>
-                  <div className="text-xs text-slate-400 mt-0.5 flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
+                  <div className="text-xs text-slate-400 mt-0.5 flex items-center gap-1 font-medium">
+                    <MapPin className="w-3 h-3 text-indigo-500" />
                     <span>{hotel.city}</span>
                   </div>
                 </div>
@@ -135,7 +138,7 @@ export default function HotelAdminDashboard() {
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
                     <span className="text-slate-500">Occupancy</span>
-                    <span className="text-indigo-600 font-bold">{hotel.occupancy}%</span>
+                    <span className="text-indigo-600 font-mono font-bold">{hotel.occupancy}%</span>
                   </div>
                   <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
                     <div
@@ -148,7 +151,7 @@ export default function HotelAdminDashboard() {
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                   <div>
                     <span className="text-slate-400 font-medium">Today's Revenue:</span>
-                    <span className="font-bold text-slate-900 ml-1">₹{hotel.todayRevenue.toLocaleString()}</span>
+                    <span className="font-mono font-bold text-slate-900 ml-1">₹{hotel.todayRevenue.toLocaleString()}</span>
                   </div>
                   <span className="text-indigo-600 font-bold group-hover:translate-x-0.5 transition-transform flex items-center">
                     Manage <ArrowRight className="w-3.5 h-3.5 ml-1" />
@@ -160,12 +163,12 @@ export default function HotelAdminDashboard() {
         </div>
       </div>
 
-      {/* Area Managers List (Page 2 bottom section) */}
+      {/* Area Managers List */}
       <div className="custom-card p-6">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
           <div>
-            <h3 className="font-bold text-base text-slate-900">Area Managers Overview</h3>
-            <p className="text-xs text-slate-400">Regional supervisors assigned across clusters</p>
+            <h3 className="font-display font-bold text-base text-slate-900">Area Managers Overview</h3>
+            <p className="text-xs text-slate-400 font-medium">Regional supervisors assigned across clusters</p>
           </div>
           <button
             onClick={() => setCurrentView('areas')}
@@ -188,7 +191,7 @@ export default function HotelAdminDashboard() {
               </div>
               <div className="flex-1">
                 <div className="text-xs font-bold text-slate-900">{area.manager.name}</div>
-                <div className="text-[11px] text-slate-500">{area.name} ({area.region})</div>
+                <div className="text-[11px] text-slate-500 font-medium">{area.name} ({area.region})</div>
                 <div className="text-[10px] text-indigo-600 font-semibold mt-0.5">
                   {area.hotelsCount} Assigned Hotels • {area.occupancy}% Occupancy
                 </div>

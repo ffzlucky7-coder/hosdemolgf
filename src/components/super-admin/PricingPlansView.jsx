@@ -18,44 +18,45 @@ export default function PricingPlansView() {
 
   return (
     <div className="p-10 max-w-6xl mx-auto space-y-10 animate-in fade-in duration-200">
-      {/* Top Header (Matches Page 23) */}
+      {/* Top Header */}
       <div className="text-center max-w-2xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-          Choose the Right Plan for Your Organization
+        <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 2 • SaaS Subscription Architecture</span>
+        <h1 className="text-3xl font-display font-extrabold text-slate-900 tracking-tight mt-1">
+          Choose the Right Plan for Your Hospitality Organization
         </h1>
-        <p className="text-sm text-slate-500 mt-2">
+        <p className="text-xs text-slate-500 mt-2 font-medium">
           All plans include core PMS features. Upgrade anytime as you grow your hotel network.
         </p>
       </div>
 
-      {/* 3 Tier Cards (Exact Page 23 UI) */}
+      {/* 3 Tier Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
         {/* Basic Plan */}
         <div className="custom-card p-8 flex flex-col justify-between hover:shadow-lg transition-all border border-slate-200">
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 border border-blue-100">
               <Building className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-bold text-slate-900">Basic</h3>
-            <p className="text-xs text-slate-500 mt-1">Perfect for small properties and boutique stays</p>
+            <h3 className="text-xl font-display font-bold text-slate-900">Basic</h3>
+            <p className="text-xs text-slate-500 mt-1 font-medium">Perfect for small boutique stays</p>
 
             <div className="mt-6 mb-2">
               <div className="flex items-baseline">
-                <span className="text-3xl font-extrabold text-slate-900">₹2,999</span>
-                <span className="text-xs text-slate-500 ml-1.5">/ month</span>
+                <span className="text-3xl font-mono font-black text-slate-900">₹2,999</span>
+                <span className="text-xs text-slate-500 ml-1.5 font-medium">/ month</span>
               </div>
               <span className="text-[11px] text-slate-400 font-medium">Billed annually</span>
             </div>
 
-            <div className="border-t border-slate-100 pt-6 mt-6 space-y-3.5 text-xs text-slate-700">
+            <div className="border-t border-slate-100 pt-6 mt-6 space-y-3.5 text-xs text-slate-700 font-medium">
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-blue-600 shrink-0" />
                 <span>Up to 10 hotels</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Up to 20 users</span>
+                <span>Up to 20 staff users</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-blue-600 shrink-0" />
@@ -89,17 +90,17 @@ export default function PricingPlansView() {
           </div>
 
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 border border-indigo-100">
               <Crown className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-bold text-indigo-900">Pro</h3>
-            <p className="text-xs text-slate-500 mt-1">Best for growing multi-hotel businesses</p>
+            <h3 className="text-xl font-display font-bold text-indigo-950">Pro</h3>
+            <p className="text-xs text-slate-500 mt-1 font-medium">Best for growing multi-hotel chains</p>
 
             <div className="mt-6 mb-2">
               <div className="flex items-baseline">
-                <span className="text-3xl font-extrabold text-indigo-600">₹6,999</span>
-                <span className="text-xs text-indigo-400 ml-1.5">/ month</span>
+                <span className="text-3xl font-mono font-black text-indigo-600">₹6,999</span>
+                <span className="text-xs text-indigo-400 ml-1.5 font-medium">/ month</span>
               </div>
               <span className="text-[11px] text-slate-400 font-medium">Billed annually</span>
             </div>
@@ -111,7 +112,7 @@ export default function PricingPlansView() {
               </div>
               <div className="flex items-center gap-2.5 font-medium">
                 <Check className="w-4 h-4 text-indigo-600 shrink-0" />
-                <span>Up to 100 users</span>
+                <span>Up to 100 staff users</span>
               </div>
               <div className="flex items-center gap-2.5 font-medium">
                 <Check className="w-4 h-4 text-indigo-600 shrink-0" />
@@ -139,28 +140,28 @@ export default function PricingPlansView() {
         {/* Enterprise Plan */}
         <div className="custom-card p-8 flex flex-col justify-between hover:shadow-lg transition-all border border-slate-200">
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 border border-emerald-100">
               <Hotel className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-bold text-slate-900">Enterprise</h3>
-            <p className="text-xs text-slate-500 mt-1">For large hotel chains & international franchises</p>
+            <h3 className="text-xl font-display font-bold text-slate-900">Enterprise</h3>
+            <p className="text-xs text-slate-500 mt-1 font-medium">For large hotel chains & luxury resort franchises</p>
 
             <div className="mt-6 mb-2">
               <div className="flex items-baseline">
-                <span className="text-3xl font-extrabold text-slate-900">Custom</span>
+                <span className="text-3xl font-display font-black text-slate-900">Custom</span>
               </div>
               <span className="text-[11px] text-slate-400 font-medium">Contact sales for tailored pricing</span>
             </div>
 
-            <div className="border-t border-slate-100 pt-6 mt-6 space-y-3.5 text-xs text-slate-700">
+            <div className="border-t border-slate-100 pt-6 mt-6 space-y-3.5 text-xs text-slate-700 font-medium">
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>Unlimited hotels</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Unlimited users</span>
+                <span>Unlimited staff users</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />

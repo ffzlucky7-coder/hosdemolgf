@@ -23,7 +23,7 @@ export default function CheckInWizardModal() {
     rooms
   } = useApp();
 
-  const [step, setStep] = useState(2); // Start at Step 2 to match Page 10 exact screenshot
+  const [step, setStep] = useState(2);
   const [formData, setFormData] = useState({
     guestName: 'Rohit Sharma',
     email: 'rohit.sharma@gmail.com',
@@ -31,11 +31,11 @@ export default function CheckInWizardModal() {
     idType: 'Aadhaar / National ID',
     idNumber: '9845 2314 9012',
     idUploaded: true,
-    roomType: 'Suite',
+    roomType: 'Presidential Maharaja Fort Villa',
     roomId: '204',
     nights: 3,
     paymentMethod: 'Credit Card / UPI',
-    advancePaid: '₹15,000'
+    advancePaid: '₹80,640'
   });
 
   if (!isCheckInModalOpen) return null;
@@ -71,7 +71,7 @@ export default function CheckInWizardModal() {
   const steps = [
     { num: 1, label: 'Guest Info' },
     { num: 2, label: 'ID Verification' },
-    { num: 3, label: 'Room Assignment' },
+    { num: 3, label: 'Room Allocation' },
     { num: 4, label: 'Payment' },
     { num: 5, label: 'Confirm' }
   ];
@@ -82,18 +82,18 @@ export default function CheckInWizardModal() {
         {/* Modal Header */}
         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-slate-900">Guest Check-In Wizard</h2>
-            <p className="text-xs text-slate-400">Step {step} of 5 — Fast Express Check-In</p>
+            <h2 className="font-display font-bold text-lg text-slate-900">Guest Check-In Wizard</h2>
+            <p className="text-xs text-slate-400 font-medium">Step {step} of 5 — Fast Express Arrival & ID Capture</p>
           </div>
           <button
             onClick={() => setIsCheckInModalOpen(false)}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* 5-Step Stepper Header (Matches Page 10) */}
+        {/* 5-Step Stepper Header */}
         <div className="px-6 pt-5 pb-2 bg-slate-50/70 border-b border-slate-100">
           <div className="flex items-center justify-between relative">
             <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-slate-200 -translate-y-1/2 z-0"></div>
@@ -103,7 +103,7 @@ export default function CheckInWizardModal() {
               return (
                 <div key={s.num} className="relative z-10 flex flex-col items-center gap-1.5">
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center font-bold font-mono text-xs transition-all ${
                       isCompleted
                         ? 'bg-emerald-600 text-white'
                         : isCurrent
@@ -127,7 +127,7 @@ export default function CheckInWizardModal() {
           {/* Step 1: Guest Info */}
           {step === 1 && (
             <div className="space-y-4 animate-in fade-in">
-              <h3 className="text-sm font-bold text-slate-800">Primary Guest Information</h3>
+              <h3 className="font-display text-sm font-bold text-slate-800">Primary Guest Information</h3>
               <div className="grid grid-cols-2 gap-4 text-xs">
                 <div>
                   <label className="block text-slate-500 font-semibold mb-1">Full Name</label>
@@ -135,7 +135,7 @@ export default function CheckInWizardModal() {
                     type="text"
                     value={formData.guestName}
                     onChange={(e) => setFormData({ ...formData, guestName: e.target.value })}
-                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800 font-medium"
                   />
                 </div>
                 <div>
@@ -144,7 +144,7 @@ export default function CheckInWizardModal() {
                     type="text"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800 font-mono font-medium"
                   />
                 </div>
                 <div className="col-span-2">
@@ -153,20 +153,20 @@ export default function CheckInWizardModal() {
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800"
+                    className="w-full px-3 py-2 border border-slate-200 rounded-lg text-slate-800 font-medium"
                   />
                 </div>
               </div>
             </div>
           )}
 
-          {/* Step 2: ID Verification (Exact Page 10 UI) */}
+          {/* Step 2: ID Verification */}
           {step === 2 && (
             <div className="space-y-5 animate-in fade-in">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900">Government ID & KYC Verification</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Upload guest identity proof for regulatory compliance</p>
+                  <h3 className="font-display text-sm font-bold text-slate-900">Government ID & KYC Verification</h3>
+                  <p className="text-xs text-slate-400 mt-0.5 font-medium">Upload guest identity proof for regulatory Rajasthan Police compliance</p>
                 </div>
                 <span className="custom-badge badge-pending">Verification: Pending</span>
               </div>
@@ -176,16 +176,16 @@ export default function CheckInWizardModal() {
                 <div className="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 mx-auto flex items-center justify-center mb-3">
                   <UploadCloud className="w-6 h-6" />
                 </div>
-                <div className="text-sm font-bold text-slate-800">
+                <div className="text-sm font-bold text-slate-800 font-mono">
                   {formData.idUploaded ? 'aadhaar_front_back_scanned.pdf' : 'Drag and drop ID document here'}
                 </div>
-                <div className="text-xs text-slate-400 mt-1">
+                <div className="text-xs text-slate-400 mt-1 font-medium">
                   Supports PNG, JPG, or PDF up to 10MB (Aadhaar, Passport, Driving License)
                 </div>
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, idUploaded: true })}
-                  className="mt-3 px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-indigo-600 hover:bg-slate-50 shadow-2xs"
+                  className="mt-3 px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-indigo-600 hover:bg-slate-50 shadow-2xs cursor-pointer"
                 >
                   {formData.idUploaded ? '✓ Document Uploaded' : 'Browse Files'}
                 </button>
@@ -194,7 +194,7 @@ export default function CheckInWizardModal() {
               {/* ID Number & ID Type inputs */}
               <div className="grid grid-cols-2 gap-4 text-xs">
                 <div>
-                  <label className="block text-slate-600 font-semibold mb-1">Document Type</label>
+                  <label className="block text-slate-600 font-bold mb-1">Document Type</label>
                   <select
                     value={formData.idType}
                     onChange={(e) => setFormData({ ...formData, idType: e.target.value })}
@@ -207,12 +207,12 @@ export default function CheckInWizardModal() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-slate-600 font-semibold mb-1">ID Number</label>
+                  <label className="block text-slate-600 font-bold mb-1">ID Number</label>
                   <input
                     type="text"
                     value={formData.idNumber}
                     onChange={(e) => setFormData({ ...formData, idNumber: e.target.value })}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-medium"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-mono font-bold"
                     placeholder="Enter ID number"
                   />
                 </div>
@@ -223,23 +223,23 @@ export default function CheckInWizardModal() {
           {/* Step 3: Room Assignment */}
           {step === 3 && (
             <div className="space-y-4 animate-in fade-in">
-              <h3 className="text-sm font-bold text-slate-900">Select Room Allocation</h3>
+              <h3 className="font-display text-sm font-bold text-slate-900">Select Villa / Room Allocation</h3>
               <div className="grid grid-cols-2 gap-4 text-xs">
                 <div>
-                  <label className="block text-slate-600 font-semibold mb-1">Room Category</label>
+                  <label className="block text-slate-600 font-bold mb-1">Room Category</label>
                   <select
                     value={formData.roomType}
                     onChange={(e) => setFormData({ ...formData, roomType: e.target.value })}
                     className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-medium"
                   >
-                    <option value="Suite">Suite (₹8,500/night)</option>
-                    <option value="Deluxe King">Deluxe King (₹5,000/night)</option>
-                    <option value="Executive King">Executive King (₹6,500/night)</option>
-                    <option value="Superior Twin">Superior Twin (₹4,200/night)</option>
+                    <option value="Presidential Maharaja Fort Villa">Presidential Villa (₹24,000/night)</option>
+                    <option value="Luxury Tree House with Jacuzzi">Treehouse with Jacuzzi (₹9,500/night)</option>
+                    <option value="Private Pool Villa with Garden">Private Pool Villa (₹14,500/night)</option>
+                    <option value="Maharaja Heritage Suite">Maharaja Suite (₹18,000/night)</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-slate-600 font-semibold mb-1">Assign Clean Room</label>
+                  <label className="block text-slate-600 font-bold mb-1">Assign Clean Unit</label>
                   <select
                     value={formData.roomId}
                     onChange={(e) => setFormData({ ...formData, roomId: e.target.value })}
@@ -247,7 +247,7 @@ export default function CheckInWizardModal() {
                   >
                     {rooms.filter(r => r.status === 'clean' || r.id === '204').map(r => (
                       <option key={r.id} value={r.id}>
-                        Room {r.number} — Floor {r.floor} ({r.type})
+                        Villa {r.number} — Floor {r.floor} ({r.type})
                       </option>
                     ))}
                   </select>
@@ -256,7 +256,7 @@ export default function CheckInWizardModal() {
 
               <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 flex items-center gap-2 font-medium">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Room {formData.roomId} has been inspected and sanitized by Housekeeping. Ready for keycard delivery.</span>
+                <span>Villa {formData.roomId} has been inspected and sanitized by Housekeeping. Ready for RFID smart keycard delivery.</span>
               </div>
             </div>
           )}
@@ -264,33 +264,33 @@ export default function CheckInWizardModal() {
           {/* Step 4: Payment */}
           {step === 4 && (
             <div className="space-y-4 animate-in fade-in">
-              <h3 className="text-sm font-bold text-slate-900">Payment & Security Deposit</h3>
+              <h3 className="font-display text-sm font-bold text-slate-900">Payment & Security Deposit</h3>
               <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Room Charges (3 Nights @ ₹8,500):</span>
-                  <span className="font-bold text-slate-800">₹25,500.00</span>
+                  <span className="text-slate-500">Villa Charges (3 Nights @ ₹24,000):</span>
+                  <span className="font-mono font-bold text-slate-800">₹72,000.00</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">GST (12%):</span>
-                  <span className="font-bold text-slate-800">₹3,060.00</span>
+                  <span className="text-slate-500">Resort GST Tax (12%):</span>
+                  <span className="font-mono font-bold text-slate-800">₹8,640.00</span>
                 </div>
                 <div className="flex justify-between text-indigo-700 font-bold pt-2 border-t border-slate-200 text-sm">
                   <span>Total Estimated Bill:</span>
-                  <span>₹28,560.00</span>
+                  <span className="font-mono font-black text-base">₹80,640.00</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3 text-xs">
                 <button
                   type="button"
-                  className="p-3 border-2 border-indigo-600 bg-indigo-50/50 rounded-xl font-bold text-indigo-900 text-left flex items-center justify-between"
+                  className="p-3 border-2 border-indigo-600 bg-indigo-50/50 rounded-xl font-bold text-indigo-900 text-left flex items-center justify-between cursor-pointer"
                 >
                   <span>Credit / Debit Card</span>
                   <CreditCard className="w-4 h-4 text-indigo-600" />
                 </button>
                 <button
                   type="button"
-                  className="p-3 border border-slate-200 bg-white hover:bg-slate-50 rounded-xl font-medium text-slate-700 text-left flex items-center justify-between"
+                  className="p-3 border border-slate-200 bg-white hover:bg-slate-50 rounded-xl font-medium text-slate-700 text-left flex items-center justify-between cursor-pointer"
                 >
                   <span>UPI / QR Scan</span>
                   <Sparkles className="w-4 h-4 text-slate-400" />
@@ -306,20 +306,20 @@ export default function CheckInWizardModal() {
                 <Check className="w-8 h-8" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-900">Check-In Ready!</h3>
-                <p className="text-xs text-slate-500 mt-1">
-                  Keycard for <strong>Room {formData.roomId}</strong> programmed for {formData.guestName}.
+                <h3 className="font-display text-xl font-bold text-slate-900">Check-In Ready!</h3>
+                <p className="text-xs text-slate-500 mt-1 font-medium">
+                  Smart RFID Keycard for <strong>Villa {formData.roomId}</strong> programmed for {formData.guestName}.
                 </p>
               </div>
 
               <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-left space-y-2 max-w-md mx-auto">
                 <div className="flex justify-between">
                   <span className="text-slate-400">Guest Name:</span>
-                  <span className="font-bold text-slate-800">{formData.guestName}</span>
+                  <span className="font-display font-bold text-slate-800">{formData.guestName}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Room Allocated:</span>
-                  <span className="font-bold text-indigo-600">Room {formData.roomId} ({formData.roomType})</span>
+                  <span className="text-slate-400">Villa Allocated:</span>
+                  <span className="font-mono font-bold text-indigo-600">Villa {formData.roomId} ({formData.roomType})</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">ID Verification:</span>
@@ -334,7 +334,7 @@ export default function CheckInWizardModal() {
         <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
           <button
             onClick={() => setIsCheckInModalOpen(false)}
-            className="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800"
+            className="px-4 py-2 text-xs font-bold text-slate-500 hover:text-slate-800 cursor-pointer"
           >
             Cancel Check-In
           </button>
@@ -343,7 +343,7 @@ export default function CheckInWizardModal() {
             {step > 1 && (
               <button
                 onClick={handleBack}
-                className="flex items-center gap-1 px-4 py-2 bg-white border border-slate-200 text-slate-700 font-semibold text-xs rounded-xl hover:bg-slate-100 transition-colors"
+                className="flex items-center gap-1 px-4 py-2 bg-white border border-slate-200 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-100 transition-colors cursor-pointer"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span>Back</span>
@@ -351,7 +351,7 @@ export default function CheckInWizardModal() {
             )}
             <button
               onClick={handleNext}
-              className="flex items-center gap-1 px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-xl shadow-sm transition-colors"
+              className="flex items-center gap-1 px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition-colors cursor-pointer"
             >
               <span>{step === 5 ? 'Complete Check-In' : 'Next Step'}</span>
               <ChevronRight className="w-4 h-4" />

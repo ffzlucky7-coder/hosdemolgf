@@ -13,7 +13,9 @@ import {
   Play,
   Copy,
   Terminal,
-  Send
+  Send,
+  Zap,
+  ClipboardList
 } from 'lucide-react';
 
 export default function SystemHealthAuditView() {
@@ -96,36 +98,39 @@ export default function SystemHealthAuditView() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Modules 17, 18 & 19 • Infrastructure & APIs</span>
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Modules 17, 18 & 19 • Infrastructure & APIs</span>
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Security Compliance, REST APIs & Audit Trail</h1>
-          <p className="text-sm text-slate-500 mt-0.5">Enterprise security architecture, interactive API testing sandbox, and role audit logs.</p>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Security Compliance, REST APIs & Audit Trail</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Enterprise security architecture, interactive API testing sandbox, and role audit logs.</p>
         </div>
 
         <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
           <button
             onClick={() => setActiveTab('apis')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === 'apis' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            ⚡ REST API Playground
+            <Zap className="w-3.5 h-3.5 text-indigo-600" />
+            <span>REST API Playground</span>
           </button>
           <button
             onClick={() => setActiveTab('security')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === 'security' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            🛡️ Security & Compliance
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Security & Compliance</span>
           </button>
           <button
             onClick={() => setActiveTab('audit')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
               activeTab === 'audit' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            📋 Audit Trail Logs
+            <ClipboardList className="w-3.5 h-3.5 text-amber-500" />
+            <span>Audit Trail Logs</span>
           </button>
         </div>
       </div>
@@ -134,44 +139,44 @@ export default function SystemHealthAuditView() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">System Uptime (SLA)</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">99.98%</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">System Uptime (SLA)</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">99.98%</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1">Google Cloud Platform</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
             <Server className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">API Calls (Today)</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">48,290</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">API Calls (Today)</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">48,290</div>
             <div className="text-xs text-indigo-600 font-semibold mt-1">Avg latency: 42ms</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
             <Code2 className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">Security Posture</div>
-            <div className="text-3xl font-bold text-emerald-600 mt-2">SOC-2 Type II</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Security Posture</div>
+            <div className="text-3xl font-display font-black text-emerald-600 mt-2">SOC-2 Type II</div>
             <div className="text-xs text-emerald-700 font-semibold mt-1">PCI-DSS Level 1 Ready</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">
             <ShieldCheck className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">Data Encryption</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">AES-256</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Data Encryption</div>
+            <div className="text-3xl font-display font-black text-slate-900 mt-2">AES-256</div>
             <div className="text-xs text-indigo-600 font-semibold mt-1">At Rest & In Transit</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
             <Lock className="w-6 h-6" />
           </div>
         </div>
@@ -182,7 +187,7 @@ export default function SystemHealthAuditView() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Endpoint List */}
           <div className="lg:col-span-5 custom-card p-6 space-y-4">
-            <h3 className="font-bold text-base text-slate-900">Hospitality REST Endpoints</h3>
+            <h3 className="font-display font-bold text-base text-slate-900">Hospitality REST Endpoints</h3>
             <div className="space-y-2.5">
               {endpoints.map((e) => {
                 const epKey = `${e.method} ${e.path}`;
@@ -199,7 +204,7 @@ export default function SystemHealthAuditView() {
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span className={`px-2 py-0.5 rounded-md text-[10px] font-black ${
+                      <span className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-black ${
                         e.method === 'GET' ? 'bg-blue-100 text-blue-700' : 'bg-emerald-100 text-emerald-800'
                       }`}>
                         {e.method}
@@ -222,7 +227,7 @@ export default function SystemHealthAuditView() {
               </div>
               <button
                 onClick={handleTestEndpoint}
-                className="flex items-center gap-1.5 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs rounded-xl shadow-md transition-colors"
+                className="flex items-center gap-1.5 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black text-xs rounded-xl shadow-md transition-colors cursor-pointer"
               >
                 <Play className="w-3.5 h-3.5 fill-current" />
                 <span>Send Request (Test)</span>
@@ -254,14 +259,14 @@ export default function SystemHealthAuditView() {
       {/* 2. SECURITY POSTURE VIEW */}
       {activeTab === 'security' && (
         <div className="custom-card p-6 space-y-6">
-          <h3 className="font-bold text-base text-slate-900">Enterprise Security Controls & Compliance Matrix</h3>
+          <h3 className="font-display font-bold text-base text-slate-900">Enterprise Security Controls & Compliance Matrix</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
               <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
                 <Key className="w-5 h-5" />
               </div>
-              <h4 className="font-bold text-sm text-slate-900">OAuth 2.0 & JWT Sessions</h4>
-              <p className="text-xs text-slate-500">Cryptographically signed tokens with 15-minute rotation and hardware MFA enforcement.</p>
+              <h4 className="font-display font-bold text-sm text-slate-900">OAuth 2.0 & JWT Sessions</h4>
+              <p className="text-xs text-slate-500 font-medium">Cryptographically signed tokens with 15-minute rotation and hardware MFA enforcement.</p>
               <span className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                 ✓ Enforced
               </span>
@@ -271,8 +276,8 @@ export default function SystemHealthAuditView() {
               <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
                 <FileCheck className="w-5 h-5" />
               </div>
-              <h4 className="font-bold text-sm text-slate-900">GDPR & DPDP Act India</h4>
-              <p className="text-xs text-slate-500">Guest PII data masked, automated right-to-be-forgotten deletion workflows, and audit export.</p>
+              <h4 className="font-display font-bold text-sm text-slate-900">GDPR & DPDP Act India</h4>
+              <p className="text-xs text-slate-500 font-medium">Guest PII data masked, automated right-to-be-forgotten deletion workflows, and audit export.</p>
               <span className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                 ✓ Compliant
               </span>
@@ -282,8 +287,8 @@ export default function SystemHealthAuditView() {
               <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h4 className="font-bold text-sm text-slate-900">PCI-DSS Tokenization</h4>
-              <p className="text-xs text-slate-500">Zero raw credit card numbers stored on server. Vault tokenization via RBI certified gateways.</p>
+              <h4 className="font-display font-bold text-sm text-slate-900">PCI-DSS Tokenization</h4>
+              <p className="text-xs text-slate-500 font-medium">Zero raw credit card numbers stored on server. Vault tokenization via RBI certified gateways.</p>
               <span className="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                 ✓ Level 1 Certified
               </span>
@@ -297,12 +302,12 @@ export default function SystemHealthAuditView() {
         <div className="custom-card p-6 space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div>
-              <h3 className="font-bold text-base text-slate-900">System Audit Trail & Access Logs</h3>
-              <p className="text-xs text-slate-400">Immutable ledger of every staff action, room rate modification, and invoice settlement.</p>
+              <h3 className="font-display font-bold text-base text-slate-900">System Audit Trail & Access Logs</h3>
+              <p className="text-xs text-slate-400 font-medium">Immutable ledger of every staff action, room rate modification, and invoice settlement.</p>
             </div>
             <button
               onClick={() => showToast('Audit logs exported as CSV & PDF')}
-              className="px-4 py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition-colors"
+              className="px-4 py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition-colors cursor-pointer"
             >
               Export Audit Trail (CSV)
             </button>
@@ -329,7 +334,7 @@ export default function SystemHealthAuditView() {
                 ].map((log, idx) => (
                   <tr key={idx} className="hover:bg-slate-50/70">
                     <td className="p-3 pl-4 font-mono text-slate-500">{log.time}</td>
-                    <td className="p-3 font-bold text-slate-900">{log.user}</td>
+                    <td className="p-3 font-display font-bold text-slate-900">{log.user}</td>
                     <td className="p-3 text-slate-600">{log.role}</td>
                     <td className="p-3 text-slate-800">{log.action}</td>
                     <td className="p-3 font-mono text-slate-500 text-[11px]">{log.ip}</td>

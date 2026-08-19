@@ -16,7 +16,19 @@ import {
   Clock,
   Percent,
   ChefHat,
-  X
+  X,
+  Coffee,
+  GlassWater,
+  CupSoda,
+  Wine,
+  Cookie,
+  Flame,
+  Drumstick,
+  Soup,
+  Wheat,
+  CookingPot,
+  Cake,
+  TableProperties
 } from 'lucide-react';
 
 export default function RestaurantPOS() {
@@ -45,6 +57,24 @@ export default function RestaurantPOS() {
 
   const categories = ['All', 'Beverages', 'Starters', 'Main Course', 'Desserts'];
 
+  const getDishIcon = (iconKey) => {
+    switch (iconKey) {
+      case 'coffee': return <Coffee className="w-6 h-6 text-amber-700" />;
+      case 'glass-water': return <GlassWater className="w-6 h-6 text-sky-600" />;
+      case 'cup-soda': return <CupSoda className="w-6 h-6 text-indigo-600" />;
+      case 'wine': return <Wine className="w-6 h-6 text-rose-600" />;
+      case 'cookie': return <Cookie className="w-6 h-6 text-amber-600" />;
+      case 'flame': return <Flame className="w-6 h-6 text-orange-500" />;
+      case 'drumstick': return <Drumstick className="w-6 h-6 text-red-600" />;
+      case 'soup': return <Soup className="w-6 h-6 text-amber-600" />;
+      case 'utensils': return <UtensilsCrossed className="w-6 h-6 text-rose-600" />;
+      case 'wheat': return <Wheat className="w-6 h-6 text-yellow-600" />;
+      case 'bowl': return <CookingPot className="w-6 h-6 text-indigo-600" />;
+      case 'cake': return <Cake className="w-6 h-6 text-pink-600" />;
+      default: return <UtensilsCrossed className="w-6 h-6 text-indigo-600" />;
+    }
+  };
+
   const filteredItems = posMenu.filter(item => {
     if (selectedCategory !== 'All' && item.category !== selectedCategory) return false;
     if (searchTerm && !item.name.toLowerCase().includes(searchTerm.toLowerCase())) return false;
@@ -61,7 +91,7 @@ export default function RestaurantPOS() {
     e.preventDefault();
     if (promoCode.toUpperCase() === 'ROYAL10') {
       setDiscountPercent(10);
-      showToast('Promo Code ROYAL10 Applied: 10% Royal Discount!');
+      showToast('Promo Code ROYAL10 Applied: 10% Royal Privilege Discount!');
     } else if (promoCode.toUpperCase() === 'VIP20') {
       setDiscountPercent(20);
       showToast('VIP20 Applied: 20% Privilege Discount!');
@@ -80,31 +110,36 @@ export default function RestaurantPOS() {
       {/* Top Header & Navigation Tabs */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Restaurant & In-Villa Dining POS</h1>
-          <p className="text-sm text-slate-500 mt-1">Live order dispatch, kitchen display sync (KDS), table management, and villa folio billing.</p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold text-indigo-600 tracking-wider uppercase">Module 9 & 11 • Food & Beverage POS</span>
+          </div>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Restaurant & In-Villa Dining POS</h1>
+          <p className="text-xs text-slate-500 mt-1">Live order dispatch, kitchen display sync (KDS), table management, and villa folio billing.</p>
         </div>
 
         <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
           <button
             onClick={() => setActiveTab('menu')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              activeTab === 'menu' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              activeTab === 'menu' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            🍽️ Order POS Menu
+            <UtensilsCrossed className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Order Menu</span>
           </button>
           <button
             onClick={() => setActiveTab('tables')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              activeTab === 'tables' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              activeTab === 'tables' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            🪑 Table Layout ({restaurantTables.length})
+            <TableProperties className="w-3.5 h-3.5 text-slate-600" />
+            <span>Table Layout ({restaurantTables.length})</span>
           </button>
           <button
             onClick={() => setActiveTab('kds')}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
-              activeTab === 'kds' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              activeTab === 'kds' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <ChefHat className="w-3.5 h-3.5 text-rose-500" />
@@ -140,7 +175,7 @@ export default function RestaurantPOS() {
                 <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
-                  placeholder="Search Laal Maas, Biryani, Chai..."
+                  placeholder="Search dishes..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500/20"
@@ -158,9 +193,9 @@ export default function RestaurantPOS() {
                 >
                   <div>
                     <div className="flex items-start justify-between">
-                      <span className="text-4xl p-2 rounded-2xl bg-slate-50 group-hover:scale-110 transition-transform">
-                        {item.image}
-                      </span>
+                      <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:scale-105 group-hover:bg-indigo-50 group-hover:border-indigo-200 transition-all">
+                        {getDishIcon(item.iconKey)}
+                      </div>
                       <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 uppercase">
                         {item.category}
                       </span>
@@ -172,7 +207,7 @@ export default function RestaurantPOS() {
                   </div>
 
                   <div className="flex items-center justify-between pt-2.5 border-t border-slate-100">
-                    <span className="font-extrabold text-base text-slate-900">₹{item.price}</span>
+                    <span className="font-mono font-extrabold text-base text-slate-900">₹{item.price}</span>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -194,7 +229,7 @@ export default function RestaurantPOS() {
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <ShoppingBag className="w-5 h-5 text-indigo-600" />
-                <h2 className="font-bold text-base text-slate-900">Active Dining Order</h2>
+                <h2 className="font-display font-bold text-base text-slate-900">Active Dining Order</h2>
               </div>
               {cart.length > 0 && (
                 <button
@@ -234,10 +269,12 @@ export default function RestaurantPOS() {
                 cart.map((item) => (
                   <div key={item.id} className="pt-3 flex items-center justify-between text-xs">
                     <div className="flex items-center gap-2.5">
-                      <span className="text-xl">{item.image}</span>
+                      <div className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0">
+                        {getDishIcon(item.iconKey)}
+                      </div>
                       <div>
                         <div className="font-bold text-slate-900">{item.name}</div>
-                        <div className="text-[11px] text-slate-400">₹{item.price} each</div>
+                        <div className="text-[11px] font-mono text-slate-400">₹{item.price} each</div>
                       </div>
                     </div>
 
@@ -260,7 +297,7 @@ export default function RestaurantPOS() {
                         </button>
                       </div>
 
-                      <span className="font-extrabold text-slate-900 w-14 text-right">
+                      <span className="font-mono font-extrabold text-slate-900 w-14 text-right">
                         ₹{item.price * item.qty}
                       </span>
                     </div>
@@ -269,11 +306,11 @@ export default function RestaurantPOS() {
               )}
             </div>
 
-            {/* Promo Code Input (Module 9) */}
+            {/* Promo Code Input */}
             <form onSubmit={handleApplyPromo} className="flex gap-2 text-xs pt-2">
               <input
                 type="text"
-                placeholder="Enter Promo (e.g. ROYAL10)"
+                placeholder="Enter Promo (ROYAL10, VIP20)"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
                 className="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold uppercase outline-none"
@@ -291,21 +328,21 @@ export default function RestaurantPOS() {
               <div className="space-y-1.5 pt-3 border-t border-slate-200 text-xs">
                 <div className="flex justify-between text-slate-500">
                   <span>Subtotal:</span>
-                  <span className="font-semibold text-slate-800">₹{subtotal.toFixed(2)}</span>
+                  <span className="font-mono font-semibold text-slate-800">₹{subtotal.toFixed(2)}</span>
                 </div>
                 {discountPercent > 0 && (
                   <div className="flex justify-between text-emerald-600 font-bold">
                     <span>Discount ({discountPercent}%):</span>
-                    <span>-₹{discountAmount.toFixed(2)}</span>
+                    <span className="font-mono">-₹{discountAmount.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-slate-500">
-                  <span>GST (5% Restaurant Tax):</span>
-                  <span className="font-semibold text-slate-800">₹{gst.toFixed(2)}</span>
+                  <span>GST (5% F&B Tax):</span>
+                  <span className="font-mono font-semibold text-slate-800">₹{gst.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm font-black text-slate-900 pt-2 border-t border-slate-200">
                   <span>Total Amount:</span>
-                  <span className="text-indigo-600 text-base">₹{total.toFixed(2)}</span>
+                  <span className="font-mono text-indigo-600 text-base">₹{total.toFixed(2)}</span>
                 </div>
               </div>
             )}
@@ -327,7 +364,7 @@ export default function RestaurantPOS() {
       {activeTab === 'tables' && (
         <div className="space-y-6">
           <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200">
-            <h3 className="font-bold text-base text-slate-900">Resort Table & Gazebo Dining Grid</h3>
+            <h3 className="font-display font-bold text-base text-slate-900">Resort Table & Gazebo Dining Grid</h3>
             <div className="flex items-center gap-3 text-xs font-bold">
               <span className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
                 <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Available (2)
@@ -351,8 +388,8 @@ export default function RestaurantPOS() {
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <h4 className="font-bold text-base text-slate-900">{t.name}</h4>
-                    <span className="text-xs text-slate-400">{t.section} • {t.seats} Guests Max</span>
+                    <h4 className="font-display font-bold text-base text-slate-900">{t.name}</h4>
+                    <span className="text-xs text-slate-400 font-medium">{t.section} • {t.seats} Guests Max</span>
                   </div>
                   <span className={`custom-badge ${t.status === 'Available' ? 'badge-clean' : t.status === 'Occupied' ? 'badge-occupied' : 'badge-pending'}`}>
                     {t.status}
@@ -363,7 +400,7 @@ export default function RestaurantPOS() {
                   <div className="p-3 bg-white rounded-xl border border-slate-200 text-xs space-y-1">
                     <div className="text-slate-500 font-medium">Seated Guest:</div>
                     <div className="font-bold text-slate-900">{t.guest}</div>
-                    <div className="font-extrabold text-indigo-600 pt-1">Live Tab: ₹{t.orderValue.toLocaleString()}</div>
+                    <div className="font-mono font-extrabold text-indigo-600 pt-1">Live Tab: ₹{t.orderValue.toLocaleString()}</div>
                   </div>
                 )}
 
@@ -390,7 +427,7 @@ export default function RestaurantPOS() {
         <div className="space-y-6">
           <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200">
             <div>
-              <h3 className="font-bold text-base text-slate-900">Live Kitchen Display System (KDS)</h3>
+              <h3 className="font-display font-bold text-base text-slate-900">Live Kitchen Display System (KDS)</h3>
               <p className="text-xs text-slate-400">Directly synchronized with In-Villa Dining & Restaurant Orders.</p>
             </div>
             <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
@@ -404,7 +441,7 @@ export default function RestaurantPOS() {
                 <div className="flex items-start justify-between">
                   <div>
                     <span className="font-mono text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded">{k.id}</span>
-                    <h4 className="font-bold text-base text-slate-900 mt-1">{k.tableOrRoom}</h4>
+                    <h4 className="font-display font-bold text-base text-slate-900 mt-1">{k.tableOrRoom}</h4>
                   </div>
                   <span className={`custom-badge ${k.status === 'Ready to Serve' ? 'badge-clean' : 'badge-dirty'}`}>
                     {k.status}
@@ -419,7 +456,7 @@ export default function RestaurantPOS() {
 
                 <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-100">
                   <span>Chef: <strong>{k.chef}</strong></span>
-                  <span>{k.time}</span>
+                  <span className="font-mono">{k.time}</span>
                 </div>
 
                 {k.status !== 'Served & Closed' && (

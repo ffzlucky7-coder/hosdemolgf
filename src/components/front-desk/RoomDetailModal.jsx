@@ -68,19 +68,19 @@ export default function RoomDetailModal() {
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/70">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-black text-sm flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white font-mono font-black text-sm flex items-center justify-center shadow-xs">
               {room.number}
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-bold text-slate-900">Room {room.number}</h2>
+                <h2 className="font-display font-bold text-lg text-slate-900">Room {room.number}</h2>
                 <span className={`custom-badge ${
                   room.status === 'clean' ? 'badge-clean' : room.status === 'occupied' ? 'badge-occupied' : 'badge-dirty'
                 }`}>
                   {room.status.toUpperCase()}
                 </span>
               </div>
-              <p className="text-xs text-slate-400">Floor {room.floor} • {room.type} • ₹{room.price.toLocaleString()}/night</p>
+              <p className="text-xs text-slate-400 font-medium">Floor {room.floor} • {room.type} • ₹{room.price.toLocaleString()}/night</p>
             </div>
           </div>
 
@@ -105,8 +105,8 @@ export default function RoomDetailModal() {
                       {room.guest ? room.guest.slice(0, 2).toUpperCase() : 'GS'}
                     </div>
                     <div>
-                      <div className="font-bold text-sm text-indigo-950">{room.guest || 'Rohit Sharma'}</div>
-                      <div className="text-[11px] text-indigo-700">{room.phone || '+91 98765 43210'}</div>
+                      <div className="font-display font-bold text-sm text-indigo-950">{room.guest || 'Rohit Sharma'}</div>
+                      <div className="text-[11px] font-mono text-indigo-700">{room.phone || '+91 98765 43210'}</div>
                     </div>
                   </div>
 
@@ -134,14 +134,14 @@ export default function RoomDetailModal() {
                     <Receipt className="w-4 h-4 text-indigo-600" />
                     <span>Live Running Room Folio</span>
                   </div>
-                  <span className="font-black text-sm text-slate-900">₹{netPayable.toFixed(2)}</span>
+                  <span className="font-mono font-black text-sm text-slate-900">₹{netPayable.toFixed(2)}</span>
                 </div>
 
                 <div className="space-y-1.5 max-h-32 overflow-y-auto divide-y divide-slate-100">
                   {roomFolio.items.map((it, idx) => (
                     <div key={idx} className="pt-1.5 flex justify-between text-slate-600">
                       <span>{it.desc}</span>
-                      <span className="font-bold text-slate-800">₹{it.amount.toLocaleString()}</span>
+                      <span className="font-mono font-bold text-slate-800">₹{it.amount.toLocaleString()}</span>
                     </div>
                   ))}
                 </div>
@@ -151,7 +151,7 @@ export default function RoomDetailModal() {
                   <select
                     value={incidentalItem}
                     onChange={(e) => setIncidentalItem(e.target.value)}
-                    className="flex-1 px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium"
+                    className="flex-1 px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium outline-none"
                   >
                     <option value="Mini Bar Beverages">Mini Bar Consumption (₹650)</option>
                     <option value="Express Laundry Service">Express Laundry (₹450)</option>
@@ -206,8 +206,8 @@ export default function RoomDetailModal() {
               <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 flex items-center gap-3 text-emerald-900">
                 <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />
                 <div>
-                  <div className="font-bold text-sm">Room is Inspected & Ready for Arrival</div>
-                  <div className="text-[11px] text-emerald-700 mt-0.5">
+                  <div className="font-display font-bold text-sm">Room is Inspected & Ready for Arrival</div>
+                  <div className="text-[11px] text-emerald-700 mt-0.5 font-medium">
                     Sanitized by Housekeeping. All amenities & linen restocked.
                   </div>
                 </div>
@@ -215,7 +215,7 @@ export default function RoomDetailModal() {
 
               <div className="space-y-2">
                 <div className="text-slate-400 font-bold uppercase text-[10px] tracking-wider">Room Features</div>
-                <div className="p-3 bg-slate-50 rounded-xl text-slate-700">{room.amenities}</div>
+                <div className="p-3 bg-slate-50 rounded-xl text-slate-700 font-medium">{room.amenities}</div>
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
@@ -250,8 +250,8 @@ export default function RoomDetailModal() {
               <div className="p-4 bg-rose-50 rounded-2xl border border-rose-200 flex items-center gap-3 text-rose-900">
                 <AlertTriangle className="w-6 h-6 text-rose-600 shrink-0" />
                 <div>
-                  <div className="font-bold text-sm">Room Requires Housekeeping Turnover</div>
-                  <div className="text-[11px] text-rose-700 mt-0.5">
+                  <div className="font-display font-bold text-sm">Room Requires Housekeeping Turnover</div>
+                  <div className="text-[11px] text-rose-700 mt-0.5 font-medium">
                     Previous guest departed. Linen swap and sanitation in queue.
                   </div>
                 </div>
@@ -287,7 +287,7 @@ export default function RoomDetailModal() {
         <div className="px-6 py-3 bg-slate-50 border-t border-slate-100 text-right">
           <button
             onClick={() => setIsRoomDetailModalOpen(false)}
-            className="px-4 py-2 bg-white border border-slate-200 text-slate-700 font-semibold text-xs rounded-xl hover:bg-slate-100"
+            className="px-4 py-2 bg-white border border-slate-200 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-100"
           >
             Close
           </button>

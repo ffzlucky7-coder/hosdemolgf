@@ -11,7 +11,10 @@ import {
   CheckCircle2,
   Clock,
   Zap,
-  MessageSquare
+  MessageSquare,
+  Wifi,
+  UtensilsCrossed,
+  Car
 } from 'lucide-react';
 
 export default function AiReceptionistChat() {
@@ -29,10 +32,10 @@ export default function AiReceptionistChat() {
   };
 
   const quickPrompts = [
-    "Send Wi-Fi Network & Password 📶",
-    "Approve Late Check-out till 1:30 PM ⏰",
-    "Send Room Dining Menu 🍽️",
-    "Schedule Airport Cab for tomorrow 🚗"
+    { label: "Send Wi-Fi Credentials", icon: Wifi, query: "Please share the Wi-Fi credentials for my villa." },
+    { label: "Approve 1:30 PM Late Checkout", icon: Clock, query: "Can I get a late checkout until 1:30 PM today?" },
+    { label: "Send In-Villa Dining Menu", icon: UtensilsCrossed, query: "Can you send the in-villa dining room service menu?" },
+    { label: "Schedule Airport Cab", icon: Car, query: "Please schedule an airport transfer cab for tomorrow 9 AM." }
   ];
 
   return (
@@ -45,28 +48,28 @@ export default function AiReceptionistChat() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Autonomous Concierge</span>
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 15 • AI Receptionist</span>
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">AI Virtual Receptionist & Guest Desk</h1>
-          <p className="text-sm text-slate-500 mt-0.5">24x7 automated guest queries, room services, and smart escalation.</p>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">AI Virtual Receptionist & Guest Desk</h1>
+          <p className="text-xs text-slate-500 mt-0.5">24x7 automated guest queries, room services, and smart escalation.</p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold">
+          <div className="flex items-center gap-2 bg-white px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-semibold shadow-2xs">
             <Bot className="w-4 h-4 text-indigo-600" />
-            <span>AI Response Latency: <strong>~0.4s</strong></span>
+            <span>AI Response Latency: <strong className="font-mono text-emerald-600">~0.4s</strong></span>
           </div>
         </div>
       </div>
 
-      {/* Main Grid: Threads List (4 cols) + Active Chat Box (8 cols) - Matches Page 17 */}
+      {/* Main Grid: Threads List (4 cols) + Active Chat Box (8 cols) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start h-[640px]">
-        {/* Left: Chat Threads List (4 cols) */}
+        {/* Left: Chat Threads List */}
         <div className="lg:col-span-4 custom-card h-full flex flex-col justify-between overflow-hidden">
           <div>
             <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-              <span className="font-bold text-sm text-slate-900">Active Guest Messages</span>
-              <span className="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold">
+              <span className="font-display font-bold text-sm text-slate-900">Active Guest Messages</span>
+              <span className="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 text-xs font-mono font-bold">
                 {chatThreads.length} Live
               </span>
             </div>
@@ -88,7 +91,7 @@ export default function AiReceptionistChat() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
                         <div className="font-bold text-xs text-slate-900 truncate">{thread.guestName}</div>
-                        <span className="text-[10px] text-slate-400">{thread.time}</span>
+                        <span className="text-[10px] font-mono text-slate-400">{thread.time}</span>
                       </div>
                       <div className="text-[11px] font-semibold text-slate-600 mt-0.5">
                         Room {thread.room}
@@ -104,7 +107,7 @@ export default function AiReceptionistChat() {
           </div>
         </div>
 
-        {/* Right: Active Chat Stream (8 cols - Matches Page 17) */}
+        {/* Right: Active Chat Stream */}
         <div className="lg:col-span-8 custom-card h-full flex flex-col justify-between overflow-hidden shadow-lg border border-slate-200">
           {/* Chat Header */}
           <div className="p-4 border-b border-slate-100 bg-slate-50/60 flex items-center justify-between">
@@ -114,13 +117,13 @@ export default function AiReceptionistChat() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-sm text-slate-900">{activeThread.guestName}</span>
-                  <span className="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-[10px] font-bold">
+                  <span className="font-display font-bold text-sm text-slate-900">{activeThread.guestName}</span>
+                  <span className="px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 text-[10px] font-bold font-mono">
                     Room {activeThread.room}
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-400">
-                  Checking out: May 18, 2025 • VIP Club Member
+                <div className="text-[11px] text-slate-400 font-medium">
+                  Checking out: May 18, 2025 • VIP Royal Club Member
                 </div>
               </div>
             </div>
@@ -136,7 +139,7 @@ export default function AiReceptionistChat() {
                   setIsHumanTakeover(prev => !prev);
                   showToast(isHumanTakeover ? 'AI Autopilot resumed' : 'Staff takeover enabled');
                 }}
-                className="text-[10px] font-bold text-indigo-600 underline ml-1"
+                className="text-[10px] font-bold text-indigo-600 underline ml-1 cursor-pointer"
               >
                 Toggle
               </button>
@@ -163,8 +166,8 @@ export default function AiReceptionistChat() {
                       ? 'bg-indigo-600 text-white rounded-br-none'
                       : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none'
                   }`}>
-                    <p className="leading-relaxed">{msg.text}</p>
-                    <div className={`text-[9px] mt-1 text-right font-medium ${isGuest ? 'text-indigo-200' : 'text-slate-400'}`}>
+                    <p className="leading-relaxed whitespace-pre-line font-medium">{msg.text}</p>
+                    <div className={`text-[9px] mt-1 text-right font-mono ${isGuest ? 'text-indigo-200' : 'text-slate-400'}`}>
                       {msg.time}
                     </div>
                   </div>
@@ -179,25 +182,29 @@ export default function AiReceptionistChat() {
             })}
           </div>
 
-          {/* Quick Smart Chips (Page 17) */}
+          {/* Quick Smart Action Chips */}
           <div className="px-4 py-2 bg-slate-50 border-t border-slate-100 flex items-center gap-2 overflow-x-auto">
-            <span className="text-[10px] font-bold text-slate-400 uppercase shrink-0">Quick AI Actions:</span>
-            {quickPrompts.map((p, idx) => (
-              <button
-                key={idx}
-                onClick={() => sendChatMessage(activeThread.id, p)}
-                className="px-2.5 py-1 bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-slate-700 hover:text-indigo-700 rounded-lg text-[11px] font-semibold transition-colors shrink-0 shadow-2xs"
-              >
-                {p}
-              </button>
-            ))}
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider shrink-0">Quick Actions:</span>
+            {quickPrompts.map((p, idx) => {
+              const Icon = p.icon;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => sendChatMessage(activeThread.id, p.query)}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 text-slate-700 hover:text-indigo-700 rounded-xl text-[11px] font-bold transition-colors shrink-0 shadow-2xs"
+                >
+                  <Icon className="w-3 h-3 text-indigo-600" />
+                  <span>{p.label}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Input Bar */}
           <form onSubmit={handleSend} className="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
             <input
               type="text"
-              placeholder={`Reply to ${activeThread.guestName} (or test AI query like 'wifi password', 'late checkout', 'food menu')...`}
+              placeholder={`Reply to ${activeThread.guestName} (or type 'wifi password', 'jacuzzi heat', 'food menu')...`}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               className="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500/20"

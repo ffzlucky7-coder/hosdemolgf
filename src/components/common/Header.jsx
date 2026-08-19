@@ -13,7 +13,8 @@ import {
   Globe,
   DollarSign,
   X,
-  CheckCircle2
+  CheckCircle2,
+  Hotel
 } from 'lucide-react';
 
 export default function Header() {
@@ -100,18 +101,19 @@ export default function Header() {
       <div className="flex items-center gap-3">
         {/* Multi-Hotel Selector */}
         {currentRole !== 'super-admin' && (
-          <div className="relative">
+          <div className="relative flex items-center">
+            <Hotel className="w-3.5 h-3.5 text-indigo-600 absolute left-3 pointer-events-none" />
             <select
               value={selectedHotelId}
               onChange={(e) => {
                 setSelectedHotelId(e.target.value);
                 showToast(`Switched active property to ${hotels.find(h => h.id === e.target.value)?.name.split(',')[0]}`);
               }}
-              className="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold py-2 pl-3 pr-8 rounded-xl cursor-pointer outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-2xs"
+              className="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold py-2 pl-8 pr-8 rounded-xl cursor-pointer outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-2xs"
             >
               {hotels.map(h => (
                 <option key={h.id} value={h.id}>
-                  🏨 {h.name.split(',')[0]}
+                  {h.name.split(',')[0]}
                 </option>
               ))}
             </select>
@@ -119,7 +121,7 @@ export default function Header() {
           </div>
         )}
 
-        {/* Currency Switcher (Module 20) */}
+        {/* Currency Switcher */}
         <select
           value={selectedCurrency}
           onChange={(e) => {
@@ -131,23 +133,27 @@ export default function Header() {
           <option value="INR">₹ INR</option>
           <option value="USD">$ USD</option>
           <option value="EUR">€ EUR</option>
-          <option value="AED">د.إ AED</option>
+          <option value="AED">AED</option>
         </select>
 
-        {/* Language Switcher (Module 20) */}
-        <select
-          value={selectedLanguage}
-          onChange={(e) => {
-            setSelectedLanguage(e.target.value);
-            showToast(`Language set to ${e.target.value === 'hi' ? 'हिंदी' : e.target.value.toUpperCase()}`);
-          }}
-          className="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold py-2 px-2.5 rounded-xl cursor-pointer outline-none shadow-2xs hidden sm:block"
-        >
-          <option value="en">🌐 English</option>
-          <option value="hi">🇮🇳 हिंदी</option>
-          <option value="fr">🇫🇷 Français</option>
-          <option value="de">🇩🇪 Deutsch</option>
-        </select>
+        {/* Language Switcher */}
+        <div className="relative hidden sm:flex items-center">
+          <Globe className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 pointer-events-none" />
+          <select
+            value={selectedLanguage}
+            onChange={(e) => {
+              setSelectedLanguage(e.target.value);
+              showToast(`Language set to ${e.target.value === 'hi' ? 'Hindi' : e.target.value.toUpperCase()}`);
+            }}
+            className="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold py-2 pl-7 pr-7 rounded-xl cursor-pointer outline-none shadow-2xs"
+          >
+            <option value="en">English</option>
+            <option value="hi">Hindi (हिंदी)</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+          </select>
+          <ChevronDown className="w-3 h-3 text-slate-400 absolute right-2 pointer-events-none" />
+        </div>
 
         {/* Quick Check-in Button */}
         {currentRole === 'front-desk' && (

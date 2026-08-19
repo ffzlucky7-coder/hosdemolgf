@@ -164,41 +164,41 @@ export const INITIAL_ORGANIZATIONS = [
 
 // Room & Villa Inventory for Lohagarh Fort Resort & Spa, Jaipur
 export const INITIAL_ROOMS_LOHAGARH = [
-  // Section 1 / Ground Level: Nature & Private Pool Villas (Rooms 101 to 116)
-  { id: '101', number: '101', floor: 1, type: 'Luxury Tree House with Jacuzzi', price: 9500, status: 'occupied', guest: 'Amit Patel', phone: '+91 98404 55667', checkIn: 'May 16, 2025', checkOut: 'May 19, 2025', balance: 31920, amenities: 'Private Balcony Jacuzzi, Aravali Tree Canopy View, Wooden Interiors, Rain Shower' },
-  { id: '102', number: '102', floor: 1, type: 'Private Pool Villa with Garden', price: 14500, status: 'clean', guest: null, amenities: 'Private Swimming Pool, Sun Loungers, Private Lawn, King Bed' },
-  { id: '103', number: '103', floor: 1, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'dirty', guest: null, amenities: 'Air-conditioned Glamping, Teakwood Bed, Private Sit-out Verandah' },
-  { id: '104', number: '104', floor: 1, type: 'Maharaja Heritage Suite', price: 18000, status: 'clean', guest: null, amenities: 'Royal Carved Furniture, Bathtub, Butler Service, Jharokha Seating' },
-  { id: '105', number: '105', floor: 1, type: 'Aravali View Luxury Cottage', price: 6500, status: 'occupied', guest: 'Sunita Roy', phone: '+91 98505 66778', checkIn: 'May 17, 2025', checkOut: 'May 20, 2025', balance: 21840, amenities: 'Mountain View, Stone Architecture, King Bed' },
-  { id: '106', number: '106', floor: 1, type: 'Private Plunge Pool Villa', price: 16000, status: 'clean', guest: null, amenities: 'Temperature Controlled Plunge Pool, Private Garden' },
-  { id: '107', number: '107', floor: 1, type: 'Royal Rajputana Haveli Suite', price: 12000, status: 'dirty', guest: null, amenities: 'Traditional Fresco Paintings, Heritage Courtyard Access' },
-  { id: '108', number: '108', floor: 1, type: 'Luxury Tree House Premier', price: 11000, status: 'clean', guest: null, amenities: 'High Elevation Treehouse, Open-to-Sky Jacuzzi' },
-  { id: '109', number: '109', floor: 1, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'clean', guest: null, amenities: 'Royal Glamping, Aravali Breeze' },
-  { id: '110', number: '110', floor: 1, type: 'Maharaja Palace Suite', price: 18500, status: 'occupied', guest: 'Karan Malhotra', phone: '+91 98112 33445', checkIn: 'May 15, 2025', checkOut: 'May 18, 2025', balance: 62160, amenities: 'Master Royal Suite, Private Dining Table' },
-  { id: '111', number: '111', floor: 1, type: 'Aravali Sunset Cottage', price: 6500, status: 'clean', guest: null, amenities: 'Sunset View, Private Sit-out' },
-  { id: '112', number: '112', floor: 1, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'dirty', guest: null, amenities: 'Luxury Glamping Tent' },
-  { id: '113', number: '113', floor: 1, type: 'Grand Heritage Villa', price: 15000, status: 'clean', guest: null, amenities: 'Handcrafted Sandstone Villa, Private Lawn' },
-  { id: '114', number: '114', floor: 1, type: 'Luxury Tree House with Jacuzzi', price: 9500, status: 'occupied', guest: 'Dr. Vivek Mehra', phone: '+91 98223 44556', checkIn: 'May 16, 2025', checkOut: 'May 19, 2025', balance: 31920, amenities: 'Tree Canopy, Heated Jacuzzi' },
-  { id: '115', number: '115', floor: 1, type: 'Private Pool Villa Deluxe', price: 14500, status: 'clean', guest: null, amenities: 'Private Pool, Garden View' },
-  { id: '116', number: '116', floor: 1, type: 'Royal Rajputana Haveli Suite', price: 12000, status: 'clean', guest: null, amenities: 'Heritage Architecture' },
+  // Section 1: Ground Level - Nature & Private Pool Villas
+  { id: '101', number: '101', floor: 1, type: 'Luxury Tree House with Jacuzzi', price: 9500, status: 'occupied', guest: 'Amit Patel', phone: '+91 98404 55667', checkIn: 'May 16, 2025', checkOut: 'May 19, 2025', balance: 31920, amenities: 'Private Balcony Jacuzzi, Aravali Tree Canopy View, Wooden Interiors, Rain Shower', iconType: 'tree' },
+  { id: '102', number: '102', floor: 1, type: 'Private Pool Villa with Garden', price: 14500, status: 'clean', guest: null, amenities: 'Private Swimming Pool, Sun Loungers, Private Lawn, King Bed', iconType: 'pool' },
+  { id: '103', number: '103', floor: 1, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'dirty', guest: null, amenities: 'Air-conditioned Glamping, Teakwood Bed, Private Sit-out Verandah', iconType: 'tent' },
+  { id: '104', number: '104', floor: 1, type: 'Maharaja Heritage Suite', price: 18000, status: 'clean', guest: null, amenities: 'Royal Carved Furniture, Bathtub, Butler Service, Jharokha Seating', iconType: 'suite' },
+  { id: '105', number: '105', floor: 1, type: 'Aravali View Luxury Cottage', price: 6500, status: 'occupied', guest: 'Sunita Roy', phone: '+91 98505 66778', checkIn: 'May 17, 2025', checkOut: 'May 20, 2025', balance: 21840, amenities: 'Mountain View, Stone Architecture, King Bed', iconType: 'cottage' },
+  { id: '106', number: '106', floor: 1, type: 'Private Plunge Pool Villa', price: 16000, status: 'clean', guest: null, amenities: 'Temperature Controlled Plunge Pool, Private Garden', iconType: 'pool' },
+  { id: '107', number: '107', floor: 1, type: 'Royal Rajputana Haveli Suite', price: 12000, status: 'dirty', guest: null, amenities: 'Traditional Fresco Paintings, Heritage Courtyard Access', iconType: 'suite' },
+  { id: '108', number: '108', floor: 1, type: 'Luxury Tree House Premier', price: 11000, status: 'clean', guest: null, amenities: 'High Elevation Treehouse, Open-to-Sky Jacuzzi', iconType: 'tree' },
+  { id: '109', number: '109', floor: 1, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'clean', guest: null, amenities: 'Royal Glamping, Aravali Breeze', iconType: 'tent' },
+  { id: '110', number: '110', floor: 1, type: 'Maharaja Palace Suite', price: 18500, status: 'occupied', guest: 'Karan Malhotra', phone: '+91 98112 33445', checkIn: 'May 15, 2025', checkOut: 'May 18, 2025', balance: 62160, amenities: 'Master Royal Suite, Private Dining Table', iconType: 'suite' },
+  { id: '111', number: '111', floor: 1, type: 'Aravali Sunset Cottage', price: 6500, status: 'clean', guest: null, amenities: 'Sunset View, Private Sit-out', iconType: 'cottage' },
+  { id: '112', number: '112', floor: 1, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'dirty', guest: null, amenities: 'Luxury Glamping Tent', iconType: 'tent' },
+  { id: '113', number: '113', floor: 1, type: 'Grand Heritage Villa', price: 15000, status: 'clean', guest: null, amenities: 'Handcrafted Sandstone Villa, Private Lawn', iconType: 'villa' },
+  { id: '114', number: '114', floor: 1, type: 'Luxury Tree House with Jacuzzi', price: 9500, status: 'occupied', guest: 'Dr. Vivek Mehra', phone: '+91 98223 44556', checkIn: 'May 16, 2025', checkOut: 'May 19, 2025', balance: 31920, amenities: 'Tree Canopy, Heated Jacuzzi', iconType: 'tree' },
+  { id: '115', number: '115', floor: 1, type: 'Private Pool Villa Deluxe', price: 14500, status: 'clean', guest: null, amenities: 'Private Pool, Garden View', iconType: 'pool' },
+  { id: '116', number: '116', floor: 1, type: 'Royal Rajputana Haveli Suite', price: 12000, status: 'clean', guest: null, amenities: 'Heritage Architecture', iconType: 'suite' },
 
-  // Section 2 / Royal Fort Wing: Treehouses & Royal Haveli (Rooms 201 to 216)
-  { id: '201', number: '201', floor: 2, type: 'Private Pool Villa with Jacuzzi', price: 15500, status: 'clean', guest: null, amenities: 'Private Swimming Pool & Jacuzzi Combo' },
-  { id: '202', number: '202', floor: 2, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'dirty', guest: null, amenities: 'Luxury Glamping' },
-  { id: '203', number: '203', floor: 2, type: 'Luxury Tree House Premier', price: 11000, status: 'clean', guest: null, amenities: 'Top Floor Tree Canopy Jacuzzi' },
-  { id: '204', number: '204', floor: 2, type: 'Presidential Maharaja Fort Villa', price: 24000, status: 'occupied', guest: 'Rohit Sharma', phone: '+91 98765 43210', checkIn: 'May 15, 2025', checkOut: 'May 18, 2025', balance: 80640, vip: true, amenities: 'Private Infinity Pool, Personal Butler, Maharaja Dining, Spa Jacuzzi' },
-  { id: '205', number: '205', floor: 2, type: 'Aravali Valley View Cottage', price: 6500, status: 'clean', guest: null, amenities: 'Cottage with Valley View' },
-  { id: '206', number: '206', floor: 2, type: 'Luxury Tree House with Jacuzzi', price: 9500, status: 'occupied', guest: 'Vikram Joshi', phone: '+91 98334 55667', checkIn: 'May 17, 2025', checkOut: 'May 20, 2025', balance: 31920, amenities: 'Private Jacuzzi, Nature Surrounds' },
-  { id: '207', number: '207', floor: 2, type: 'Royal Rajputana Villa', price: 15000, status: 'clean', guest: null, amenities: 'Luxury Villa, Private Plunge Pool' },
-  { id: '208', number: '208', floor: 2, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'dirty', guest: null, amenities: 'Glamping Experience' },
-  { id: '209', number: '209', floor: 2, type: 'Private Plunge Pool Villa', price: 14500, status: 'clean', guest: null, amenities: 'Private Pool' },
-  { id: '210', number: '210', floor: 2, type: 'Maharaja Heritage Suite', price: 18000, status: 'occupied', guest: 'Ananya Deshmukh', phone: '+91 98445 66778', checkIn: 'May 16, 2025', checkOut: 'May 19, 2025', balance: 60480, amenities: 'Heritage Suite, Bathtub' },
-  { id: '211', number: '211', floor: 2, type: 'Luxury Tree House Premier', price: 11000, status: 'clean', guest: null, amenities: 'Treehouse' },
-  { id: '212', number: '212', floor: 2, type: 'Aravali Sunset Cottage', price: 6500, status: 'clean', guest: null, amenities: 'Cottage' },
-  { id: '213', number: '213', floor: 2, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'clean', guest: null, amenities: 'Swiss Tent' },
-  { id: '214', number: '214', floor: 2, type: 'Royal Imperial Presidential Palace Villa', price: 32000, status: 'occupied', guest: 'Shri Mahendra Singh Rathore', phone: '+91 80033 95964', checkIn: 'May 14, 2025', checkOut: 'May 20, 2025', balance: 215040, vip: true, amenities: 'Owner Presidential Villa, Private 40ft Pool, Royal Courtyard, Private Chef' },
-  { id: '215', number: '215', floor: 2, type: 'Private Pool Villa with Lawn', price: 14500, status: 'dirty', guest: null, amenities: 'Private Pool' },
-  { id: '216', number: '216', floor: 2, type: 'Maharaja Heritage Suite', price: 18000, status: 'clean', guest: null, amenities: 'Heritage Suite' },
+  // Section 2: Royal Fort Wing - Treehouses & Royal Haveli
+  { id: '201', number: '201', floor: 2, type: 'Private Pool Villa with Jacuzzi', price: 15500, status: 'clean', guest: null, amenities: 'Private Swimming Pool & Jacuzzi Combo', iconType: 'pool' },
+  { id: '202', number: '202', floor: 2, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'dirty', guest: null, amenities: 'Luxury Glamping', iconType: 'tent' },
+  { id: '203', number: '203', floor: 2, type: 'Luxury Tree House Premier', price: 11000, status: 'clean', guest: null, amenities: 'Top Floor Tree Canopy Jacuzzi', iconType: 'tree' },
+  { id: '204', number: '204', floor: 2, type: 'Presidential Maharaja Fort Villa', price: 24000, status: 'occupied', guest: 'Rohit Sharma', phone: '+91 98765 43210', checkIn: 'May 15, 2025', checkOut: 'May 18, 2025', balance: 80640, vip: true, amenities: 'Private Infinity Pool, Personal Butler, Maharaja Dining, Spa Jacuzzi', iconType: 'crown' },
+  { id: '205', number: '205', floor: 2, type: 'Aravali Valley View Cottage', price: 6500, status: 'clean', guest: null, amenities: 'Cottage with Valley View', iconType: 'cottage' },
+  { id: '206', number: '206', floor: 2, type: 'Luxury Tree House with Jacuzzi', price: 9500, status: 'occupied', guest: 'Vikram Joshi', phone: '+91 98334 55667', checkIn: 'May 17, 2025', checkOut: 'May 20, 2025', balance: 31920, amenities: 'Private Jacuzzi, Nature Surrounds', iconType: 'tree' },
+  { id: '207', number: '207', floor: 2, type: 'Royal Rajputana Villa', price: 15000, status: 'clean', guest: null, amenities: 'Luxury Villa, Private Plunge Pool', iconType: 'villa' },
+  { id: '208', number: '208', floor: 2, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'dirty', guest: null, amenities: 'Glamping Experience', iconType: 'tent' },
+  { id: '209', number: '209', floor: 2, type: 'Private Plunge Pool Villa', price: 14500, status: 'clean', guest: null, amenities: 'Private Pool', iconType: 'pool' },
+  { id: '210', number: '210', floor: 2, type: 'Maharaja Heritage Suite', price: 18000, status: 'occupied', guest: 'Ananya Deshmukh', phone: '+91 98445 66778', checkIn: 'May 16, 2025', checkOut: 'May 19, 2025', balance: 60480, amenities: 'Heritage Suite, Bathtub', iconType: 'suite' },
+  { id: '211', number: '211', floor: 2, type: 'Luxury Tree House Premier', price: 11000, status: 'clean', guest: null, amenities: 'Treehouse', iconType: 'tree' },
+  { id: '212', number: '212', floor: 2, type: 'Aravali Sunset Cottage', price: 6500, status: 'clean', guest: null, amenities: 'Cottage', iconType: 'cottage' },
+  { id: '213', number: '213', floor: 2, type: 'Royal Swiss Luxury Tent', price: 7500, status: 'clean', guest: null, amenities: 'Swiss Tent', iconType: 'tent' },
+  { id: '214', number: '214', floor: 2, type: 'Royal Imperial Presidential Palace Villa', price: 32000, status: 'occupied', guest: 'Shri Mahendra Singh Rathore', phone: '+91 80033 95964', checkIn: 'May 14, 2025', checkOut: 'May 20, 2025', balance: 215040, vip: true, amenities: 'Owner Presidential Villa, Private 40ft Pool, Royal Courtyard, Private Chef', iconType: 'crown' },
+  { id: '215', number: '215', floor: 2, type: 'Private Pool Villa with Lawn', price: 14500, status: 'dirty', guest: null, amenities: 'Private Pool', iconType: 'pool' },
+  { id: '216', number: '216', floor: 2, type: 'Maharaja Heritage Suite', price: 18000, status: 'clean', guest: null, amenities: 'Heritage Suite', iconType: 'suite' },
 ];
 
 export const INITIAL_ROOMS = INITIAL_ROOMS_LOHAGARH;
@@ -232,20 +232,20 @@ export const INITIAL_HOUSEKEEPING_TASKS = [
   { id: 'HK-108', room: 'Room 106', type: 'Plunge Pool Villa', floor: 1, priority: 'High', status: 'completed', assignee: 'Sunita Devi' },
 ];
 
-// Rajasthani Royal & Multi-Cuisine POS Menu for Lohagarh Fort Resort
+// Rajasthani Royal & Multi-Cuisine POS Menu for Lohagarh Fort Resort (Vector Icon Keyed)
 export const INITIAL_POS_MENU = [
-  { id: 'POS-01', name: 'Special Masala Chai & Mirchi Vada', category: 'Beverages', price: 140, image: '☕' },
-  { id: 'POS-02', name: 'Fresh Kokum & Mint Cooler', category: 'Beverages', price: 220, image: '🍹' },
-  { id: 'POS-03', name: 'Cold Brew / Cappuccino', category: 'Beverages', price: 240, image: '🥤' },
-  { id: 'POS-04', name: 'Royal Kesari Thandai / Wine Glass', category: 'Beverages', price: 480, image: '🍷' },
-  { id: 'POS-05', name: 'Rajasthani Pyaaz Kachori & Chutney', category: 'Starters', price: 280, image: '🥟' },
-  { id: 'POS-06', name: 'Tandoori Paneer Tikka Shahi', category: 'Starters', price: 420, image: '🧀' },
-  { id: 'POS-07', name: 'Rajputana Jungli Maas Bites', category: 'Starters', price: 540, image: '🍗' },
-  { id: 'POS-08', name: 'Dal Baati Churma Royal Thali', category: 'Main Course', price: 650, image: '🍲' },
-  { id: 'POS-09', name: 'Laal Maas Royal Handi (Specialty)', category: 'Main Course', price: 720, image: '🍛' },
-  { id: 'POS-10', name: 'Ker Sangri & Bajra Roti Combo', category: 'Main Course', price: 520, image: '🫓' },
-  { id: 'POS-11', name: 'Awadhi Dum Dum Biryani', category: 'Main Course', price: 480, image: '🍚' },
-  { id: 'POS-12', name: 'Hot Ghevar with Rabri & Silver Vark', category: 'Desserts', price: 260, image: '🍮' },
+  { id: 'POS-01', name: 'Special Masala Chai & Mirchi Vada', category: 'Beverages', price: 140, iconKey: 'coffee' },
+  { id: 'POS-02', name: 'Fresh Kokum & Mint Cooler', category: 'Beverages', price: 220, iconKey: 'glass-water' },
+  { id: 'POS-03', name: 'Cold Brew / Cappuccino', category: 'Beverages', price: 240, iconKey: 'cup-soda' },
+  { id: 'POS-04', name: 'Royal Kesari Thandai / Wine Glass', category: 'Beverages', price: 480, iconKey: 'wine' },
+  { id: 'POS-05', name: 'Rajasthani Pyaaz Kachori & Chutney', category: 'Starters', price: 280, iconKey: 'cookie' },
+  { id: 'POS-06', name: 'Tandoori Paneer Tikka Shahi', category: 'Starters', price: 420, iconKey: 'flame' },
+  { id: 'POS-07', name: 'Rajputana Jungli Maas Bites', category: 'Starters', price: 540, iconKey: 'drumstick' },
+  { id: 'POS-08', name: 'Dal Baati Churma Royal Thali', category: 'Main Course', price: 650, iconKey: 'soup' },
+  { id: 'POS-09', name: 'Laal Maas Royal Handi (Specialty)', category: 'Main Course', price: 720, iconKey: 'utensils' },
+  { id: 'POS-10', name: 'Ker Sangri & Bajra Roti Combo', category: 'Main Course', price: 520, iconKey: 'wheat' },
+  { id: 'POS-11', name: 'Awadhi Dum Dum Biryani', category: 'Main Course', price: 480, iconKey: 'bowl' },
+  { id: 'POS-12', name: 'Hot Ghevar with Rabri & Silver Vark', category: 'Desserts', price: 260, iconKey: 'cake' },
 ];
 
 // Initial Folio Items for Room 204 at Lohagarh Fort Resort
@@ -291,9 +291,9 @@ export const INITIAL_AI_CHAT_THREADS = [
     preview: 'What time is the cultural folk dance at the courtyard today?',
     messages: [
       { id: 1, sender: 'guest', text: 'Khamma Ghani! We just checked into Presidential Villa 204. Can you share the Wi-Fi details and evening cultural event timing?', time: '15:40' },
-      { id: 2, sender: 'ai', text: "Khamma Ghani Mr. Sharma! 🏰 Welcome to Lohagarh Fort Resort & Spa, Jaipur!\n\n📶 High-speed Wi-Fi: 'Lohagarh_Royal_Guest' (Pass: 'RoyalLohagarh2025')\n🎭 Cultural Evening: Traditional Rajasthani Folk Dance, Kalbeliya performance & Puppet show begins at 7:30 PM at the Royal Central Courtyard followed by live Barbecue.", time: '15:41' },
+      { id: 2, sender: 'ai', text: "Khamma Ghani Mr. Sharma! Welcome to Lohagarh Fort Resort & Spa, Jaipur.\n\nHigh-speed Wi-Fi network: 'Lohagarh_Royal_Guest' (Passcode: 'RoyalLohagarh2025').\n\nCultural Evening: Traditional Rajasthani Folk Dance, Kalbeliya performance & Puppet show begins at 7:30 PM at the Royal Central Courtyard followed by live Barbecue.", time: '15:41' },
       { id: 3, sender: 'guest', text: 'Wonderful! Can we also get a private candle-lit dinner setup next to our villa pool at 9:00 PM?', time: '15:42' },
-      { id: 4, sender: 'ai', text: 'Certainly, Mr. Sharma! Our Royal Butler Service has reserved the candlelight poolside table with customized Laal Maas and Marwari delicacies for 9:00 PM tonight. ✨', time: '15:42' }
+      { id: 4, sender: 'ai', text: 'Certainly, Mr. Sharma! Our Royal Butler Service has reserved the poolside table with customized Laal Maas and Marwari delicacies for 9:00 PM tonight.', time: '15:42' }
     ]
   },
   {
@@ -304,7 +304,7 @@ export const INITIAL_AI_CHAT_THREADS = [
     preview: 'Can you please arrange the Jacuzzi temperature in Treehouse 101?',
     messages: [
       { id: 1, sender: 'guest', text: 'Hello, could you please turn on the heater for the treehouse balcony Jacuzzi for 5:30 PM?', time: '14:18' },
-      { id: 2, sender: 'ai', text: 'Warm greetings Mr. Patel! 🌿 I have alerted our engineering team. The balcony Jacuzzi in Treehouse 101 will be pre-heated to a comfortable 38°C by 5:30 PM with aromatherapy bath salts.', time: '14:20' }
+      { id: 2, sender: 'ai', text: 'Warm greetings Mr. Patel! I have alerted our engineering team. The balcony Jacuzzi in Treehouse 101 will be pre-heated to a comfortable 38°C by 5:30 PM with aromatherapy bath salts.', time: '14:20' }
     ]
   }
 ];

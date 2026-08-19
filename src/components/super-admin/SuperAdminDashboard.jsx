@@ -64,19 +64,22 @@ export default function SuperAdminDashboard() {
       {/* Top Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Super Admin Platform Overview</h1>
-          <p className="text-sm text-slate-500 mt-1">Multi-tenant SaaS dashboard for hotel chains and franchises.</p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 1 • Multi-Tenant Architecture</span>
+          </div>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Super Admin Platform Overview</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Multi-tenant SaaS dashboard for hotel chains and franchises.</p>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={() => setCurrentView('pricing')}
-            className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-semibold rounded-xl shadow-xs transition-colors"
+            className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-xl shadow-2xs transition-colors"
           >
             Subscription Plans
           </button>
           <button
             onClick={() => setIsCreateOrgModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-sm transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>Create Organization</span>
@@ -84,52 +87,52 @@ export default function SuperAdminDashboard() {
         </div>
       </div>
 
-      {/* KPI Cards (Page 1) */}
+      {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Organizations</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">128</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Organizations</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">128</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" /> +12% this month
             </div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
             <Building2 className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Hotels</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">1,248</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Hotels</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">1,248</div>
             <div className="text-xs text-indigo-600 font-semibold mt-1">Across 42 cities</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
             <Hotel className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Subscriptions</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">98</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Active Subscriptions</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">98</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1">94% renewal rate</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
             <CreditCard className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Monthly Revenue</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">$186,540</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Monthly Revenue</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">$186,540</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1 flex items-center gap-1">
               <TrendingUp className="w-3 h-3" /> +18.4% YoY
             </div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">
             <DollarSign className="w-6 h-6" />
           </div>
         </div>
@@ -139,10 +142,10 @@ export default function SuperAdminDashboard() {
       <div className="custom-card p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h3 className="font-bold text-base text-slate-900">Hotel & Organization Growth Trend</h3>
-            <p className="text-xs text-slate-400">Total properties onboarded over the last 6 months</p>
+            <h3 className="font-display font-bold text-base text-slate-900">Hotel & Organization Growth Trend</h3>
+            <p className="text-xs text-slate-400 font-medium">Total properties onboarded over the last 6 months</p>
           </div>
-          <span className="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+          <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
             Last 6 Months
           </span>
         </div>
@@ -153,7 +156,7 @@ export default function SuperAdminDashboard() {
               <XAxis dataKey="month" stroke="#94A3B8" fontSize={12} tickLine={false} />
               <YAxis stroke="#94A3B8" fontSize={12} tickLine={false} />
               <Tooltip
-                contentStyle={{ backgroundColor: '#1E293B', borderRadius: '10px', color: '#fff', border: 'none' }}
+                contentStyle={{ backgroundColor: '#1E293B', borderRadius: '12px', color: '#fff', border: 'none' }}
                 itemStyle={{ color: '#fff' }}
               />
               <Bar dataKey="hotels" fill="#4F46E5" radius={[6, 6, 0, 0]} name="Hotels Onboarded" />
@@ -162,12 +165,12 @@ export default function SuperAdminDashboard() {
         </div>
       </div>
 
-      {/* Organizations Table (Matches Page 1) */}
+      {/* Organizations Table */}
       <div className="custom-card p-6">
         <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
           <div>
-            <h3 className="font-bold text-base text-slate-900">Organizations Directory</h3>
-            <p className="text-xs text-slate-400">Manage client hotel groups and account privileges</p>
+            <h3 className="font-display font-bold text-base text-slate-900">Organizations Directory</h3>
+            <p className="text-xs text-slate-400 font-medium">Manage client hotel groups and account privileges</p>
           </div>
           <button
             onClick={() => setCurrentView('org-details')}
@@ -198,12 +201,12 @@ export default function SuperAdminDashboard() {
                   className="hover:bg-slate-50/80 cursor-pointer transition-colors"
                 >
                   <td className="p-3.5 pl-4 font-bold text-slate-900 flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center shadow-2xs">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center border border-indigo-100 shadow-2xs">
                       <Building2 className="w-4 h-4" />
                     </div>
                     <div>
                       <div className="text-slate-900 font-bold">{org.name}</div>
-                      <div className="text-[11px] text-slate-400 font-normal">{org.id}</div>
+                      <div className="text-[11px] font-mono text-slate-400 font-normal">{org.id}</div>
                     </div>
                   </td>
                   <td className="p-3.5">
@@ -214,7 +217,7 @@ export default function SuperAdminDashboard() {
                       <span className="font-semibold text-slate-800">{org.owner.name}</span>
                     </div>
                   </td>
-                  <td className="p-3.5 text-center font-bold text-slate-900">{org.hotelsCount}</td>
+                  <td className="p-3.5 text-center font-mono font-bold text-slate-900">{org.hotelsCount}</td>
                   <td className="p-3.5">{getPlanBadge(org.plan)}</td>
                   <td className="p-3.5">{getStatusBadge(org.status)}</td>
                   <td className="p-3.5 text-right pr-4">
@@ -223,7 +226,7 @@ export default function SuperAdminDashboard() {
                         e.stopPropagation();
                         setCurrentView('org-details');
                       }}
-                      className="px-3 py-1 text-xs font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors"
+                      className="px-3 py-1 text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors"
                     >
                       Manage
                     </button>

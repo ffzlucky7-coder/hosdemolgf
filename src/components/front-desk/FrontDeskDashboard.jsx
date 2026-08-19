@@ -9,7 +9,9 @@ import {
   ChevronRight,
   Sparkles,
   Search,
-  Plus
+  Plus,
+  CalendarDays,
+  Grid
 } from 'lucide-react';
 
 export default function FrontDeskDashboard() {
@@ -47,25 +49,30 @@ export default function FrontDeskDashboard() {
       {/* Top Banner & Quick Action */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Front Desk & Hotel Operations</h1>
-          <p className="text-sm text-slate-500 mt-1">Live overview of arrivals, departures, and room allocations.</p>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold text-indigo-600 tracking-wider uppercase">Module 6 • Front Desk Operations</span>
+          </div>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Front Desk & Hotel Operations</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Live overview of arrivals, departures, and room allocations.</p>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={() => setCurrentView('tape-chart')}
-            className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-bold rounded-xl shadow-xs transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-xl shadow-2xs transition-colors"
           >
-            Tape Chart Timeline
+            <CalendarDays className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Tape Chart</span>
           </button>
           <button
             onClick={() => setCurrentView('room-grid')}
-            className="px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-sm font-bold rounded-xl shadow-xs transition-colors"
+            className="flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-xl shadow-2xs transition-colors"
           >
-            Floor Matrix Map
+            <Grid className="w-3.5 h-3.5 text-indigo-600" />
+            <span>Floor Matrix</span>
           </button>
           <button
             onClick={() => setIsNewReservationModalOpen(true)}
-            className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-xl shadow-md transition-colors"
+            className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-md transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>+ Walk-In / Reservation</span>
@@ -79,10 +86,10 @@ export default function FrontDeskDashboard() {
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Arrivals Today</div>
-            <div className="text-3xl font-black text-slate-900 mt-2">{arrivals.length}</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">{arrivals.length}</div>
             <div className="text-xs text-indigo-600 font-bold mt-1">{arrivals.length} pending check-in</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
             <LogIn className="w-6 h-6" />
           </div>
         </div>
@@ -91,10 +98,10 @@ export default function FrontDeskDashboard() {
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Departures Today</div>
-            <div className="text-3xl font-black text-slate-900 mt-2">{departures.length}</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">{departures.length}</div>
             <div className="text-xs text-amber-600 font-bold mt-1">{departures.length} pending checkout</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100">
             <LogOut className="w-6 h-6" />
           </div>
         </div>
@@ -103,10 +110,10 @@ export default function FrontDeskDashboard() {
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">In-House Rooms</div>
-            <div className="text-3xl font-black text-slate-900 mt-2">{inHouseCount}</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">{inHouseCount}</div>
             <div className="text-xs text-emerald-600 font-bold mt-1">{Math.round((inHouseCount / rooms.length) * 100)}% occupancy rate</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
             <Users className="w-6 h-6" />
           </div>
         </div>
@@ -115,10 +122,10 @@ export default function FrontDeskDashboard() {
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
             <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Ready Clean Rooms</div>
-            <div className="text-3xl font-black text-slate-900 mt-2">{availableRoomsCount}</div>
+            <div className="text-3xl font-mono font-black text-slate-900 mt-2">{availableRoomsCount}</div>
             <div className="text-xs text-blue-600 font-bold mt-1">Ready for walk-in arrivals</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
             <BedDouble className="w-6 h-6" />
           </div>
         </div>
@@ -131,10 +138,10 @@ export default function FrontDeskDashboard() {
           <div>
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div>
-                <h3 className="font-bold text-slate-900 text-base">Today's Scheduled Arrivals</h3>
-                <p className="text-xs text-slate-400 mt-0.5">Expected guests arriving today with live room allocations</p>
+                <h3 className="font-display font-bold text-slate-900 text-base">Today's Scheduled Arrivals</h3>
+                <p className="text-xs text-slate-400 mt-0.5 font-medium">Expected guests arriving today with live room allocations</p>
               </div>
-              <span className="px-3 py-1 text-xs font-black rounded-full bg-indigo-50 text-indigo-700">
+              <span className="px-3 py-1 text-xs font-mono font-black rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
                 {arrivals.length} Guests
               </span>
             </div>
@@ -204,10 +211,10 @@ export default function FrontDeskDashboard() {
           <div>
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div>
-                <h3 className="font-bold text-slate-900 text-base">Today's Scheduled Departures</h3>
-                <p className="text-xs text-slate-400 mt-0.5">Guests checking out today with pending folios</p>
+                <h3 className="font-display font-bold text-slate-900 text-base">Today's Scheduled Departures</h3>
+                <p className="text-xs text-slate-400 mt-0.5 font-medium">Guests checking out today with pending folios</p>
               </div>
-              <span className="px-3 py-1 text-xs font-black rounded-full bg-amber-50 text-amber-800">
+              <span className="px-3 py-1 text-xs font-mono font-black rounded-full bg-amber-50 text-amber-800 border border-amber-200">
                 {departures.length} Guests
               </span>
             </div>

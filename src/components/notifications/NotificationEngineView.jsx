@@ -9,25 +9,26 @@ import {
   CheckCircle2,
   Sparkles,
   CheckCheck,
-  Plus
+  Plus,
+  Hotel
 } from 'lucide-react';
 
 export default function NotificationEngineView() {
   const { showToast } = useApp();
   const [selectedTemplate, setSelectedTemplate] = useState('booking-confirm');
   const [customMsgInput, setCustomMsgInput] = useState('');
-  const [recipientPhone, setRecipientPhone] = useState('+91 98765 43210');
+  const [recipientPhone, setRecipientPhone] = useState('+91 80033 95964');
   const [recipientName, setRecipientName] = useState('Rohit Sharma');
 
   const [sentMessages, setSentMessages] = useState([
     {
       id: 1,
-      text: '🏨 Grand Horizon Hotel\n\nDear Rohit,\nYour reservation #GH-2025-884 is CONFIRMED!\n\n📅 Check-in: May 15, 2025 (02:00 PM)\n📅 Check-out: May 18, 2025 (11:00 AM)\n🛏️ Room: Suite (3 Nights)\n💰 Amount: ₹25,500 (Paid)\n\n📍 Tap for Google Maps Location: https://maps.app/grandhorizon\n\nReply "MENU" to view in-room dining.',
+      text: 'LOHAGARH FORT RESORT & SPA, JAIPUR\n\nDear Rohit,\nYour reservation #BK-LOHAGARH-9921 is CONFIRMED!\n\nCheck-in: May 15, 2025 (02:00 PM)\nCheck-out: May 18, 2025 (11:00 AM)\nUnit: Presidential Maharaja Fort Villa (3 Nights)\nAmount: ₹80,640.00 (Secured via Razorpay UPI)\n\nLocation: NH-8 Kukas, Jaipur, Rajasthan\nhttps://maps.app/lohagarhfortresort\n\nReply "CONCIERGE" for in-villa dining & jacuzzi requests.',
       time: '15:40'
     },
     {
       id: 2,
-      text: '✨ Express Check-In Ready!\n\nDear Rohit, we look forward to welcoming you today at Grand Horizon Hotel.\n\n⚡ Skip the front desk queue: Upload your ID in 30 seconds for express contactless keycard delivery:\n👉 https://hos.grandhorizon.com/checkin/GH-2025-884\n\nWi-Fi: GrandHorizon_Guest\nPass: HorizonStay2025',
+      text: 'EXPRESS VILLA CHECK-IN & DIGITAL KEYCARD\n\nDear Rohit, we look forward to welcoming you at Lohagarh Fort Resort & Spa today.\n\nSkip the reception desk: Verify your ID online for instant smart keycard pickup:\nhttps://hos.lohagarhfortresort.in/checkin/9921\n\nWi-Fi: Lohagarh_Royal_Guest\nPass: RoyalLohagarh2025',
       time: '15:45'
     }
   ]);
@@ -37,29 +38,29 @@ export default function NotificationEngineView() {
       id: 'booking-confirm',
       name: 'Instant Booking Confirmation',
       channel: 'WhatsApp & Email',
-      previewText: '🏨 Grand Horizon Hotel\n\nDear Rohit,\nYour reservation #GH-2025-884 is CONFIRMED!\n\n📅 Check-in: May 15, 2025 (02:00 PM)\n📅 Check-out: May 18, 2025 (11:00 AM)\n🛏️ Room: Suite (3 Nights)\n💰 Amount: ₹25,500 (Paid)\n\n📍 Tap for Google Maps: https://maps.app/grandhorizon',
-      trigger: 'Triggered automatically upon reservation creation'
+      previewText: 'LOHAGARH FORT RESORT & SPA, JAIPUR\n\nDear Rohit,\nYour reservation #BK-LOHAGARH-9921 is CONFIRMED!\n\nCheck-in: May 15, 2025 (02:00 PM)\nCheck-out: May 18, 2025 (11:00 AM)\nUnit: Presidential Maharaja Fort Villa (3 Nights)\nAmount: ₹80,640.00 (Paid)\n\nLocation: https://maps.app/lohagarhfortresort',
+      trigger: 'Triggered automatically upon direct or OTA reservation creation'
     },
     {
       id: 'checkin-reminder',
       name: 'Express Mobile Check-In & Wi-Fi Passcode',
       channel: 'WhatsApp & SMS',
-      previewText: '✨ Express Check-In Ready!\n\nDear Rohit, we look forward to welcoming you today at Grand Horizon Hotel.\n\n⚡ Skip the front desk queue: Upload your ID in 30 seconds for express contactless keycard delivery:\n👉 https://hos.grandhorizon.com/checkin/GH-2025-884\n\nWi-Fi: GrandHorizon_Guest\nPass: HorizonStay2025',
+      previewText: 'EXPRESS VILLA CHECK-IN & DIGITAL KEYCARD\n\nDear Rohit, we look forward to welcoming you at Lohagarh Fort Resort & Spa today.\n\nSkip the reception desk: Verify your ID online for instant smart keycard pickup:\nhttps://hos.lohagarhfortresort.in/checkin/9921\n\nWi-Fi: Lohagarh_Royal_Guest\nPass: RoyalLohagarh2025',
       trigger: 'Triggered 4 hours before guest scheduled arrival'
     },
     {
       id: 'invoice-sharing',
-      name: 'Digital GST Invoice & Folio Dispatch',
+      name: 'Digital GST Invoice & Tax Folio Dispatch',
       channel: 'WhatsApp & Email',
-      previewText: '🧾 Invoice #INV-2025-0587\n\nDear Mr. Rohan Mehta,\nThank you for choosing Grand Horizon Hotel for your stay!\n\n💳 Total Paid: ₹21,504.00 (Incl. 12% GST)\n\n📄 Download Official PDF Tax Folio:\n👉 https://hos.grandhorizon.com/invoice/INV-2025-0587.pdf\n\nWe hope to welcome you back soon! ⭐⭐⭐⭐⭐',
-      trigger: 'Triggered on front desk checkout completion'
+      previewText: 'TAX INVOICE #INV-2025-0587\n\nDear Mr. Rohit Sharma,\nThank you for staying with us at Lohagarh Fort Resort & Spa, Jaipur!\n\nTotal Settled: ₹80,640.00 (Incl. 12% GST)\nGSTIN: 08AABCL9603R1Z8\n\nDownload Official PDF Invoice:\nhttps://hos.lohagarhfortresort.in/invoice/INV-2025-0587.pdf\n\nWe look forward to welcoming you back soon!',
+      trigger: 'Triggered upon express checkout completion'
     },
     {
       id: 'staff-alert',
-      name: 'Staff Housekeeping & Priority Alert',
+      name: 'Staff Housekeeping & Turnover Alert',
       channel: 'Internal Push & SMS',
-      previewText: '🧹 Housekeeping Dispatch #HK-409\n\nRoom 204 has checked out. Priority: HIGH (New VIP arrival at 03:30 PM).\n\nAssigned to: Ramesh Kumar\nChecklist: Deep sanitization, linen swap, fresh fruit basket.',
-      trigger: 'Triggered on guest checkout for immediate room turnover'
+      previewText: 'HOUSEKEEPING DISPATCH #HK-409\n\nPresidential Villa 204 has checked out. Priority: HIGH (New VIP arrival at 03:30 PM).\n\nAssigned to: Ramesh Kumar\nChecklist: Deep sanitization, pool pH check, linen swap, fresh fruit basket.',
+      trigger: 'Triggered on guest checkout for immediate villa turnover'
     }
   ];
 
@@ -80,10 +81,10 @@ export default function NotificationEngineView() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Module 16 • Omni-Channel Notifications</span>
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 16 • Omni-Channel Notifications</span>
           </div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">WhatsApp, SMS & Email Notification Center</h1>
-          <p className="text-sm text-slate-500 mt-0.5">Automated guest journey triggers, digital invoices, and staff operational alerts.</p>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">WhatsApp, SMS & Email Notification Center</h1>
+          <p className="text-xs text-slate-500 mt-0.5">Automated guest journey triggers, digital invoices, and staff operational alerts.</p>
         </div>
       </div>
 
@@ -91,55 +92,55 @@ export default function NotificationEngineView() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">WhatsApp Open Rate</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">97.8%</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">WhatsApp Open Rate</div>
+            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">97.8%</div>
             <div className="text-xs text-emerald-600 font-semibold mt-1">vs 21% Email</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
             <MessageSquare className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">Messages Sent (Today)</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">1,240</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Messages Sent (Today)</div>
+            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">1,240</div>
             <div className="text-xs text-indigo-600 font-semibold mt-1">Confirmations & Invoices</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
             <Smartphone className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">Delivery Success</div>
-            <div className="text-3xl font-bold text-emerald-600 mt-2">99.9%</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Delivery Success</div>
+            <div className="text-3xl font-mono font-bold text-emerald-600 mt-2">99.9%</div>
             <div className="text-xs text-emerald-700 font-semibold mt-1">Official Meta Business API</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">
             <CheckCheck className="w-6 h-6" />
           </div>
         </div>
 
         <div className="custom-card p-6 flex items-center justify-between">
           <div>
-            <div className="text-xs font-semibold text-slate-400 uppercase">Pre-Arrival Check-Ins</div>
-            <div className="text-3xl font-bold text-slate-900 mt-2">68%</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Pre-Arrival Check-Ins</div>
+            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">68%</div>
             <div className="text-xs text-indigo-600 font-semibold mt-1">Zero Front Desk Queue</div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
             <Sparkles className="w-6 h-6" />
           </div>
         </div>
       </div>
 
-      {/* Main Grid: Template Selector + Dispatcher (Left 7 cols) + Live Phone Device Mockup (Right 5 cols) */}
+      {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left: Template Catalog & Interactive Dispatcher (7 cols) */}
+        {/* Left: Template Catalog & Interactive Dispatcher */}
         <div className="lg:col-span-7 space-y-6">
           <div className="custom-card p-6 space-y-4">
-            <h3 className="font-bold text-base text-slate-900">Select Automated Notification Template</h3>
+            <h3 className="font-display font-bold text-base text-slate-900">Select Automated Notification Template</h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {templates.map((tpl) => {
@@ -162,7 +163,7 @@ export default function NotificationEngineView() {
                           {tpl.channel.split(' ')[0]}
                         </span>
                       </div>
-                      <p className="text-[11px] text-slate-400 mt-1 line-clamp-2">{tpl.trigger}</p>
+                      <p className="text-[11px] text-slate-400 mt-1 font-medium line-clamp-2">{tpl.trigger}</p>
                     </div>
 
                     <div className="text-[10px] font-bold text-indigo-600">
@@ -176,7 +177,7 @@ export default function NotificationEngineView() {
 
           {/* Interactive Message Dispatch Form */}
           <form onSubmit={handleSendCustomMessage} className="custom-card p-6 space-y-4">
-            <h3 className="font-bold text-base text-slate-900">Live WhatsApp Dispatcher</h3>
+            <h3 className="font-display font-bold text-base text-slate-900">Live WhatsApp Dispatcher</h3>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
@@ -194,7 +195,7 @@ export default function NotificationEngineView() {
                   type="text"
                   value={recipientPhone}
                   onChange={(e) => setRecipientPhone(e.target.value)}
-                  className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold outline-none"
+                  className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-mono font-bold outline-none"
                 />
               </div>
             </div>
@@ -205,7 +206,7 @@ export default function NotificationEngineView() {
                 rows={4}
                 value={customMsgInput || currentTpl.previewText}
                 onChange={(e) => setCustomMsgInput(e.target.value)}
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 font-medium outline-none"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 font-medium outline-none font-mono"
               />
             </div>
 
@@ -219,7 +220,7 @@ export default function NotificationEngineView() {
           </form>
         </div>
 
-        {/* Right: Realistic WhatsApp Mobile Preview Device (5 cols) */}
+        {/* Right: Realistic WhatsApp Mobile Preview Device */}
         <div className="lg:col-span-5 flex justify-center sticky top-20">
           <div className="w-80 bg-slate-900 rounded-[42px] p-3.5 shadow-2xl border-4 border-slate-800">
             {/* Phone Screen */}
@@ -227,10 +228,10 @@ export default function NotificationEngineView() {
               {/* WhatsApp Header */}
               <div className="bg-[#075E54] text-white p-3.5 pt-4 flex items-center gap-2.5 shadow-md">
                 <div className="w-9 h-9 rounded-full bg-white text-[#075E54] font-black text-sm flex items-center justify-center shadow-xs">
-                  🏨
+                  <Hotel className="w-4 h-4 text-[#075E54]" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold leading-tight">Grand Horizon Hotel ✓</div>
+                  <div className="text-xs font-bold leading-tight">Lohagarh Fort Resort ✓</div>
                   <div className="text-[10px] opacity-80 font-medium">Official Verified Business</div>
                 </div>
               </div>
@@ -245,9 +246,9 @@ export default function NotificationEngineView() {
 
                 {sentMessages.map((m) => (
                   <div key={m.id} className="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-xs text-slate-800 text-[11px] space-y-2 whitespace-pre-line leading-relaxed max-w-[92%] border border-black/5 animate-in zoom-in-95">
-                    <div>{m.text}</div>
+                    <div className="font-medium">{m.text}</div>
                     <div className="text-[9px] text-slate-400 text-right flex items-center justify-end gap-1 font-semibold">
-                      <span>{m.time}</span>
+                      <span className="font-mono">{m.time}</span>
                       <CheckCheck className="w-3.5 h-3.5 text-sky-500 inline" />
                     </div>
                   </div>
@@ -260,7 +261,7 @@ export default function NotificationEngineView() {
                   Type a reply...
                 </div>
                 <div className="w-8 h-8 rounded-full bg-[#00A884] text-white flex items-center justify-center text-xs font-bold shadow-xs">
-                  ➤
+                  <Send className="w-3.5 h-3.5" />
                 </div>
               </div>
             </div>

@@ -16,7 +16,9 @@ import {
   Percent,
   CreditCard,
   Sparkles,
-  Receipt
+  Receipt,
+  Calendar,
+  Hotel
 } from 'lucide-react';
 
 export default function GuestInvoiceFolio() {
@@ -72,7 +74,10 @@ export default function GuestInvoiceFolio() {
       {/* Top Folio Selector & Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Guest Billing Folio & Invoicing</h1>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 12 & 13 • Folio Management & GST Invoicing</span>
+          </div>
+          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Guest Billing Folio & Invoicing</h1>
           <p className="text-xs text-slate-500 mt-0.5">Live charges, F&B postings, automated GST calculation, and WhatsApp dispatch.</p>
         </div>
 
@@ -109,18 +114,18 @@ export default function GuestInvoiceFolio() {
         {/* Hotel Brand Header */}
         <div className="flex items-center justify-between pb-6 border-b border-slate-100">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 font-black text-2xl shadow-2xs">
-              🏰
+            <div className="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-700 font-black text-2xl shadow-2xs">
+              <Hotel className="w-7 h-7" />
             </div>
             <div>
-              <h2 className="text-xl font-black text-slate-900 tracking-tight">Lohagarh Fort Resort & Spa</h2>
+              <h2 className="text-xl font-display font-black text-slate-900 tracking-tight">Lohagarh Fort Resort & Spa</h2>
               <p className="text-xs text-slate-500 font-medium">NH-8, Kukas, Jaipur, Rajasthan - 302028 • GSTIN: 08AABCL9603R1Z8</p>
             </div>
           </div>
 
           <div className="text-right">
-            <div className="text-xs font-bold text-slate-400 uppercase">Official Tax Invoice</div>
-            <div className="text-sm font-extrabold text-slate-800 font-mono mt-0.5">{folio.invoiceNumber}</div>
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Official Tax Invoice</div>
+            <div className="text-sm font-mono font-extrabold text-slate-800 mt-0.5">{folio.invoiceNumber}</div>
             <div className="text-xs text-slate-500 font-medium">Date: May 18, 2025</div>
           </div>
         </div>
@@ -129,18 +134,19 @@ export default function GuestInvoiceFolio() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-slate-50/70 p-5 rounded-2xl border border-slate-200">
           <div>
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Guest Information</div>
-            <h3 className="text-base font-bold text-slate-900 mt-1">{folio.guestName}</h3>
+            <h3 className="text-base font-display font-bold text-slate-900 mt-1">{folio.guestName}</h3>
             <div className="text-xs text-slate-500 flex flex-col gap-0.5 mt-1 font-medium">
               <span>Email: {folio.guestEmail}</span>
-              <span>Phone: {folio.guestPhone}</span>
+              <span className="font-mono">Phone: {folio.guestPhone}</span>
             </div>
           </div>
 
           <div className="sm:text-right">
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Villa Allocation & Stay</div>
             <div className="text-sm font-bold text-indigo-600 mt-1">Villa/Room {folio.roomNumber} ({folio.roomType})</div>
-            <div className="text-xs text-slate-600 font-medium mt-1">
-              📅 {folio.checkIn} – {folio.checkOut}
+            <div className="text-xs text-slate-600 font-medium mt-1 flex items-center justify-start sm:justify-end gap-1">
+              <Calendar className="w-3.5 h-3.5 text-slate-400" />
+              <span>{folio.checkIn} – {folio.checkOut}</span>
             </div>
           </div>
         </div>
@@ -160,9 +166,9 @@ export default function GuestInvoiceFolio() {
               {folio.items.map((item, idx) => (
                 <tr key={idx} className="hover:bg-slate-50/50">
                   <td className="p-3.5 pl-4 font-semibold text-slate-900">{item.desc}</td>
-                  <td className="p-3.5 text-center text-slate-600 font-bold">{item.qty}</td>
-                  <td className="p-3.5 text-right text-slate-600 font-semibold">{item.rate.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
-                  <td className="p-3.5 text-right pr-4 font-bold text-slate-900">{item.amount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
+                  <td className="p-3.5 text-center text-slate-600 font-mono font-bold">{item.qty}</td>
+                  <td className="p-3.5 text-right text-slate-600 font-mono font-semibold">{item.rate.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
+                  <td className="p-3.5 text-right pr-4 font-mono font-bold text-slate-900">{item.amount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</td>
                 </tr>
               ))}
             </tbody>
@@ -174,7 +180,7 @@ export default function GuestInvoiceFolio() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsAddChargeOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs rounded-xl transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs rounded-xl transition-colors shadow-2xs"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>+ Add Incidental / Spa Charge</span>
@@ -182,7 +188,7 @@ export default function GuestInvoiceFolio() {
 
             <button
               onClick={() => applyFolioDiscount(selectedRoomNumber, 10)}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs rounded-xl transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs rounded-xl transition-colors shadow-2xs"
             >
               <Percent className="w-3.5 h-3.5" />
               <span>Apply 10% Royal Privilege Discount</span>
@@ -222,7 +228,7 @@ export default function GuestInvoiceFolio() {
                 type="number"
                 value={newChargeAmount}
                 onChange={(e) => setNewChargeAmount(e.target.value)}
-                className="w-full px-3 py-1.5 bg-white border border-indigo-200 rounded-lg text-slate-800 outline-none font-bold"
+                className="w-full px-3 py-1.5 bg-white border border-indigo-200 rounded-lg text-slate-800 outline-none font-mono font-bold"
               />
             </div>
             <div className="flex items-end gap-2 pt-5">
@@ -247,24 +253,24 @@ export default function GuestInvoiceFolio() {
         <div className="flex flex-col items-end space-y-2 pt-4 border-t border-slate-200 text-xs">
           <div className="w-80 flex justify-between text-slate-600">
             <span>Subtotal:</span>
-            <span className="font-semibold text-slate-800">₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+            <span className="font-mono font-semibold text-slate-800">₹{subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
           </div>
 
           {folio.discountPercent > 0 && (
             <div className="w-80 flex justify-between text-purple-600 font-semibold">
               <span>Royal Privilege Discount ({folio.discountPercent}%):</span>
-              <span>-₹{discountAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+              <span className="font-mono">-₹{discountAmount.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
             </div>
           )}
 
           <div className="w-80 flex justify-between text-slate-600">
-            <span>GST (12% Standard Resort Tax):</span>
-            <span className="font-semibold text-slate-800">₹{gst.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+            <span>GST (12% Resort Hospitality Tax):</span>
+            <span className="font-mono font-semibold text-slate-800">₹{gst.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
           </div>
 
           <div className="w-80 flex justify-between items-center pt-3 border-t border-slate-200 text-base">
-            <span className="font-extrabold text-slate-900">Total Net Payable:</span>
-            <span className="font-black text-2xl text-slate-900 tracking-tight">
+            <span className="font-display font-extrabold text-slate-900">Total Net Payable:</span>
+            <span className="font-mono font-black text-2xl text-indigo-950 tracking-tight">
               ₹{grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
             </span>
           </div>
