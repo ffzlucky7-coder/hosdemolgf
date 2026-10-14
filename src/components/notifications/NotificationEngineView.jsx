@@ -23,12 +23,12 @@ export default function NotificationEngineView() {
   const [sentMessages, setSentMessages] = useState([
     {
       id: 1,
-      text: 'LOHAGARH FORT RESORT & SPA, JAIPUR\n\nDear Rohit,\nYour reservation #BK-LOHAGARH-9921 is CONFIRMED!\n\nCheck-in: May 15, 2025 (02:00 PM)\nCheck-out: May 18, 2025 (11:00 AM)\nUnit: Presidential Maharaja Fort Villa (3 Nights)\nAmount: ₹80,640.00 (Secured via Razorpay UPI)\n\nLocation: NH-8 Kukas, Jaipur, Rajasthan\nhttps://maps.app/lohagarhfortresort\n\nReply "CONCIERGE" for in-villa dining & jacuzzi requests.',
+      text: 'AURA SOLIS GRAND SANCTUARY & SPA, GOA\n\nDear Rohit,\nYour reservation #BK-SOL-9921 is CONFIRMED!\n\nCheck-in: May 15, 2025 (02:00 PM)\nCheck-out: May 18, 2025 (11:00 AM)\nUnit: Presidential Sovereign Villa (3 Nights)\nAmount: ₹80,640.00 (Secured via Razorpay UPI)\n\nLocation: Oceanfront Blvd, Candolim, Goa\nhttps://maps.app/aurasolis\n\nReply "CONCIERGE" for in-villa dining & spa requests.',
       time: '15:40'
     },
     {
       id: 2,
-      text: 'EXPRESS VILLA CHECK-IN & DIGITAL KEYCARD\n\nDear Rohit, we look forward to welcoming you at Lohagarh Fort Resort & Spa today.\n\nSkip the reception desk: Verify your ID online for instant smart keycard pickup:\nhttps://hos.lohagarhfortresort.in/checkin/9921\n\nWi-Fi: Lohagarh_Royal_Guest\nPass: RoyalLohagarh2025',
+      text: 'EXPRESS VILLA CHECK-IN & DIGITAL KEYCARD\n\nDear Rohit, we look forward to welcoming you at Aura Solis Grand Sanctuary today.\n\nSkip the reception desk: Verify your ID online for instant smart keycard pickup:\nhttps://hos.solariahotels.com/checkin/9921\n\nWi-Fi: Solaria_Ultra_Guest_5G\nPass: SolariaGuest2025',
       time: '15:45'
     }
   ]);
@@ -38,21 +38,21 @@ export default function NotificationEngineView() {
       id: 'booking-confirm',
       name: 'Instant Booking Confirmation',
       channel: 'WhatsApp & Email',
-      previewText: 'LOHAGARH FORT RESORT & SPA, JAIPUR\n\nDear Rohit,\nYour reservation #BK-LOHAGARH-9921 is CONFIRMED!\n\nCheck-in: May 15, 2025 (02:00 PM)\nCheck-out: May 18, 2025 (11:00 AM)\nUnit: Presidential Maharaja Fort Villa (3 Nights)\nAmount: ₹80,640.00 (Paid)\n\nLocation: https://maps.app/lohagarhfortresort',
+      previewText: 'AURA SOLIS GRAND SANCTUARY & SPA, GOA\n\nDear Rohit,\nYour reservation #BK-SOL-9921 is CONFIRMED!\n\nCheck-in: May 15, 2025 (02:00 PM)\nCheck-out: May 18, 2025 (11:00 AM)\nUnit: Presidential Sovereign Villa (3 Nights)\nAmount: ₹80,640.00 (Paid)\n\nLocation: https://maps.app/aurasolis',
       trigger: 'Triggered automatically upon direct or OTA reservation creation'
     },
     {
       id: 'checkin-reminder',
       name: 'Express Mobile Check-In & Wi-Fi Passcode',
       channel: 'WhatsApp & SMS',
-      previewText: 'EXPRESS VILLA CHECK-IN & DIGITAL KEYCARD\n\nDear Rohit, we look forward to welcoming you at Lohagarh Fort Resort & Spa today.\n\nSkip the reception desk: Verify your ID online for instant smart keycard pickup:\nhttps://hos.lohagarhfortresort.in/checkin/9921\n\nWi-Fi: Lohagarh_Royal_Guest\nPass: RoyalLohagarh2025',
+      previewText: 'EXPRESS VILLA CHECK-IN & DIGITAL KEYCARD\n\nDear Rohit, we look forward to welcoming you at Aura Solis Grand Sanctuary today.\n\nSkip the reception desk: Verify your ID online for instant smart keycard pickup:\nhttps://hos.solariahotels.com/checkin/9921\n\nWi-Fi: Solaria_Ultra_Guest_5G\nPass: SolariaGuest2025',
       trigger: 'Triggered 4 hours before guest scheduled arrival'
     },
     {
       id: 'invoice-sharing',
       name: 'Digital GST Invoice & Tax Folio Dispatch',
       channel: 'WhatsApp & Email',
-      previewText: 'TAX INVOICE #INV-2025-0587\n\nDear Mr. Rohit Sharma,\nThank you for staying with us at Lohagarh Fort Resort & Spa, Jaipur!\n\nTotal Settled: ₹80,640.00 (Incl. 12% GST)\nGSTIN: 08AABCL9603R1Z8\n\nDownload Official PDF Invoice:\nhttps://hos.lohagarhfortresort.in/invoice/INV-2025-0587.pdf\n\nWe look forward to welcoming you back soon!',
+      previewText: 'TAX INVOICE #INV-2025-0587\n\nDear Mr. Rohit Sharma,\nThank you for staying with us at Aura Solis Grand Sanctuary & Spa, Goa!\n\nTotal Settled: ₹80,640.00 (Incl. 12% GST)\nGSTIN: 30AABCS9603R1Z8\n\nDownload Official PDF Invoice:\nhttps://hos.solariahotels.com/invoice/INV-2025-0587.pdf\n\nWe look forward to welcoming you back soon!',
       trigger: 'Triggered upon express checkout completion'
     },
     {
@@ -231,7 +231,7 @@ export default function NotificationEngineView() {
                   <Hotel className="w-4 h-4 text-[#075E54]" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold leading-tight">Lohagarh Fort Resort ✓</div>
+                  <div className="text-xs font-bold leading-tight">Aura Solis Sanctuary ✓</div>
                   <div className="text-[10px] opacity-80 font-medium">Official Verified Business</div>
                 </div>
               </div>

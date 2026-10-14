@@ -14,7 +14,7 @@ import {
 
 export default function LoginScreen() {
   const { setCurrentRole, setCurrentView, showToast } = useApp();
-  const [email, setEmail] = useState('reception@lohagarhfortresort.in');
+  const [email, setEmail] = useState('reception@aurasolis.com');
   const [password, setPassword] = useState('••••••••••••');
 
   const handleLogin = (role, defaultEmail) => {
@@ -103,32 +103,32 @@ export default function LoginScreen() {
 
           <div className="grid grid-cols-2 gap-2 text-xs">
             <button
-              onClick={() => handleLogin('front-desk', 'reception@lohagarhfortresort.in')}
-              className="p-2.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-xl text-indigo-700 font-bold text-left flex items-center gap-2 transition-colors"
+              onClick={() => handleLogin('front-desk', 'reception@aurasolis.com')}
+              className="p-2.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100 rounded-xl text-indigo-700 font-bold text-left flex items-center gap-2 transition-colors cursor-pointer"
             >
               <BedDouble className="w-4 h-4 text-indigo-600" />
               <span>Front Desk</span>
             </button>
 
             <button
-              onClick={() => handleLogin('hotel-admin', 'gm@lohagarhfortresort.in')}
-              className="p-2.5 bg-blue-50 hover:bg-blue-100 border border-blue-100 rounded-xl text-blue-700 font-bold text-left flex items-center gap-2 transition-colors"
+              onClick={() => handleLogin('hotel-admin', 'gm@aurasolis.com')}
+              className="p-2.5 bg-blue-50 hover:bg-blue-100 border border-blue-100 rounded-xl text-blue-700 font-bold text-left flex items-center gap-2 transition-colors cursor-pointer"
             >
               <Hotel className="w-4 h-4 text-blue-600" />
               <span>Resort GM</span>
             </button>
 
             <button
-              onClick={() => handleLogin('area-manager', 'cluster@lohagarhfortresort.in')}
-              className="p-2.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-100 rounded-xl text-emerald-700 font-bold text-left flex items-center gap-2 transition-colors"
+              onClick={() => handleLogin('area-manager', 'cluster@aurasolis.com')}
+              className="p-2.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-100 rounded-xl text-emerald-700 font-bold text-left flex items-center gap-2 transition-colors cursor-pointer"
             >
               <MapPin className="w-4 h-4 text-emerald-600" />
               <span>Area Manager</span>
             </button>
 
             <button
-              onClick={() => handleLogin('super-admin', 'owner@lohagarhfortresort.in')}
-              className="p-2.5 bg-purple-50 hover:bg-purple-100 border border-purple-100 rounded-xl text-purple-700 font-bold text-left flex items-center gap-2 transition-colors"
+              onClick={() => handleLogin('super-admin', 'owner@solariagroup.com')}
+              className="p-2.5 bg-purple-50 hover:bg-purple-100 border border-purple-100 rounded-xl text-purple-700 font-bold text-left flex items-center gap-2 transition-colors cursor-pointer"
             >
               <Crown className="w-4 h-4 text-purple-600" />
               <span>Super Admin</span>

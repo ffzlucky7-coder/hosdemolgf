@@ -39,9 +39,9 @@ export default function QuickCommandPalette() {
     { title: 'Guest Billing Invoice #INV-2025-0587', desc: 'Rohit Sharma, ₹80,640 Settled', role: 'front-desk', view: 'invoice', icon: FileText },
     { title: 'Housekeeping Kanban Board', desc: 'Manage room cleaning tasks & inspection', role: 'housekeeping', view: 'housekeeping', icon: ClipboardList },
     { title: 'Restaurant POS Menu & KDS', desc: 'Take food orders, KDS sync & bill villas', role: 'restaurant', view: 'restaurant', icon: UtensilsCrossed },
-    { title: 'Area Manager: North Zone Hotels', desc: 'Lohagarh Fort Resort & properties', role: 'hotel-admin', view: 'north-zone', icon: Building2 },
+    { title: 'Area Manager: Coastal Zone Hotels', desc: 'Aura Solis Grand Sanctuary & properties', role: 'hotel-admin', view: 'north-zone', icon: Building2 },
     { title: 'Approval Center (3 Pending)', desc: 'Purchase orders & refunds', role: 'area-manager', view: 'approvals', icon: CheckCircle2 },
-    { title: 'Super Admin: All Organizations', desc: 'Lohagarh Hospitality ORG-100244', role: 'super-admin', view: 'dashboard', icon: Building2 },
+    { title: 'Super Admin: All Organizations', desc: 'Solaria Hospitality Portfolio ORG-100244', role: 'super-admin', view: 'dashboard', icon: Building2 },
     { title: 'Revenue & Occupancy Reports', desc: 'Charts & analytics', role: 'reports', view: 'reports', icon: BarChart3 }
   ];
 

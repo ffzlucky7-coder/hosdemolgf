@@ -31,7 +31,7 @@ export default function CheckInWizardModal() {
     idType: 'Aadhaar / National ID',
     idNumber: '9845 2314 9012',
     idUploaded: true,
-    roomType: 'Presidential Maharaja Fort Villa',
+    roomType: 'Presidential Sovereign Villa',
     roomId: '204',
     nights: 3,
     paymentMethod: 'Credit Card / UPI',

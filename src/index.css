@@ -8,7 +8,7 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  h1, h2, h3, .font-heading {
+  h1, h2, h3, h4, .font-heading {
     @apply font-display tracking-tight text-slate-900;
   }
 
@@ -29,81 +29,53 @@
   }
 }
 
-/* Luxury Card System */
-.luxury-card {
+/* Modern Enterprise SaaS Card System */
+.luxury-card, .saas-card {
   background: #ffffff;
   border: 1px solid #E2E8F0;
-  border-radius: 20px;
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.02);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  overflow: hidden;
 }
 
-.luxury-card:hover {
+.luxury-card:hover, .saas-card:hover {
   border-color: #CBD5E1;
-  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
-  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  transform: translateY(-1px);
 }
 
+/* Subtle Highlight Card (Clean, NO heavy gradients) */
 .luxury-card-gold {
-  background: linear-gradient(135deg, #ffffff 0%, #fffdfa 100%);
-  border: 1px solid #FDE68A;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.08);
+  background: #ffffff;
+  border: 1px solid #CBD5E1;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px -1px rgba(15, 23, 42, 0.06);
+  transition: all 0.2s ease;
 }
 
 .luxury-card-gold:hover {
-  border-color: #F59E0B;
-  box-shadow: 0 16px 32px -8px rgba(245, 158, 11, 0.15);
-  transform: translateY(-2px);
+  border-color: #94A3B8;
+  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
 }
 
-/* Glassmorphism Accents */
+/* Glass Panels */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid #E2E8F0;
 }
 
 .glass-dock {
-  background: rgba(15, 23, 42, 0.92);
+  background: rgba(15, 23, 42, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-/* VIP Shimmer Effect */
-.vip-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.vip-shimmer::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(251, 191, 36, 0.25),
-    transparent
-  );
-  transform: skewX(-25deg);
-  animation: vip-shine 4s infinite ease-in-out;
-}
-
-@keyframes vip-shine {
-  0% { left: -100%; }
-  25% { left: 200%; }
-  100% { left: 200%; }
-}
-
-/* Live Radar Ping Pulse */
+/* Clean Live Radar Dot */
 .radar-ring {
   position: relative;
 }
@@ -111,28 +83,27 @@
 .radar-ring::before {
   content: '';
   position: absolute;
-  inset: -4px;
+  inset: -3px;
   border-radius: 9999px;
-  background: rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.2);
   animation: radar-expand 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 @keyframes radar-expand {
   0% { transform: scale(0.9); opacity: 0.8; }
-  100% { transform: scale(1.8); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
-/* Custom Badges */
+/* Clean Badges */
 .custom-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
+  padding: 0.2rem 0.65rem;
+  border-radius: 8px;
   font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .badge-active, .badge-clean, .badge-converted, .badge-instock, .badge-paid {
@@ -166,19 +137,18 @@
 }
 
 .badge-royal {
-  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
-  color: #92400E;
-  border: 1px solid #F59E0B;
-  box-shadow: 0 1px 2px 0 rgba(245, 158, 11, 0.2);
+  background-color: #F8FAFC;
+  color: #334155;
+  border: 1px solid #CBD5E1;
 }
 
-/* Icon Box Containers */
+/* Clean Icon Box Containers */
 .icon-box {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 14px;
-  transition: all 0.2s ease;
+  border-radius: 12px;
+  transition: all 0.15s ease;
 }
 
 .icon-box-indigo {
@@ -191,12 +161,6 @@
   background: #ECFDF5;
   color: #059669;
   border: 1px solid #D1FAE5;
-}
-
-.icon-box-gold {
-  background: #FFFBEB;
-  color: #D97706;
-  border: 1px solid #FEF3C7;
 }
 
 .icon-box-amber {

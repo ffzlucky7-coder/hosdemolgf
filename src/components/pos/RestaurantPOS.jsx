@@ -259,12 +259,12 @@ export default function RestaurantPOS() {
                 onChange={(e) => setOrderDestination(e.target.value)}
                 className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 outline-none cursor-pointer"
               >
-                <option value="Villa 204 (Rohit Sharma - Presidential Fort Villa)">Villa 204 — Rohit Sharma (Presidential Villa)</option>
-                <option value="Treehouse 101 (Amit Patel)">Treehouse 101 — Amit Patel</option>
-                <option value="Poolside Cabana 1">Poolside Cabana 1 (Dr. Vivek Mehra)</option>
-                <option value="Royal Gazebo Private Dining">Royal Gazebo Private Dining</option>
-                <option value="Indoor Marwar Table 1">Indoor Marwar Table 1 (Sunita Roy)</option>
-                <option value="The Grand Aravali Lawn VIP">The Grand Aravali Lawn VIP Lounge</option>
+                <option value="Villa 204 (Rohit Sharma - Presidential Sovereign Villa)">Villa 204 — Rohit Sharma (Presidential Sovereign Villa)</option>
+                <option value="Villa 101 (Amit Patel - Canopy Villa)">Villa 101 — Amit Patel (Canopy Villa)</option>
+                <option value="Poolside Cabana 1 (Dr. Vivek Mehra)">Poolside Cabana 1 (Dr. Vivek Mehra)</option>
+                <option value="Ocean Gazebo Private Dining">Ocean Gazebo Private Dining</option>
+                <option value="Indoor Sanctuary Table 1 (Sunita Roy)">Indoor Sanctuary Table 1 (Sunita Roy)</option>
+                <option value="The Oceanfront Lawn VIP Lounge">The Oceanfront Lawn VIP Lounge</option>
               </select>
             </div>
 

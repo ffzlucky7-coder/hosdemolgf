@@ -404,23 +404,23 @@ export function AppProvider({ children }) {
       return t;
     }));
 
-    // Realistic Simulated AI Concierge Responses for Lohagarh Fort Resort
+    // Realistic Simulated AI Concierge Responses for Aura Solis Grand Sanctuary
     setTimeout(() => {
-      let aiReply = "Khamma Ghani! Thank you for contacting Lohagarh Fort Resort & Spa Concierge. I have logged your request.";
+      let aiReply = "Greetings! Thank you for contacting Aura Solis Grand Sanctuary Concierge. I have logged your request.";
       const lower = text.toLowerCase();
       
       if (lower.includes('wifi') || lower.includes('internet') || lower.includes('passcode')) {
-        aiReply = "High-speed Wi-Fi network: 'Lohagarh_Royal_Guest' • Passcode: 'RoyalLohagarh2025'. High-speed streaming is active across all treehouses and private pool villas.";
+        aiReply = "High-speed Wi-Fi network: 'Solaria_Ultra_Guest_5G' • Passcode: 'SolariaGuest2025'. High-speed streaming is active across all suites and private pool villas.";
       } else if (lower.includes('checkout') || lower.includes('late') || lower.includes('extend')) {
-        aiReply = "Complimentary late check-out till 01:30 PM confirmed! Your RFID wooden villa keycard has been updated automatically.";
+        aiReply = "Complimentary late check-out till 01:30 PM confirmed! Your RFID smart wooden keycard has been updated automatically.";
       } else if (lower.includes('cultural') || lower.includes('dance') || lower.includes('folk') || lower.includes('evening') || lower.includes('event')) {
-        aiReply = "Our traditional Rajasthani Folk Dance, Kalbeliya performance & Puppet Show starts daily at 7:30 PM at the Royal Central Courtyard, followed by live charcoal barbecue.";
+        aiReply = "Our Sunset Acoustic Jazz & Saxophone performance begins daily at 6:45 PM at the Ocean Horizon Deck, followed by live charcoal barbecue.";
       } else if (lower.includes('pool') || lower.includes('jacuzzi') || lower.includes('spa') || lower.includes('massage')) {
-        aiReply = "Moksha Ayurvedic Spa & Balcony Jacuzzi services are available daily from 7:00 AM to 9:00 PM. Would you like to book our Signature Sandalwood Couple Therapy?";
-      } else if (lower.includes('food') || lower.includes('menu') || lower.includes('laal maas') || lower.includes('dinner') || lower.includes('chai')) {
-        aiReply = "24x7 in-villa royal dining is active! You can order Laal Maas, Dal Baati Churma, or Mirchi Vada directly to your private pool deck.";
+        aiReply = "Aura Thalasso Spa & Balcony Jacuzzi services are available daily from 7:00 AM to 9:00 PM. Would you like to book our Signature Sandalwood Couple Therapy?";
+      } else if (lower.includes('food') || lower.includes('menu') || lower.includes('dinner') || lower.includes('chai')) {
+        aiReply = "24x7 in-villa gourmet dining is active! You can order Mediterranean Sea Bass, Morel Mushroom Risotto, or Artisanal Pastries directly to your private pool deck.";
       } else if (lower.includes('cab') || lower.includes('taxi') || lower.includes('airport') || lower.includes('sightseeing')) {
-        aiReply = "Our royal concierge cab is booked for you. The chauffeur will be ready at the resort porch with cool refreshments.";
+        aiReply = "Our executive concierge chauffeur has been reserved for you and will meet you at the main porte-cochère.";
       }
 
       const aiMsg = { id: Date.now() + 1, sender: 'ai', text: aiReply, time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) };
@@ -445,14 +445,14 @@ export function AppProvider({ children }) {
       avatar: 'RS',
       email: 'rohit.sharma@gmail.com',
       phone: '+91 98765 43210',
-      room: 'Villa 204 (Presidential Fort Villa)',
+      room: 'Villa 204 (Presidential Sovereign Villa)',
       totalStays: 4,
       totalSpend: '₹1,84,500',
-      loyaltyClub: 'Royal Heritage Club — Platinum Member',
+      loyaltyClub: 'Solaria Diamond Circle — Elite Member',
       loyaltyPoints: 3450,
       vip: true,
       lastStay: 'May 15, 2025',
-      preferences: 'High-elevation treehouse, Jain food on Tuesdays, Extra pool towels, Jacuzzi temperature 38°C'
+      preferences: 'High-elevation ocean canopy, Extra pool towels, Jacuzzi temperature 38°C'
     });
     setIsGuestDrawerOpen(true);
   };

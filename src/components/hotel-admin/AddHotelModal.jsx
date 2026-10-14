@@ -32,11 +32,11 @@ export default function AddHotelModal() {
     e.preventDefault();
     const newHotel = {
       id: `HOTEL-${Math.floor(100 + Math.random() * 900)}`,
-      name: formData.name || 'Grand Heritage Palace',
-      city: formData.city || 'Jaipur, Rajasthan',
+      name: formData.name || 'Aura Solis Bay Resort',
+      city: formData.city || 'Goa Coastline',
       area: formData.area,
-      address: formData.address || 'Civil Lines, Jaipur',
-      manager: { name: 'Vikram Mehta', email: formData.email || 'manager@grandpalace.com', avatar: 'VM' },
+      address: formData.address || 'Candolim Boulevard, North Goa',
+      manager: { name: 'Vikram Mehta', email: formData.email || 'manager@aurasolis.com', avatar: 'VM' },
       rooms: parseInt(formData.rooms) || 80,
       floors: 4,
       occupancy: 65,
@@ -78,7 +78,7 @@ export default function AddHotelModal() {
             <input
               type="text"
               required
-              placeholder="e.g. Grand Horizon Palace"
+              placeholder="e.g. Aura Solis Sanctuary Resort"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500/20 font-medium"

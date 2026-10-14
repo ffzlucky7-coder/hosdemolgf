@@ -31,7 +31,7 @@ export default function SystemHealthAuditView() {
       desc: 'Fetch real-time occupancy status, room categories, and clean/dirty state.',
       response: {
         status: 200,
-        property: 'Lohagarh Fort Resort & Spa, Jaipur',
+        property: 'Aura Solis Grand Sanctuary & Spa',
         totalRooms: 95,
         occupancyRate: '89.4%',
         activeCleanRooms: rooms.filter(r => r.status === 'clean').length,
@@ -47,9 +47,9 @@ export default function SystemHealthAuditView() {
       response: {
         status: 201,
         message: 'Reservation confirmed',
-        bookingId: 'BK-LOHAGARH-9921',
+        bookingId: 'BK-SOL-9921',
         guestName: 'Rohit Sharma (VIP)',
-        villaAssigned: 'Villa 204 (Presidential Fort Villa)',
+        villaAssigned: 'Villa 204 (Presidential Sovereign Villa)',
         checkIn: '2025-05-15',
         checkOut: '2025-05-18',
         totalStayAmount: '₹80,640.00',
@@ -237,7 +237,7 @@ export default function SystemHealthAuditView() {
             <div className="p-3 bg-slate-950 rounded-xl border border-slate-800 font-mono text-xs text-slate-300 flex items-center justify-between">
               <div>
                 <span className="text-emerald-400 font-bold">{currentEp.method}</span>{' '}
-                <span className="text-slate-400">https://api.lohagarhfortresort.in</span>
+                <span className="text-slate-400">https://api.solariahotels.com</span>
                 <span className="text-white font-bold">{currentEp.path}</span>
               </div>
               <span className="text-[10px] text-slate-500">Bearer Token: active</span>

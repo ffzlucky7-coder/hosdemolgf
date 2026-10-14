@@ -12,7 +12,9 @@ import {
   ShieldCheck,
   Zap,
   Clock,
-  Compass
+  Layers,
+  Globe,
+  Radio
 } from 'lucide-react';
 
 export default function QuickActionHero() {
@@ -23,93 +25,102 @@ export default function QuickActionHero() {
     setCurrentView,
     setIsNewReservationModalOpen,
     setIsCheckInModalOpen,
-    setIsCommandPaletteOpen
+    setIsCommandPaletteOpen,
+    showToast
   } = useApp();
 
-  // Dynamic Time of Day Greeting
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return { text: 'Suprabhat / Good Morning', sub: 'Morning shift handovers and breakfast turnovers active' };
-    if (hour < 17) return { text: 'Shubh Dopahar / Good Afternoon', sub: 'Express guest check-ins & in-villa dining orders active' };
-    return { text: 'Shubh Sandhya / Good Evening', sub: 'Evening cultural events, banquets & dinner service active' };
+    if (hour < 12) return 'Good Morning';
+    if (hour < 17) return 'Good Afternoon';
+    return 'Good Evening';
   };
 
-  const greeting = getGreeting();
-
   return (
-    <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white border-b border-indigo-900/40 px-6 py-4 relative overflow-hidden shadow-md">
-      {/* Ambient background glow accents */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+    <div className="bg-slate-900 text-white border-b border-slate-800 px-6 py-3.5 relative overflow-hidden shadow-xs">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 relative z-10">
-        {/* Left: Property context & Royal greeting */}
-        <div className="flex items-start sm:items-center gap-3.5">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-amber-600 flex items-center justify-center text-slate-950 font-black shadow-lg shadow-amber-500/20 shrink-0 border border-amber-300/40">
-            <Compass className="w-6 h-6 text-slate-950" />
+        {/* Left: Product branding & Active Property Status */}
+        <div className="flex items-center gap-3.5">
+          <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black shadow-md shrink-0">
+            <Building2 className="w-5 h-5 text-white" />
           </div>
 
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[11px] font-mono font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30">
-                Multi-Tenant Cloud PMS
+              <span className="text-[10px] font-mono font-bold tracking-wider uppercase px-2 py-0.5 rounded-md bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                Multi-Property SaaS
               </span>
-              <span className="text-xs text-indigo-300 font-medium">
-                Active Tenant: <strong className="text-white font-semibold">{selectedHotel.name}</strong>
+              <span className="text-xs text-slate-300 font-medium">
+                Active Tenant: <strong className="text-white font-bold">{selectedHotel.name}</strong>
               </span>
-              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                STAAH 2-Way Live Sync
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-md flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                STAAH 2-Way Sync (22ms)
               </span>
             </div>
 
-            <h2 className="text-lg sm:text-xl font-display font-extrabold text-white tracking-tight mt-0.5 flex items-center gap-2">
-              <span>{greeting.text}</span>
-              <span className="text-xs font-normal text-slate-400 hidden sm:inline">— {greeting.sub}</span>
+            <h2 className="text-base sm:text-lg font-display font-bold text-white tracking-tight mt-0.5 flex items-center gap-2">
+              <span>{getGreeting()}, Operations Team</span>
+              <span className="text-xs font-normal text-slate-400 hidden sm:inline">— Live property operations & channel distribution active</span>
             </h2>
           </div>
         </div>
 
-        {/* Right: Quick Action Buttons & Command Trigger */}
-        <div className="flex flex-wrap items-center gap-2.5">
+        {/* Right: Clean, Crisp Modern SaaS Buttons */}
+        <div className="flex flex-wrap items-center gap-2">
           <button
-            onClick={() => setIsCheckInModalOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white text-xs font-bold rounded-xl shadow-lg shadow-emerald-900/30 transition-all cursor-pointer border border-emerald-400/30 active:scale-95"
+            onClick={() => {
+              setIsCheckInModalOpen(true);
+              showToast('Opening 5-Step Express Check-In Wizard');
+            }}
+            className="flex items-center gap-1.5 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-xl shadow-sm transition-all cursor-pointer active:scale-95"
           >
             <Zap className="w-3.5 h-3.5" />
-            <span>Express Check-In</span>
+            <span>+ Express Check-In</span>
           </button>
 
           <button
-            onClick={() => setIsNewReservationModalOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-900/30 transition-all cursor-pointer border border-indigo-400/30 active:scale-95"
+            onClick={() => {
+              setIsNewReservationModalOpen(true);
+              showToast('Opening Direct Reservation Booking Engine');
+            }}
+            className="flex items-center gap-1.5 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl border border-slate-700 transition-all cursor-pointer active:scale-95"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>+ Reservation</span>
+            <span>+ New Reservation</span>
           </button>
 
           <button
-            onClick={() => setCurrentView('restaurant')}
-            className="flex items-center gap-2 px-3 py-2 bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-all cursor-pointer active:scale-95"
+            onClick={() => {
+              setCurrentView('restaurant');
+              showToast('Switched to Restaurant POS & Live Kitchen Display (KDS)');
+            }}
+            className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-all cursor-pointer active:scale-95"
           >
-            <UtensilsCrossed className="w-3.5 h-3.5 text-amber-400" />
-            <span className="hidden sm:inline">KDS / POS</span>
+            <UtensilsCrossed className="w-3.5 h-3.5 text-slate-400" />
+            <span>KDS / POS</span>
           </button>
 
           <button
-            onClick={() => setCurrentView('banquets')}
-            className="flex items-center gap-2 px-3 py-2 bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-all cursor-pointer active:scale-95"
+            onClick={() => {
+              setCurrentView('banquets');
+              showToast('Switched to Banquet RFP & Event Quote Builder');
+            }}
+            className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-all cursor-pointer active:scale-95"
           >
-            <PartyPopper className="w-3.5 h-3.5 text-pink-400" />
-            <span className="hidden sm:inline">Banquet RFP</span>
+            <PartyPopper className="w-3.5 h-3.5 text-slate-400" />
+            <span>Banquet RFP</span>
           </button>
 
           <button
-            onClick={() => setIsCommandPaletteOpen(true)}
-            className="p-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 rounded-xl border border-slate-700 transition-all cursor-pointer active:scale-95"
-            title="Global Search & Quick Actions (Cmd + K)"
+            onClick={() => {
+              setCurrentView('channel-manager');
+              showToast('Switched to OTA Channel Manager & Rate Parity Engine');
+            }}
+            className="flex items-center gap-1.5 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl border border-slate-700 transition-all cursor-pointer active:scale-95"
           >
-            <Search className="w-4 h-4" />
+            <Globe className="w-3.5 h-3.5 text-slate-400" />
+            <span>OTA Sync</span>
           </button>
         </div>
       </div>

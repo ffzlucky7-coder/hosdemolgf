@@ -213,7 +213,7 @@ export default function SalesCrmPipeline() {
         <div className="custom-card p-6 space-y-4">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div>
-              <h3 className="font-display font-bold text-base text-slate-900">Lohagarh Royal Heritage Club Members</h3>
+              <h3 className="font-display font-bold text-base text-slate-900">Solaria Diamond Elite Club Members</h3>
               <p className="text-xs text-slate-400 font-medium">Exclusive tier privileges, points redemption, and guest preference profiles.</p>
             </div>
             <button

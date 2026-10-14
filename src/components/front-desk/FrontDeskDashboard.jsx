@@ -136,12 +136,12 @@ export default function FrontDeskDashboard() {
         </div>
 
         {/* In-House Rooms & Occupancy Rate */}
-        <div className="luxury-card-gold p-6 flex flex-col justify-between">
+        <div className="luxury-card p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-extrabold text-amber-800 uppercase tracking-wider font-display">
+            <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
               In-House Stays
             </span>
-            <div className="w-11 h-11 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-200/80 shadow-2xs">
+            <div className="w-11 h-11 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100 shadow-2xs">
               <Users className="w-5 h-5" />
             </div>
           </div>
@@ -152,11 +152,11 @@ export default function FrontDeskDashboard() {
             </div>
             <div className="w-full bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
               <div
-                className="bg-gradient-to-r from-amber-500 to-amber-600 h-full rounded-full transition-all duration-500"
+                className="bg-indigo-600 h-full rounded-full transition-all duration-500"
                 style={{ width: `${occupancyPercent}%` }}
               ></div>
             </div>
-            <div className="text-xs text-amber-700 font-bold mt-1.5 font-mono">
+            <div className="text-xs text-indigo-600 font-bold mt-1.5 font-mono">
               {occupancyPercent}% Real-Time Occupancy Rate
             </div>
           </div>

@@ -16,8 +16,8 @@ export default function SystemSettings() {
   const { showToast } = useApp();
 
   const [settings, setSettings] = useState({
-    hotelName: 'Lohagarh Fort Resort & Spa, Jaipur',
-    propertyCode: 'LFR-JAI-01',
+    hotelName: 'Aura Solis Grand Sanctuary & Spa',
+    propertyCode: 'ASG-GOA-01',
     currency: 'INR (₹)',
     gstRate: '12%',
     checkInTime: '02:00 PM',

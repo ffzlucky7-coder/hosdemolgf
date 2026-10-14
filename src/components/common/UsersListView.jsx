@@ -19,14 +19,14 @@ export default function UsersListView() {
   const [roleFilter, setRoleFilter] = useState('All');
 
   const staffUsers = [
-    { id: 'USR-01', name: 'Rajesh Singhania', email: 'owner@lohagarhfortresort.in', role: 'Super Admin', hotel: 'All Properties', status: 'Active', phone: '+91 80033 95964', avatar: 'RS' },
-    { id: 'USR-02', name: 'Gajendra Singh Rathore', email: 'gm@lohagarhfortresort.in', role: 'Resort GM', hotel: 'Lohagarh Fort Resort & Spa', status: 'Active', phone: '+91 98202 33445', avatar: 'GS' },
-    { id: 'USR-03', name: 'Rohit Sharma', email: 'cluster@lohagarhfortresort.in', role: 'Area Manager', hotel: 'Rajasthan Cluster (4 Properties)', status: 'Active', phone: '+91 98765 43210', avatar: 'RS' },
-    { id: 'USR-04', name: 'Neha Kapoor', email: 'neha.k@lohagarhfortresort.in', role: 'Area Manager', hotel: 'Delhi NCR Cluster (3 Properties)', status: 'Active', phone: '+91 98303 44556', avatar: 'NK' },
-    { id: 'USR-05', name: 'Amit Patel', email: 'reception@lohagarhfortresort.in', role: 'Front Desk Lead', hotel: 'Lohagarh Fort Resort & Spa', status: 'Active', phone: '+91 98404 55667', avatar: 'AP' },
-    { id: 'USR-06', name: 'Sunita Roy', email: 'sunita.r@lohagarhfortresort.in', role: 'Front Desk Associate', hotel: 'Lohagarh Fort Resort & Spa', status: 'Active', phone: '+91 98505 66778', avatar: 'SR' },
-    { id: 'USR-07', name: 'Chef Digvijay Singh', email: 'chef@lohagarhfortresort.in', role: 'Executive Chef (F&B)', hotel: 'Sheesh Mahal Fine Dining', status: 'Active', phone: '+91 98606 77889', avatar: 'DS' },
-    { id: 'USR-08', name: 'Ramesh Kumar', email: 'housekeeping@lohagarhfortresort.in', role: 'Housekeeping Lead', hotel: 'Lohagarh Fort Resort & Spa', status: 'Active', phone: '+91 98707 88990', avatar: 'RK' },
+    { id: 'USR-01', name: 'Devendra Singhania', email: 'owner@solariagroup.com', role: 'Super Admin', hotel: 'All Properties', status: 'Active', phone: '+91 80033 95964', avatar: 'DS' },
+    { id: 'USR-02', name: 'Vikramaditya Singhania', email: 'gm@aurasolis.com', role: 'Resort GM', hotel: 'Aura Solis Grand Sanctuary & Spa', status: 'Active', phone: '+91 98202 33445', avatar: 'VS' },
+    { id: 'USR-03', name: 'Karan Malhotra', email: 'cluster.north@zenithhotels.com', role: 'Area Manager', hotel: 'Capital & Northern Metros (4 Properties)', status: 'Active', phone: '+91 98765 43210', avatar: 'KM' },
+    { id: 'USR-04', name: 'Ananya Deshmukh', email: 'cluster.west@azurebayresort.com', role: 'Area Manager', hotel: 'Western Coastal Cluster (3 Properties)', status: 'Active', phone: '+91 98303 44556', avatar: 'AD' },
+    { id: 'USR-05', name: 'Amit Patel', email: 'reception@aurasolis.com', role: 'Front Desk Lead', hotel: 'Aura Solis Grand Sanctuary & Spa', status: 'Active', phone: '+91 98404 55667', avatar: 'AP' },
+    { id: 'USR-06', name: 'Sunita Roy', email: 'sunita.r@aurasolis.com', role: 'Front Desk Associate', hotel: 'Aura Solis Grand Sanctuary & Spa', status: 'Active', phone: '+91 98505 66778', avatar: 'SR' },
+    { id: 'USR-07', name: 'Chef Laurent Varma', email: 'chef@aurasolis.com', role: 'Executive Chef (F&B)', hotel: 'Aura Solis Fine Dining', status: 'Active', phone: '+91 98606 77889', avatar: 'LV' },
+    { id: 'USR-08', name: 'Ramesh Kumar', email: 'housekeeping@aurasolis.com', role: 'Housekeeping Lead', hotel: 'Aura Solis Grand Sanctuary & Spa', status: 'Active', phone: '+91 98707 88990', avatar: 'RK' },
   ];
 
   const filteredUsers = staffUsers.filter(u => {

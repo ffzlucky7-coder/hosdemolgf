@@ -29,13 +29,13 @@ export default function BanquetEventsView() {
   const [events, setEvents] = useState([
     {
       id: 'EVT-2025-01',
-      title: 'Singhania & Oswal Royal Destination Wedding',
-      hall: 'The Grand Aravali Royal Lawn',
+      title: 'Global FinTech Leadership Summit & Gala Dinner',
+      hall: 'The Grand Oceanfront Sanctuary Lawn',
       capacity: '850 Guests',
       date: 'May 22, 2025',
       time: '06:30 PM – 01:00 AM',
-      package: 'Royal Rajputana 3-Day Wedding Package',
-      catering: 'Live Marwari Rasoi, Mughlai Dastarkhwan & Global Gourmet',
+      package: 'Sovereign 3-Day Global Conference & Gala',
+      catering: 'Live Seafood Grill, Artisanal Global Gourmet & Wine Pairing',
       value: 4500000,
       paid: 2200000,
       status: 'Confirmed',
@@ -44,7 +44,7 @@ export default function BanquetEventsView() {
     {
       id: 'EVT-2025-02',
       title: 'McKinsey & Co. Global Leadership Retreat',
-      hall: 'Sheesh Mahal Grand Ballroom',
+      hall: 'The Imperial Sovereign Ballroom',
       capacity: '200 Guests',
       date: 'May 25, 2025',
       time: '09:00 AM – 06:00 PM',
@@ -57,17 +57,17 @@ export default function BanquetEventsView() {
     },
     {
       id: 'EVT-2025-03',
-      title: 'Rathore Silver Jubilee Anniversary & Folk Night',
-      hall: 'Poolside Royal Courtyard & Terrace',
+      title: 'Singhania Silver Jubilee Anniversary & Jazz Gala',
+      hall: 'The Azure Poolside Courtyard & Deck',
       capacity: '180 Guests',
       date: 'May 28, 2025',
       time: '07:00 PM – 11:30 PM',
-      package: 'Heritage Evening with Kalbeliya Dancers & DJ',
-      catering: 'Live Barbecue, Jungli Maas & Rajasthani Sweets',
+      package: 'Oceanfront Evening with Live Saxophone Quartet',
+      catering: 'Live Charcoal BBQ, Mediterranean Tapas & Pastries',
       value: 680000,
       paid: 350000,
       status: 'Advance Paid',
-      contact: 'Gajendra Singh Rathore (+91 80033 95964)'
+      contact: 'Vikramaditya Singhania (+91 80033 95964)'
     }
   ]);
 
@@ -85,10 +85,10 @@ export default function BanquetEventsView() {
   });
 
   const halls = [
-    { name: 'The Grand Aravali Royal Lawn', cap: '1200 Guests', area: '25,000 sq.ft.', status: 'Booked on May 22', icon: Trees, color: 'text-emerald-600 bg-emerald-50' },
-    { name: 'Sheesh Mahal Royal Ballroom', cap: '450 Guests', area: '7,500 sq.ft.', status: 'Available', icon: Castle, color: 'text-indigo-600 bg-indigo-50' },
-    { name: 'Poolside Royal Courtyard', cap: '300 Guests', area: '5,000 sq.ft.', status: 'Available', icon: Waves, color: 'text-cyan-600 bg-cyan-50' },
-    { name: 'Rooftop Fort Terrace', cap: '150 Guests', area: '3,200 sq.ft.', status: 'Available', icon: Mountain, color: 'text-amber-600 bg-amber-50' },
+    { name: 'The Grand Oceanfront Sanctuary Lawn', cap: '1200 Guests', area: '25,000 sq.ft.', status: 'Booked on May 22', icon: Trees, color: 'text-emerald-600 bg-emerald-50' },
+    { name: 'The Imperial Sovereign Ballroom', cap: '450 Guests', area: '7,500 sq.ft.', status: 'Available', icon: Castle, color: 'text-indigo-600 bg-indigo-50' },
+    { name: 'The Azure Poolside Courtyard & Deck', cap: '300 Guests', area: '5,000 sq.ft.', status: 'Available', icon: Waves, color: 'text-cyan-600 bg-cyan-50' },
+    { name: 'The Horizon Panorama Terrace', cap: '150 Guests', area: '3,200 sq.ft.', status: 'Available', icon: Mountain, color: 'text-amber-600 bg-amber-50' },
   ];
 
   const cateringTotal = builderData.guests * builderData.platePrice;
@@ -199,20 +199,20 @@ export default function BanquetEventsView() {
           </div>
         </div>
 
-        <div className="luxury-card-gold p-6 flex flex-col justify-between">
+        <div className="luxury-card p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-extrabold text-amber-800 uppercase tracking-wider font-display">
+            <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
               Advances Secured
             </span>
-            <div className="w-11 h-11 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-200/80 shadow-2xs">
+            <div className="w-11 h-11 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100 shadow-2xs">
               <CheckCircle2 className="w-5 h-5" />
             </div>
           </div>
           <div className="mt-4">
-            <div className="text-3xl font-mono font-black text-amber-950">
+            <div className="text-3xl font-mono font-black text-slate-900">
               ₹{(events.reduce((s, e) => s + e.paid, 0) / 100000).toFixed(1)}L
             </div>
-            <div className="text-xs text-amber-700 font-bold mt-1 font-mono">
+            <div className="text-xs text-indigo-600 font-bold mt-1 font-mono">
               100% Guaranteed Advance
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function BanquetEventsView() {
 
       {/* Banquet Halls Overview */}
       <div className="space-y-4">
-        <h3 className="font-display font-bold text-base text-slate-900">Royal Venues & Grand Aravali Lawns</h3>
+        <h3 className="font-display font-bold text-base text-slate-900">Sanctuary Venues & Oceanfront Lawns</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {halls.map((h, i) => {
             const Icon = h.icon;

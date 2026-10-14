@@ -159,18 +159,18 @@ export default function SuperAdminDashboard() {
           </div>
         </div>
 
-        <div className="luxury-card-gold p-6 flex flex-col justify-between">
+        <div className="luxury-card p-6 flex flex-col justify-between">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-extrabold text-amber-800 uppercase tracking-wider font-display">
+            <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
               Global Platform Health
             </span>
-            <div className="w-11 h-11 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-200/80 shadow-2xs">
+            <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100 shadow-2xs">
               <ShieldCheck className="w-5 h-5" />
             </div>
           </div>
           <div className="mt-4">
             <div className="text-3xl font-mono font-black text-slate-900">99.98%</div>
-            <div className="text-xs text-amber-700 font-bold mt-1 flex items-center gap-1 font-mono">
+            <div className="text-xs text-emerald-600 font-bold mt-1 flex items-center gap-1 font-mono">
               <Zap className="w-3.5 h-3.5" /> STAAH 2-Way Sync Active
             </div>
           </div>

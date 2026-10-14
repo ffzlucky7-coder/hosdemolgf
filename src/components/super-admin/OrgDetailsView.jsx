@@ -16,7 +16,7 @@ export default function OrgDetailsView() {
   const { organizations, setCurrentView, setIsAddHotelModalOpen } = useApp();
   const [activeTab, setActiveTab] = useState('Overview');
 
-  const org = organizations[0]; // Lohagarh Hospitality
+  const org = organizations[0]; // Solaria Global Hospitality
 
   const tabs = ['Overview', 'Hotels', 'Admins', 'Subscription', 'Billing', 'Usage', 'Integrations', 'Activity Logs'];
 

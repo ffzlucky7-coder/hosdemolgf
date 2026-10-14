@@ -98,55 +98,55 @@ export default function PricingPlansView() {
         </div>
 
         {/* Pro Plan (Recommended) */}
-        <div className="luxury-card-gold p-8 flex flex-col justify-between relative ring-2 ring-amber-500 shadow-2xl vip-shimmer">
+        <div className="bg-slate-900 text-white rounded-2xl p-8 flex flex-col justify-between relative border border-indigo-500/50 shadow-2xl">
           {/* Badge */}
-          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-full text-xs shadow-md flex items-center gap-1.5 uppercase tracking-wider font-display">
-            <Sparkles className="w-3.5 h-3.5 text-slate-950" />
-            <span>Most Popular Enterprise Choice</span>
+          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-600 text-white font-bold rounded-full text-xs shadow-md flex items-center gap-1.5 uppercase tracking-wider font-sans">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-200" />
+            <span>Most Popular Choice</span>
           </div>
 
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5 border border-amber-200/80 shadow-2xs">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-600/30 text-indigo-400 flex items-center justify-center mb-5 border border-indigo-500/40">
               <Crown className="w-6 h-6" />
             </div>
 
             <div className="flex items-center gap-2">
-              <h3 className="text-xl font-display font-bold text-slate-950">Resort Cluster Pro</h3>
-              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-200 text-amber-900">Recommended</span>
+              <h3 className="text-xl font-display font-extrabold text-white">Resort Cluster Pro</h3>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/30 text-indigo-300">Recommended</span>
             </div>
-            <p className="text-xs text-amber-900 mt-1 font-medium">Perfect for regional hotel chains, luxury villa clusters & franchise groups</p>
+            <p className="text-xs text-slate-400 mt-1 font-medium">Perfect for regional hotel chains, luxury villa clusters & franchise groups</p>
 
             <div className="mt-6 mb-2">
               <div className="flex items-baseline">
-                <span className="text-3xl font-mono font-black text-amber-950">₹14,999</span>
-                <span className="text-xs text-amber-800 ml-1.5 font-medium">/ month</span>
+                <span className="text-3xl font-mono font-black text-white">₹14,999</span>
+                <span className="text-xs text-slate-400 ml-1.5 font-medium">/ month</span>
               </div>
-              <span className="text-[11px] text-amber-700 font-mono">Billed annually • Includes 2-Way OTA Engine</span>
+              <span className="text-[11px] text-slate-400 font-mono">Billed annually • Includes 2-Way OTA Engine</span>
             </div>
 
-            <div className="border-t border-amber-200/60 pt-6 mt-6 space-y-3.5 text-xs text-slate-800 font-medium">
+            <div className="border-t border-slate-800 pt-6 mt-6 space-y-3.5 text-xs text-slate-300 font-medium">
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Up to <strong>25 Connected Properties</strong></span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Up to <strong>150 Multi-Role Users</strong></span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Full STAAH 2-Way Live Channel Manager</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Multi-Outlet Restaurant POS & Kitchen KDS</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Banquets & Destination Wedding Engine</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>AI Virtual Concierge (WhatsApp Guest Desk)</span>
               </div>
             </div>
@@ -154,7 +154,7 @@ export default function PricingPlansView() {
 
           <button
             onClick={() => handleSelect('Resort Cluster Pro')}
-            className="w-full mt-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-500/20 transition-all cursor-pointer active:scale-95 uppercase tracking-wider font-display"
+            className="w-full mt-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-indigo-600/30 transition-all cursor-pointer active:scale-95 uppercase tracking-wider font-sans"
           >
             Upgrade to Cluster Pro →
           </button>

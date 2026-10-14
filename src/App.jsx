@@ -50,14 +50,14 @@ import SystemSettings from './components/settings/SystemSettings';
 import LoginScreen from './components/auth/LoginScreen';
 
 function MainAppContent() {
-  const { currentRole, currentView } = useApp();
+  const { currentRole, currentView, notificationToast } = useApp();
 
-  // If on login demo screen, render full screen login
+  // If on login demo screen, render full screen login with RoleSwitcher dock
   if (currentRole === 'login' || currentView === 'login') {
     return (
-      <div className="flex flex-col min-h-screen">
-        <RoleSwitcher />
+      <div className="flex flex-col min-h-screen relative">
         <LoginScreen />
+        <RoleSwitcher />
       </div>
     );
   }
@@ -148,28 +148,47 @@ function MainAppContent() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col antialiased text-slate-800">
-      {/* 1. Universal Multi-Role Switcher Header */}
-      <RoleSwitcher />
+      {/* Global Animated Action Feedback Toast */}
+      <AnimatePresence>
+        {notificationToast && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-2xl shadow-2xl border text-xs font-bold flex items-center gap-3 backdrop-blur-xl ${
+              notificationToast.type === 'warning'
+                ? 'bg-amber-500 text-white border-amber-600 shadow-amber-500/20'
+                : 'bg-slate-900 text-white border-slate-700 shadow-slate-900/30'
+            }`}
+          >
+            <div className="w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center font-black">
+              ✓
+            </div>
+            <span>{notificationToast.message}</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      {/* 2. Main PMS Layout */}
+      {/* Main SaaS Platform Layout */}
       <div className="flex flex-1 relative">
         <Sidebar />
 
         <div className="flex-1 flex flex-col min-w-0">
           <Header />
 
-          {/* Quick Operational Command Hero Deck */}
+          {/* Quick Command Hero Deck */}
           <QuickActionHero />
 
-          {/* Main Dynamic View Content with Smooth Fade Animation */}
-          <main className="flex-1 pb-16 overflow-y-auto">
+          {/* Dynamic View Content */}
+          <main className="flex-1 pb-24 overflow-y-auto">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentView + currentRole}
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
               >
                 {renderView()}
               </motion.div>
@@ -178,7 +197,10 @@ function MainAppContent() {
         </div>
       </div>
 
-      {/* 3. Global Modals & Drawers */}
+      {/* Floating Demo Persona Presentation Dock */}
+      <RoleSwitcher />
+
+      {/* Global Modals & Drawers */}
       <CheckInWizardModal />
       <NewReservationModal />
       <RoomDetailModal />

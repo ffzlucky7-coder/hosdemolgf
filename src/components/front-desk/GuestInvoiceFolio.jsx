@@ -118,8 +118,8 @@ export default function GuestInvoiceFolio() {
               <Hotel className="w-7 h-7" />
             </div>
             <div>
-              <h2 className="text-xl font-display font-black text-slate-900 tracking-tight">Lohagarh Fort Resort & Spa</h2>
-              <p className="text-xs text-slate-500 font-medium">NH-8, Kukas, Jaipur, Rajasthan - 302028 • GSTIN: 08AABCL9603R1Z8</p>
+              <h2 className="text-xl font-display font-black text-slate-900 tracking-tight">Aura Solis Grand Sanctuary & Spa</h2>
+              <p className="text-xs text-slate-500 font-medium">Oceanfront Boulevard, Candolim, Goa - 403515 • GSTIN: 30AABCS9603R1Z8</p>
             </div>
           </div>
 
