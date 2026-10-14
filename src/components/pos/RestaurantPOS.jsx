@@ -28,7 +28,9 @@ import {
   Wheat,
   CookingPot,
   Cake,
-  TableProperties
+  TableProperties,
+  Zap,
+  ArrowRight
 } from 'lucide-react';
 
 export default function RestaurantPOS() {
@@ -45,6 +47,7 @@ export default function RestaurantPOS() {
     setRestaurantTables,
     kdsOrders,
     setKdsOrders,
+    selectedHotel,
     showToast
   } = useApp();
 
@@ -59,19 +62,19 @@ export default function RestaurantPOS() {
 
   const getDishIcon = (iconKey) => {
     switch (iconKey) {
-      case 'coffee': return <Coffee className="w-6 h-6 text-amber-700" />;
-      case 'glass-water': return <GlassWater className="w-6 h-6 text-sky-600" />;
-      case 'cup-soda': return <CupSoda className="w-6 h-6 text-indigo-600" />;
-      case 'wine': return <Wine className="w-6 h-6 text-rose-600" />;
-      case 'cookie': return <Cookie className="w-6 h-6 text-amber-600" />;
-      case 'flame': return <Flame className="w-6 h-6 text-orange-500" />;
-      case 'drumstick': return <Drumstick className="w-6 h-6 text-red-600" />;
-      case 'soup': return <Soup className="w-6 h-6 text-amber-600" />;
-      case 'utensils': return <UtensilsCrossed className="w-6 h-6 text-rose-600" />;
-      case 'wheat': return <Wheat className="w-6 h-6 text-yellow-600" />;
-      case 'bowl': return <CookingPot className="w-6 h-6 text-indigo-600" />;
-      case 'cake': return <Cake className="w-6 h-6 text-pink-600" />;
-      default: return <UtensilsCrossed className="w-6 h-6 text-indigo-600" />;
+      case 'coffee': return <Coffee className="w-5 h-5 text-amber-700" />;
+      case 'glass-water': return <GlassWater className="w-5 h-5 text-sky-600" />;
+      case 'cup-soda': return <CupSoda className="w-5 h-5 text-indigo-600" />;
+      case 'wine': return <Wine className="w-5 h-5 text-rose-600" />;
+      case 'cookie': return <Cookie className="w-5 h-5 text-amber-600" />;
+      case 'flame': return <Flame className="w-5 h-5 text-orange-500" />;
+      case 'drumstick': return <Drumstick className="w-5 h-5 text-red-600" />;
+      case 'soup': return <Soup className="w-5 h-5 text-amber-600" />;
+      case 'utensils': return <UtensilsCrossed className="w-5 h-5 text-rose-600" />;
+      case 'wheat': return <Wheat className="w-5 h-5 text-yellow-600" />;
+      case 'bowl': return <CookingPot className="w-5 h-5 text-indigo-600" />;
+      case 'cake': return <Cake className="w-5 h-5 text-pink-600" />;
+      default: return <UtensilsCrossed className="w-5 h-5 text-indigo-600" />;
     }
   };
 
@@ -102,7 +105,7 @@ export default function RestaurantPOS() {
 
   const handleKdsComplete = (kotId) => {
     setKdsOrders(prev => prev.map(k => k.id === kotId ? { ...k, status: 'Served & Closed' } : k));
-    showToast(`Order ${kotId} marked as Served!`);
+    showToast(`Order ${kotId} marked as Served & Closed!`);
   };
 
   return (
@@ -111,16 +114,23 @@ export default function RestaurantPOS() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[11px] font-bold text-indigo-600 tracking-wider uppercase">Module 9 & 11 • Food & Beverage POS</span>
+            <span className="text-[11px] font-mono font-bold text-indigo-600 tracking-wider uppercase px-2 py-0.5 rounded bg-indigo-50 border border-indigo-100">
+              Module 9 • Food & Beverage Point of Sale
+            </span>
+            <span className="text-xs text-slate-400 font-medium">{selectedHotel.name.split(',')[0]}</span>
           </div>
-          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Restaurant & In-Villa Dining POS</h1>
-          <p className="text-xs text-slate-500 mt-1">Live order dispatch, kitchen display sync (KDS), table management, and villa folio billing.</p>
+          <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+            Multi-Outlet F&B POS & Kitchen Display
+          </h1>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Real-time table orders, in-villa dining dispatch, live KDS kitchen sync, and direct folio settlement.
+          </p>
         </div>
 
         <div className="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
           <button
             onClick={() => setActiveTab('menu')}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               activeTab === 'menu' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -129,7 +139,7 @@ export default function RestaurantPOS() {
           </button>
           <button
             onClick={() => setActiveTab('tables')}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               activeTab === 'tables' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -138,7 +148,7 @@ export default function RestaurantPOS() {
           </button>
           <button
             onClick={() => setActiveTab('kds')}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               activeTab === 'kds' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -160,9 +170,9 @@ export default function RestaurantPOS() {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-4 py-2 rounded-xl transition-all whitespace-nowrap ${
+                    className={`px-4 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer ${
                       selectedCategory === cat
-                        ? 'bg-indigo-600 text-white shadow-xs'
+                        ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-xs'
                         : 'text-slate-600 hover:bg-slate-100'
                     }`}
                   >
@@ -175,7 +185,7 @@ export default function RestaurantPOS() {
                 <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
-                  placeholder="Search dishes..."
+                  placeholder="Search culinary items..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500/20"
@@ -189,31 +199,31 @@ export default function RestaurantPOS() {
                 <div
                   key={item.id}
                   onClick={() => addToCart(item)}
-                  className="custom-card p-4 hover:shadow-lg hover:border-indigo-300 transition-all cursor-pointer flex flex-col justify-between h-44 group"
+                  className="luxury-card p-4.5 hover:border-indigo-300 transition-all cursor-pointer flex flex-col justify-between h-46 group"
                 >
                   <div>
                     <div className="flex items-start justify-between">
-                      <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:scale-105 group-hover:bg-indigo-50 group-hover:border-indigo-200 transition-all">
+                      <div className="w-11 h-11 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center group-hover:scale-105 group-hover:bg-indigo-50 group-hover:border-indigo-200 transition-all shadow-2xs">
                         {getDishIcon(item.iconKey)}
                       </div>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 uppercase">
+                      <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 uppercase">
                         {item.category}
                       </span>
                     </div>
 
-                    <h3 className="font-bold text-slate-900 text-sm mt-3 group-hover:text-indigo-600 transition-colors">
+                    <h3 className="font-display font-bold text-slate-900 text-sm mt-3 group-hover:text-indigo-600 transition-colors leading-snug">
                       {item.name}
                     </h3>
                   </div>
 
                   <div className="flex items-center justify-between pt-2.5 border-t border-slate-100">
-                    <span className="font-mono font-extrabold text-base text-slate-900">₹{item.price}</span>
+                    <span className="font-mono font-black text-base text-slate-900">₹{item.price}</span>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         addToCart(item);
                       }}
-                      className="px-3 py-1.5 rounded-xl bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white flex items-center gap-1 font-bold text-xs transition-colors shadow-2xs"
+                      className="px-3 py-1.5 rounded-xl bg-indigo-50 group-hover:bg-indigo-600 text-indigo-600 group-hover:text-white flex items-center gap-1 font-bold text-xs transition-colors shadow-2xs cursor-pointer"
                     >
                       <Plus className="w-3.5 h-3.5" />
                       <span>Add</span>
@@ -225,7 +235,7 @@ export default function RestaurantPOS() {
           </div>
 
           {/* Right: Live Cart & Bill Folio */}
-          <div className="lg:col-span-4 custom-card p-6 space-y-5 sticky top-20 shadow-xl border border-slate-200">
+          <div className="lg:col-span-4 luxury-card p-6 space-y-5 sticky top-20 shadow-xl border border-slate-200">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <ShoppingBag className="w-5 h-5 text-indigo-600" />
@@ -234,16 +244,16 @@ export default function RestaurantPOS() {
               {cart.length > 0 && (
                 <button
                   onClick={clearCart}
-                  className="text-xs text-rose-500 hover:text-rose-700 font-bold"
+                  className="text-xs text-rose-500 hover:text-rose-700 font-bold cursor-pointer"
                 >
-                  Clear
+                  Clear Order
                 </button>
               )}
             </div>
 
             {/* Destination Dropdown */}
             <div>
-              <label className="block text-slate-500 text-xs font-bold mb-1">Deliver / Bill To</label>
+              <label className="block text-slate-500 text-xs font-bold mb-1">Deliver / Folio Bill To</label>
               <select
                 value={orderDestination}
                 onChange={(e) => setOrderDestination(e.target.value)}
@@ -273,7 +283,7 @@ export default function RestaurantPOS() {
                         {getDishIcon(item.iconKey)}
                       </div>
                       <div>
-                        <div className="font-bold text-slate-900">{item.name}</div>
+                        <div className="font-bold text-slate-900 font-display">{item.name}</div>
                         <div className="text-[11px] font-mono text-slate-400">₹{item.price} each</div>
                       </div>
                     </div>
@@ -282,22 +292,22 @@ export default function RestaurantPOS() {
                       <div className="flex items-center border border-slate-200 rounded-lg overflow-hidden bg-slate-50 shadow-2xs">
                         <button
                           onClick={() => updateCartQty(item.id, -1)}
-                          className="px-2 py-1 hover:bg-slate-200 text-slate-600 font-bold"
+                          className="px-2 py-1 hover:bg-slate-200 text-slate-600 font-bold cursor-pointer"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="px-2 py-1 text-xs font-bold text-slate-900 bg-white">
+                        <span className="px-2 py-1 text-xs font-mono font-bold text-slate-900 bg-white">
                           {item.qty}
                         </span>
                         <button
                           onClick={() => updateCartQty(item.id, 1)}
-                          className="px-2 py-1 hover:bg-slate-200 text-slate-600 font-bold"
+                          className="px-2 py-1 hover:bg-slate-200 text-slate-600 font-bold cursor-pointer"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
                       </div>
 
-                      <span className="font-mono font-extrabold text-slate-900 w-14 text-right">
+                      <span className="font-mono font-black text-slate-900 w-14 text-right">
                         ₹{item.price * item.qty}
                       </span>
                     </div>
@@ -313,11 +323,11 @@ export default function RestaurantPOS() {
                 placeholder="Enter Promo (ROYAL10, VIP20)"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
-                className="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold uppercase outline-none"
+                className="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-bold uppercase outline-none font-mono"
               />
               <button
                 type="submit"
-                className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl"
+                className="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl cursor-pointer"
               >
                 Apply
               </button>
@@ -341,7 +351,7 @@ export default function RestaurantPOS() {
                   <span className="font-mono font-semibold text-slate-800">₹{gst.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm font-black text-slate-900 pt-2 border-t border-slate-200">
-                  <span>Total Amount:</span>
+                  <span>Total Bill Amount:</span>
                   <span className="font-mono text-indigo-600 text-base">₹{total.toFixed(2)}</span>
                 </div>
               </div>
@@ -351,7 +361,7 @@ export default function RestaurantPOS() {
             <button
               onClick={() => placeOrder(orderDestination)}
               disabled={cart.length === 0}
-              className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-bold text-xs rounded-2xl shadow-md transition-all flex items-center justify-center gap-2"
+              className="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 disabled:opacity-50 text-white font-bold text-xs rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-95"
             >
               <Receipt className="w-4 h-4" />
               <span>Charge to {orderDestination.split(' ')[0]} & Send KOT</span>
@@ -382,7 +392,7 @@ export default function RestaurantPOS() {
             {restaurantTables.map((t) => (
               <div
                 key={t.id}
-                className={`custom-card p-6 border-2 transition-all space-y-4 ${
+                className={`luxury-card p-6 border-2 transition-all space-y-4 ${
                   t.status === 'Available' ? 'border-emerald-200 bg-emerald-50/20' : t.status === 'Occupied' ? 'border-indigo-200 bg-indigo-50/20' : 'border-amber-200 bg-amber-50/20'
                 }`}
               >
@@ -399,7 +409,7 @@ export default function RestaurantPOS() {
                 {t.guest && (
                   <div className="p-3 bg-white rounded-xl border border-slate-200 text-xs space-y-1">
                     <div className="text-slate-500 font-medium">Seated Guest:</div>
-                    <div className="font-bold text-slate-900">{t.guest}</div>
+                    <div className="font-bold text-slate-900 font-display">{t.guest}</div>
                     <div className="font-mono font-extrabold text-indigo-600 pt-1">Live Tab: ₹{t.orderValue.toLocaleString()}</div>
                   </div>
                 )}
@@ -411,7 +421,7 @@ export default function RestaurantPOS() {
                       setActiveTab('menu');
                       showToast(`Selected ${t.name} for dining order.`);
                     }}
-                    className="text-indigo-600 font-bold hover:underline"
+                    className="text-indigo-600 font-bold hover:underline cursor-pointer"
                   >
                     + Take Order on this Table →
                   </button>
@@ -437,10 +447,10 @@ export default function RestaurantPOS() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {kdsOrders.map((k) => (
-              <div key={k.id} className="custom-card p-6 border-t-4 border-t-rose-500 space-y-4">
+              <div key={k.id} className="luxury-card p-6 border-t-4 border-t-rose-500 space-y-4">
                 <div className="flex items-start justify-between">
                   <div>
-                    <span className="font-mono text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded">{k.id}</span>
+                    <span className="font-mono text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">{k.id}</span>
                     <h4 className="font-display font-bold text-base text-slate-900 mt-1">{k.tableOrRoom}</h4>
                   </div>
                   <span className={`custom-badge ${k.status === 'Ready to Serve' ? 'badge-clean' : 'badge-dirty'}`}>
@@ -450,19 +460,19 @@ export default function RestaurantPOS() {
 
                 <div className="bg-slate-50 p-3.5 rounded-xl space-y-1.5 text-xs font-semibold text-slate-800 divide-y divide-slate-200">
                   {k.items.map((it, idx) => (
-                    <div key={idx} className="pt-1">{it}</div>
+                    <div key={idx} className="pt-1 font-sans">{it}</div>
                   ))}
                 </div>
 
                 <div className="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-100">
-                  <span>Chef: <strong>{k.chef}</strong></span>
+                  <span>Chef: <strong className="text-slate-700">{k.chef}</strong></span>
                   <span className="font-mono">{k.time}</span>
                 </div>
 
                 {k.status !== 'Served & Closed' && (
                   <button
                     onClick={() => handleKdsComplete(k.id)}
-                    className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors"
+                    className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors cursor-pointer"
                   >
                     ✓ Mark as Served & Complete
                   </button>

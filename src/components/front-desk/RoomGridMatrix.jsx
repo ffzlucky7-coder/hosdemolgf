@@ -23,7 +23,8 @@ export default function RoomGridMatrix() {
     updateRoomStatus,
     setSelectedRoomForDetail,
     setIsRoomDetailModalOpen,
-    setIsNewReservationModalOpen
+    setIsNewReservationModalOpen,
+    selectedHotel
   } = useApp();
   
   const [selectedFloor, setSelectedFloor] = useState('all');
@@ -38,11 +39,11 @@ export default function RoomGridMatrix() {
   const getStatusColor = (status) => {
     switch (status) {
       case 'clean':
-        return 'bg-emerald-50/60 border-emerald-300 text-emerald-950 hover:bg-emerald-100 hover:border-emerald-500';
+        return 'bg-emerald-50/70 border-emerald-300 text-emerald-950 hover:bg-emerald-100/80 hover:border-emerald-500 shadow-emerald-500/5';
       case 'dirty':
-        return 'bg-rose-50/60 border-rose-300 text-rose-950 hover:bg-rose-100 hover:border-rose-500';
+        return 'bg-rose-50/70 border-rose-300 text-rose-950 hover:bg-rose-100/80 hover:border-rose-500 shadow-rose-500/5';
       case 'occupied':
-        return 'bg-indigo-50/60 border-indigo-300 text-indigo-950 hover:bg-indigo-100 hover:border-indigo-500';
+        return 'bg-indigo-50/70 border-indigo-300 text-indigo-950 hover:bg-indigo-100/80 hover:border-indigo-500 shadow-indigo-500/5';
       default:
         return 'bg-slate-50 border-slate-200 text-slate-700';
     }
@@ -75,21 +76,26 @@ export default function RoomGridMatrix() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[11px] font-bold text-indigo-600 tracking-wider uppercase">Module 6 • Front Desk Operations</span>
+            <span className="text-[11px] font-mono font-bold text-indigo-600 tracking-wider uppercase px-2 py-0.5 rounded bg-indigo-50 border border-indigo-100">
+              Module 6 • Front Office Matrix
+            </span>
+            <span className="text-xs text-slate-400 font-medium">{selectedHotel.name.split(',')[0]}</span>
           </div>
-          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Interactive Room Floor Matrix</h1>
+          <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+            Interactive Room & Villa Floor Matrix
+          </h1>
           <p className="text-xs text-slate-500 mt-0.5">
-            Live occupancy grid. Click any room for walk-in check-in, live billing folios, mini-bar billing, or housekeeping dispatch.
+            Real-time live occupancy grid. Click any unit for instant guest profile, live folios, keycard dispatch, or turnover tasks.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsNewReservationModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-sm transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer active:scale-95"
           >
             <Plus className="w-4 h-4" />
-            <span>New Walk-In / Booking</span>
+            <span>+ New Walk-In Booking</span>
           </button>
         </div>
       </div>
@@ -100,24 +106,24 @@ export default function RoomGridMatrix() {
           <Layers className="w-4 h-4 text-slate-400 ml-1" />
           <button
             onClick={() => setSelectedFloor('all')}
-            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
-              selectedFloor === 'all' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+            className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+              selectedFloor === 'all' ? 'bg-indigo-600 text-white shadow-xs font-display' : 'text-slate-600 hover:bg-slate-100'
             }`}
           >
             All Wings ({rooms.length})
           </button>
           <button
             onClick={() => setSelectedFloor('1')}
-            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
-              selectedFloor === '1' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+            className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+              selectedFloor === '1' ? 'bg-indigo-600 text-white shadow-xs font-display' : 'text-slate-600 hover:bg-slate-100'
             }`}
           >
             Ground Wing (101–116)
           </button>
           <button
             onClick={() => setSelectedFloor('2')}
-            className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-colors ${
-              selectedFloor === '2' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+            className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+              selectedFloor === '2' ? 'bg-indigo-600 text-white shadow-xs font-display' : 'text-slate-600 hover:bg-slate-100'
             }`}
           >
             Fort Wing (201–216)
@@ -126,15 +132,15 @@ export default function RoomGridMatrix() {
 
         {/* Legend Counts */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 shadow-2xs">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>Clean & Ready ({cleanCount})</span>
           </div>
-          <div className="flex items-center gap-1.5 text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-lg border border-rose-200">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-rose-700 bg-rose-50 px-3 py-1.5 rounded-xl border border-rose-200 shadow-2xs">
             <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
             <span>Turnover ({dirtyCount})</span>
           </div>
-          <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-200">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-indigo-700 bg-indigo-50 px-3 py-1.5 rounded-xl border border-indigo-200 shadow-2xs">
             <span className="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
             <span>Occupied ({occupiedCount})</span>
           </div>
@@ -147,7 +153,7 @@ export default function RoomGridMatrix() {
           <div
             key={room.id}
             onClick={() => handleRoomClick(room)}
-            className={`p-4 rounded-2xl border-2 transition-all cursor-pointer shadow-xs hover:shadow-lg hover:-translate-y-0.5 flex flex-col justify-between h-36 relative ${getStatusColor(
+            className={`p-4 rounded-2xl border-2 transition-all cursor-pointer shadow-xs hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between h-38 relative group ${getStatusColor(
               room.status
             )}`}
           >
@@ -156,20 +162,20 @@ export default function RoomGridMatrix() {
                 <span className="font-display font-black text-xl text-slate-900 tracking-tight">{room.number}</span>
                 {getUnitIcon(room.iconType)}
               </div>
-              <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-white/80 border border-black/5 shadow-2xs font-mono">
+              <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-white/90 border border-black/5 shadow-2xs font-mono">
                 F{room.floor}
               </span>
             </div>
 
             <div>
-              <div className="text-xs font-bold text-slate-800 line-clamp-1">{room.type}</div>
-              <div className="text-[11px] font-mono font-semibold text-slate-600 mt-0.5">₹{room.price.toLocaleString()}</div>
+              <div className="text-xs font-display font-bold text-slate-800 line-clamp-1">{room.type}</div>
+              <div className="text-[11px] font-mono font-bold text-slate-600 mt-0.5">₹{room.price.toLocaleString()}</div>
             </div>
 
             <div className="flex items-center justify-between pt-1.5 border-t border-black/10">
-              <span className="capitalize text-[11px] font-bold">{room.status}</span>
+              <span className="capitalize text-[11px] font-mono font-extrabold">{room.status}</span>
               {room.guest && (
-                <span className="text-[10px] font-bold text-indigo-900 truncate max-w-[75px] bg-indigo-100/80 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] font-bold text-indigo-900 truncate max-w-[75px] bg-indigo-100/90 px-1.5 py-0.5 rounded font-display shadow-2xs">
                   {room.guest}
                 </span>
               )}

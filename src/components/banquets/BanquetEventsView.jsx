@@ -19,11 +19,12 @@ import {
   Trees,
   Castle,
   Waves,
-  Mountain
+  Mountain,
+  Crown
 } from 'lucide-react';
 
 export default function BanquetEventsView() {
-  const { showToast } = useApp();
+  const { showToast, selectedHotel } = useApp();
   const [isBuilderOpen, setIsBuilderOpen] = useState(false);
   const [events, setEvents] = useState([
     {
@@ -122,14 +123,21 @@ export default function BanquetEventsView() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 10 • Banquets & Destination Weddings</span>
+            <span className="text-[11px] font-mono font-bold text-indigo-600 uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-50 border border-indigo-100">
+              Module 10 • Banquets & Destination Weddings Engine
+            </span>
+            <span className="text-xs text-slate-400 font-medium">{selectedHotel.name.split(',')[0]}</span>
           </div>
-          <h1 className="text-2xl font-display font-bold text-slate-900 tracking-tight">Lohagarh Fort Banquets & Royal Lawns Engine</h1>
-          <p className="text-xs text-slate-500 mt-0.5">Automated per-plate catering quotation, Aravali lawn scheduling, and destination wedding packages.</p>
+          <h1 className="text-2xl sm:text-3xl font-display font-extrabold text-slate-900 tracking-tight">
+            Banquet Venues & Destination Weddings
+          </h1>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Automated per-plate catering quotation, Aravali lawn scheduling, and destination wedding BEO packages.
+          </p>
         </div>
         <button
           onClick={() => setIsBuilderOpen(true)}
-          className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-md transition-colors"
+          className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-bold text-xs rounded-xl shadow-md transition-all cursor-pointer active:scale-95"
         >
           <Plus className="w-4 h-4" />
           <span>+ Create Royal Banquet Quotation</span>
@@ -138,47 +146,75 @@ export default function BanquetEventsView() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="custom-card p-6 flex items-center justify-between">
-          <div>
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Upcoming Weddings & Galas</div>
-            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">{events.length + 8}</div>
-            <div className="text-xs text-indigo-600 font-semibold mt-1">This Season</div>
+        <div className="luxury-card p-6 flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
+              Upcoming Galas
+            </span>
+            <div className="w-11 h-11 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100/80 shadow-2xs">
+              <PartyPopper className="w-5 h-5" />
+            </div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
-            <PartyPopper className="w-6 h-6" />
-          </div>
-        </div>
-
-        <div className="custom-card p-6 flex items-center justify-between">
-          <div>
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Wedding & Event Revenue</div>
-            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">₹{(events.reduce((s, e) => s + e.value, 0) / 100000).toFixed(1)}L</div>
-            <div className="text-xs text-emerald-600 font-semibold mt-1">+38% vs Target</div>
-          </div>
-          <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100">
-            <IndianRupee className="w-6 h-6" />
+          <div className="mt-4">
+            <div className="text-3xl font-mono font-black text-slate-900">{events.length + 8}</div>
+            <div className="text-xs text-indigo-600 font-bold mt-1 font-sans">
+              Confirmed for Current Season
+            </div>
           </div>
         </div>
 
-        <div className="custom-card p-6 flex items-center justify-between">
-          <div>
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Lawn & Hall Utilization</div>
-            <div className="text-3xl font-mono font-bold text-slate-900 mt-2">94%</div>
-            <div className="text-xs text-indigo-600 font-semibold mt-1">Peak Wedding Dates Sold Out</div>
+        <div className="luxury-card p-6 flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
+              Banquet Revenue
+            </span>
+            <div className="w-11 h-11 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-100/80 shadow-2xs">
+              <IndianRupee className="w-5 h-5" />
+            </div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
-            <Building className="w-6 h-6" />
+          <div className="mt-4">
+            <div className="text-3xl font-mono font-black text-slate-900">
+              ₹{(events.reduce((s, e) => s + e.value, 0) / 100000).toFixed(1)}L
+            </div>
+            <div className="text-xs text-emerald-600 font-bold mt-1 font-mono">
+              +38% Above Quarterly Budget
+            </div>
           </div>
         </div>
 
-        <div className="custom-card p-6 flex items-center justify-between">
-          <div>
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Advances Collected</div>
-            <div className="text-3xl font-mono font-bold text-teal-600 mt-2">₹{(events.reduce((s, e) => s + e.paid, 0) / 100000).toFixed(1)}L</div>
-            <div className="text-xs text-teal-700 font-semibold mt-1">Secured in Bank</div>
+        <div className="luxury-card p-6 flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
+              Lawn Utilization
+            </span>
+            <div className="w-11 h-11 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100/80 shadow-2xs">
+              <Building className="w-5 h-5" />
+            </div>
           </div>
-          <div className="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-100">
-            <CheckCircle2 className="w-6 h-6" />
+          <div className="mt-4">
+            <div className="text-3xl font-mono font-black text-slate-900">94%</div>
+            <div className="text-xs text-indigo-600 font-bold mt-1 font-sans">
+              Peak Muhurat Dates Booked
+            </div>
+          </div>
+        </div>
+
+        <div className="luxury-card-gold p-6 flex flex-col justify-between">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-extrabold text-amber-800 uppercase tracking-wider font-display">
+              Advances Secured
+            </span>
+            <div className="w-11 h-11 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-200/80 shadow-2xs">
+              <CheckCircle2 className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="mt-4">
+            <div className="text-3xl font-mono font-black text-amber-950">
+              ₹{(events.reduce((s, e) => s + e.paid, 0) / 100000).toFixed(1)}L
+            </div>
+            <div className="text-xs text-amber-700 font-bold mt-1 font-mono">
+              100% Guaranteed Advance
+            </div>
           </div>
         </div>
       </div>
@@ -190,14 +226,14 @@ export default function BanquetEventsView() {
           {halls.map((h, i) => {
             const Icon = h.icon;
             return (
-              <div key={i} className="custom-card p-4 hover:shadow-md transition-all flex items-start gap-3 border border-slate-200">
-                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${h.color}`}>
+              <div key={i} className="luxury-card p-4 hover:border-indigo-300 transition-all flex items-start gap-3">
+                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${h.color} shadow-2xs`}>
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="font-display font-bold text-sm text-slate-900">{h.name}</div>
                   <div className="text-xs text-slate-400 mt-0.5 font-medium">{h.cap} • {h.area}</div>
-                  <span className="inline-block mt-2 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  <span className="inline-block mt-2 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                     {h.status}
                   </span>
                 </div>
@@ -208,7 +244,7 @@ export default function BanquetEventsView() {
       </div>
 
       {/* Booked Events List */}
-      <div className="custom-card p-6 space-y-4">
+      <div className="luxury-card p-6 space-y-4">
         <div className="flex items-center justify-between pb-3 border-b border-slate-100">
           <div>
             <h3 className="font-display font-bold text-base text-slate-900">Active Wedding & Gala Schedules</h3>
@@ -242,7 +278,7 @@ export default function BanquetEventsView() {
                     <Calendar className="w-3.5 h-3.5 text-slate-400" /> {evt.date} ({evt.time})
                   </span>
                   <span>•</span>
-                  <span className="flex items-center gap-1.5">
+                  <span className="flex items-center gap-1.5 font-mono">
                     <Users className="w-3.5 h-3.5 text-slate-400" /> {evt.capacity}
                   </span>
                 </div>
@@ -256,8 +292,8 @@ export default function BanquetEventsView() {
               {/* Pricing & Actions */}
               <div className="flex items-center justify-between lg:justify-end gap-6 pt-4 lg:pt-0 border-t lg:border-t-0 border-slate-100">
                 <div className="text-left lg:text-right">
-                  <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Package Value</div>
-                  <div className="text-xl font-mono font-extrabold text-slate-900">₹{evt.value.toLocaleString()}</div>
+                  <div className="text-xs font-bold text-slate-400 uppercase tracking-wider font-display">Package Value</div>
+                  <div className="text-xl font-mono font-black text-slate-900">₹{evt.value.toLocaleString()}</div>
                   <div className="text-[11px] font-mono text-emerald-600 font-bold mt-0.5">
                     ₹{evt.paid.toLocaleString()} Paid (Advance)
                   </div>
@@ -265,7 +301,7 @@ export default function BanquetEventsView() {
 
                 <button
                   onClick={() => showToast(`BEO banquet order sheet downloaded for ${evt.title}`)}
-                  className="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs rounded-xl transition-colors shadow-2xs"
+                  className="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs rounded-xl transition-colors shadow-2xs cursor-pointer"
                 >
                   Download BEO Menu
                 </button>
@@ -284,7 +320,7 @@ export default function BanquetEventsView() {
                 <h3 className="font-display font-bold text-lg text-slate-900">Royal Wedding & Banquet Quotation Builder</h3>
                 <p className="text-xs text-slate-400 font-medium">Calculate live plate costs, royal decor packages, and generate an instant event contract.</p>
               </div>
-              <button onClick={() => setIsBuilderOpen(false)} className="p-1 rounded-lg text-slate-400 hover:bg-slate-100">
+              <button onClick={() => setIsBuilderOpen(false)} className="p-1 rounded-lg text-slate-400 hover:bg-slate-100 cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -307,7 +343,7 @@ export default function BanquetEventsView() {
                   <select
                     value={builderData.hall}
                     onChange={(e) => setBuilderData({ ...builderData, hall: e.target.value })}
-                    className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium outline-none"
+                    className="w-full px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium outline-none cursor-pointer"
                   >
                     <option value="The Grand Aravali Royal Lawn">The Grand Aravali Royal Lawn (1200 Max)</option>
                     <option value="Sheesh Mahal Royal Ballroom">Sheesh Mahal Royal Ballroom (450 Max)</option>
@@ -320,7 +356,7 @@ export default function BanquetEventsView() {
               {/* Slider for Guests */}
               <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
                 <div className="flex justify-between font-bold text-slate-800">
-                  <span>Guest Headcount:</span>
+                  <span className="font-display">Guest Headcount:</span>
                   <span className="text-indigo-600 font-mono font-black text-sm">{builderData.guests} Guests</span>
                 </div>
                 <input
@@ -350,8 +386,8 @@ export default function BanquetEventsView() {
                         builderData.platePrice === p.price ? 'border-indigo-600 bg-indigo-50/50' : 'border-slate-200 bg-white'
                       }`}
                     >
-                      <div className="font-bold text-slate-900">{p.tier}</div>
-                      <div className="font-mono font-extrabold text-sm text-indigo-600 mt-0.5">₹{p.price}/plate</div>
+                      <div className="font-bold text-slate-900 font-display">{p.tier}</div>
+                      <div className="font-mono font-black text-sm text-indigo-600 mt-0.5">₹{p.price}/plate</div>
                       <div className="text-[10px] text-slate-400 mt-1">{p.desc}</div>
                     </div>
                   ))}
@@ -368,8 +404,8 @@ export default function BanquetEventsView() {
                     className="w-4 h-4 text-indigo-600 rounded"
                   />
                   <div>
-                    <div className="font-bold text-slate-800">Folk Dancers & Pro DJ (+₹65,000)</div>
-                    <div className="text-[10px] text-slate-400">Kalbeliya troupe, JBL Sound & Stage</div>
+                    <div className="font-bold text-slate-800 font-display">Folk Dancers & Pro DJ (+₹65,000)</div>
+                    <div className="text-[10px] text-slate-400 font-medium">Kalbeliya troupe, JBL Sound & Stage</div>
                   </div>
                 </label>
 
@@ -381,8 +417,8 @@ export default function BanquetEventsView() {
                     className="w-4 h-4 text-indigo-600 rounded"
                   />
                   <div>
-                    <div className="font-bold text-slate-800">Royal Cocktail Bar (+₹1,20,000)</div>
-                    <div className="text-[10px] text-slate-400">Mixologist & Royal Kesari drinks</div>
+                    <div className="font-bold text-slate-800 font-display">Royal Cocktail Bar (+₹1,20,000)</div>
+                    <div className="text-[10px] text-slate-400 font-medium">Mixologist & Royal Kesari drinks</div>
                   </div>
                 </label>
               </div>
@@ -390,7 +426,7 @@ export default function BanquetEventsView() {
               {/* Live Quotation Summary */}
               <div className="p-4 bg-indigo-50/60 rounded-2xl border border-indigo-100 flex justify-between items-center text-xs">
                 <div>
-                  <span className="text-indigo-900 font-bold">Estimated Total Wedding & Banquet Contract:</span>
+                  <span className="text-indigo-900 font-bold font-display">Estimated Total Wedding & Banquet Contract:</span>
                   <div className="text-[10px] text-slate-500 mt-0.5">
                     {builderData.guests} Guests @ ₹{builderData.platePrice} + ₹{addonsTotal.toLocaleString()} Add-ons
                   </div>
@@ -405,14 +441,14 @@ export default function BanquetEventsView() {
               <button
                 type="button"
                 onClick={() => setIsBuilderOpen(false)}
-                className="px-4 py-2 bg-white border border-slate-200 text-slate-600 font-bold rounded-xl"
+                className="px-4 py-2 bg-white border border-slate-200 text-slate-600 font-bold rounded-xl cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 form="banquet-form"
-                className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md"
+                className="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md cursor-pointer"
               >
                 Confirm & Add to Calendar
               </button>

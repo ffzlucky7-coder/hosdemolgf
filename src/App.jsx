@@ -1,10 +1,12 @@
 import React from 'react';
 import { AppProvider, useApp } from './context/AppContext';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // Common Navigation & Topbars
 import Header from './components/common/Header';
 import Sidebar from './components/common/Sidebar';
 import RoleSwitcher from './components/common/RoleSwitcher';
+import QuickActionHero from './components/common/QuickActionHero';
 import QuickCommandPalette from './components/common/QuickCommandPalette';
 import UsersListView from './components/common/UsersListView';
 
@@ -145,8 +147,8 @@ function MainAppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col antialiased text-slate-800">
-      {/* 1. Quick Demo Persona Floating Switcher Bar */}
+    <div className="min-h-screen bg-[#F8FAFC] flex flex-col antialiased text-slate-800">
+      {/* 1. Universal Multi-Role Switcher Header */}
       <RoleSwitcher />
 
       {/* 2. Main PMS Layout */}
@@ -156,9 +158,22 @@ function MainAppContent() {
         <div className="flex-1 flex flex-col min-w-0">
           <Header />
 
-          {/* Main Dynamic View Content */}
+          {/* Quick Operational Command Hero Deck */}
+          <QuickActionHero />
+
+          {/* Main Dynamic View Content with Smooth Fade Animation */}
           <main className="flex-1 pb-16 overflow-y-auto">
-            {renderView()}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentView + currentRole}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+              >
+                {renderView()}
+              </motion.div>
+            </AnimatePresence>
           </main>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import {
   LayoutDashboard,
@@ -25,7 +25,11 @@ import {
   PartyPopper,
   Globe,
   MessageSquare,
-  ShieldCheck
+  ShieldCheck,
+  ChevronLeft,
+  ChevronRight,
+  Compass,
+  Crown
 } from 'lucide-react';
 
 export default function Sidebar() {
@@ -40,148 +44,108 @@ export default function Sidebar() {
     setIsAddHotelModalOpen
   } = useApp();
 
-  // Define navigation groups tailored to active role
-  const getNavLinks = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Grouped Navigation Architecture for Multi-Property SaaS
+  const getNavSections = () => {
     switch (currentRole) {
       case 'super-admin':
         return [
-          { id: 'dashboard', label: 'Platform Dashboard', icon: LayoutDashboard },
-          { id: 'org-details', label: 'Organizations (Tenants)', icon: Building2 },
-          { id: 'create-org', label: 'Create Organization', icon: Building, action: () => setIsCreateOrgModalOpen(true) },
-          { id: 'pricing', label: 'SaaS Subscriptions', icon: CreditCard },
-          { id: 'users', label: 'Users & RBAC', icon: Users },
-          { id: 'security-apis', label: 'Security & API Logs', icon: ShieldCheck },
-          { id: 'reports', label: 'Platform Revenue', icon: BarChart3 },
-          { id: 'settings', label: 'Global Settings', icon: Settings },
+          {
+            title: 'SaaS Platform & Tenants',
+            items: [
+              { id: 'dashboard', label: 'Platform Overview', icon: LayoutDashboard },
+              { id: 'org-details', label: 'Client Organizations', icon: Building2 },
+              { id: 'create-org', label: 'Onboard New Tenant', icon: Building, action: () => setIsCreateOrgModalOpen(true) },
+              { id: 'pricing', label: 'SaaS Subscriptions', icon: CreditCard },
+            ]
+          },
+          {
+            title: 'Governance & Infrastructure',
+            items: [
+              { id: 'users', label: 'Users & RBAC Matrix', icon: Users },
+              { id: 'security-apis', label: 'Security & API Sandbox', icon: ShieldCheck },
+              { id: 'reports', label: 'Platform Global Revenue', icon: BarChart3 },
+              { id: 'settings', label: 'Global SaaS Config', icon: Settings },
+            ]
+          }
         ];
 
       case 'hotel-admin':
         return [
-          { id: 'dashboard', label: 'Multi-Hotel Dashboard', icon: LayoutDashboard },
-          { id: 'hotels', label: 'Hotels Directory', icon: Building2 },
-          { id: 'areas', label: 'Areas & Clusters', icon: MapPin },
-          { id: 'north-zone', label: 'North Zone Properties', icon: Building },
-          { id: 'channel-manager', label: 'OTA & STAAH Sync', icon: Globe },
-          { id: 'banquets', label: 'Banquets & Events', icon: PartyPopper },
-          { id: 'approvals', label: 'Approval Center', icon: CheckCircle2, badge: approvals.length },
-          { id: 'users', label: 'Staff & Managers', icon: Users },
-          { id: 'reports', label: 'Executive Reports', icon: BarChart3 },
-          { id: 'settings', label: 'Property Settings', icon: Settings },
+          {
+            title: 'Multi-Hotel Executive',
+            items: [
+              { id: 'dashboard', label: 'Executive Cockpit', icon: LayoutDashboard },
+              { id: 'hotels', label: 'Hotels Directory', icon: Building2 },
+              { id: 'areas', label: 'Regional Clusters', icon: MapPin },
+              { id: 'north-zone', label: 'Assigned Properties', icon: Building },
+            ]
+          },
+          {
+            title: 'Commercial & Approvals',
+            items: [
+              { id: 'channel-manager', label: 'OTA & STAAH Gateways', icon: Globe },
+              { id: 'banquets', label: 'Banquets & Weddings', icon: PartyPopper },
+              { id: 'approvals', label: 'Approval Center', icon: CheckCircle2, badge: approvals.length },
+              { id: 'users', label: 'General Managers & Staff', icon: Users },
+              { id: 'reports', label: 'Portfolio Analytics', icon: BarChart3 },
+              { id: 'settings', label: 'Property Policies', icon: Settings },
+            ]
+          }
         ];
 
       case 'area-manager':
         return [
-          { id: 'dashboard', label: 'Cluster Dashboard', icon: LayoutDashboard },
-          { id: 'north-zone', label: 'My Supervised Hotels', icon: Building2 },
-          { id: 'approvals', label: 'Approval Center', icon: CheckCircle2, badge: approvals.length },
-          { id: 'channel-manager', label: 'OTA Rate Parity', icon: Globe },
-          { id: 'users', label: 'Area Staff Directory', icon: Users },
-          { id: 'reports', label: 'Cluster Performance', icon: BarChart3 },
+          {
+            title: 'Cluster Operations',
+            items: [
+              { id: 'dashboard', label: 'Cluster Cockpit', icon: LayoutDashboard },
+              { id: 'north-zone', label: 'Supervised Hotels', icon: Building2 },
+              { id: 'approvals', label: 'PO & Refund Approvals', icon: CheckCircle2, badge: approvals.length },
+              { id: 'channel-manager', label: 'OTA Rate Parity', icon: Globe },
+              { id: 'users', label: 'Cluster Staff List', icon: Users },
+              { id: 'reports', label: 'Cluster Performance', icon: BarChart3 },
+            ]
+          }
         ];
 
       case 'front-desk':
-        return [
-          { id: 'dashboard', label: 'Operations Dashboard', icon: LayoutDashboard },
-          { id: 'room-grid', label: 'Room Grid Floor Matrix', icon: BedDouble },
-          { id: 'tape-chart', label: 'Tape Chart Gantt', icon: CalendarDays },
-          { id: 'check-in-view', label: 'Check-In Wizard', icon: Sparkles, action: () => setIsCheckInModalOpen(true) },
-          { id: 'invoice', label: 'Guest Billing Folio', icon: FileText },
-          { id: 'notifications', label: 'WhatsApp Guest Desk', icon: MessageSquare },
-          { id: 'housekeeping', label: 'Housekeeping Sync', icon: ClipboardList },
-          { id: 'restaurant', label: 'Restaurant POS', icon: UtensilsCrossed },
-          { id: 'banquets', label: 'Banquets & Events', icon: PartyPopper },
-          { id: 'inventory', label: 'Inventory Control', icon: Boxes },
-          { id: 'ai-receptionist', label: 'AI Concierge', icon: Bot },
-          { id: 'reports', label: 'Daily Analytics', icon: BarChart3 },
-          { id: 'settings', label: 'Settings', icon: Settings },
-        ];
-
-      case 'banquets':
-        return [
-          { id: 'banquets', label: 'Banquet Reservations', icon: PartyPopper },
-          { id: 'sales-crm', label: 'Corporate & Weddings', icon: Briefcase },
-          { id: 'restaurant', label: 'F&B Catering', icon: UtensilsCrossed },
-          { id: 'reports', label: 'Event Revenue', icon: BarChart3 },
-        ];
-
-      case 'channel-manager':
-        return [
-          { id: 'channel-manager', label: 'OTA & STAAH Gateways', icon: Globe },
-          { id: 'tape-chart', label: 'Reservation Timeline', icon: CalendarDays },
-          { id: 'reports', label: 'Channel Reports', icon: BarChart3 },
-        ];
-
-      case 'notifications':
-        return [
-          { id: 'notifications', label: 'WhatsApp Notification Hub', icon: MessageSquare },
-          { id: 'ai-receptionist', label: 'AI Virtual Desk', icon: Bot },
-          { id: 'settings', label: 'Trigger Policies', icon: Settings },
-        ];
-
-      case 'security-apis':
-        return [
-          { id: 'security-apis', label: 'Security & API Gateway', icon: ShieldCheck },
-          { id: 'users', label: 'RBAC Staff Access', icon: Users },
-          { id: 'settings', label: 'Security Settings', icon: Settings },
-        ];
-
-      case 'housekeeping':
-        return [
-          { id: 'housekeeping', label: 'Kanban Turnover Board', icon: ClipboardList },
-          { id: 'room-grid', label: 'Room Floor Matrix', icon: BedDouble },
-          { id: 'inventory', label: 'Linen & Supplies', icon: Boxes },
-        ];
-
-      case 'restaurant':
-        return [
-          { id: 'restaurant', label: 'Point of Sale (POS)', icon: UtensilsCrossed },
-          { id: 'inventory', label: 'Kitchen Stock', icon: Boxes },
-          { id: 'reports', label: 'F&B Sales Report', icon: BarChart3 },
-        ];
-
-      case 'inventory':
-        return [
-          { id: 'inventory', label: 'Inventory & Stock SKUs', icon: Boxes },
-          { id: 'approvals', label: 'Purchase Approvals', icon: CheckCircle2, badge: approvals.length },
-          { id: 'reports', label: 'Stock Valuation', icon: BarChart3 },
-        ];
-
-      case 'sales-crm':
-        return [
-          { id: 'sales-crm', label: 'Deals Pipeline', icon: Briefcase },
-          { id: 'banquets', label: 'Banquet Venues', icon: PartyPopper },
-          { id: 'reports', label: 'Sales Reports', icon: BarChart3 },
-        ];
-
-      case 'ai-receptionist':
-        return [
-          { id: 'ai-receptionist', label: 'Guest Messages', icon: Bot },
-          { id: 'notifications', label: 'WhatsApp Alerts', icon: MessageSquare },
-          { id: 'dashboard', label: 'Operations Sync', icon: LayoutDashboard },
-        ];
-
-      case 'reports':
-        return [
-          { id: 'reports', label: 'Analytics & RevPAR', icon: BarChart3 },
-          { id: 'dashboard', label: 'Operations View', icon: LayoutDashboard },
-        ];
-
-      case 'settings':
-        return [
-          { id: 'settings', label: 'Property Settings', icon: Settings },
-          { id: 'pricing', label: 'Billing & Plans', icon: CreditCard },
-          { id: 'users', label: 'User Roles (RBAC)', icon: Users },
-          { id: 'security-apis', label: 'APIs & Webhooks', icon: ShieldCheck },
-        ];
-
       default:
         return [
-          { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+          {
+            title: 'Front Office & Stays',
+            items: [
+              { id: 'dashboard', label: 'Front Desk 360°', icon: LayoutDashboard },
+              { id: 'room-grid', label: 'Room Grid Matrix', icon: BedDouble },
+              { id: 'tape-chart', label: 'Tape Chart Gantt', icon: CalendarDays },
+              { id: 'check-in-view', label: 'Check-In Wizard', icon: Sparkles, action: () => setIsCheckInModalOpen(true) },
+              { id: 'invoice', label: 'Guest Billing Folio', icon: FileText },
+            ]
+          },
+          {
+            title: 'Operations & Dining',
+            items: [
+              { id: 'notifications', label: 'WhatsApp Guest Hub', icon: MessageSquare },
+              { id: 'housekeeping', label: 'Housekeeping Sync', icon: ClipboardList },
+              { id: 'restaurant', label: 'Restaurant POS & KDS', icon: UtensilsCrossed },
+              { id: 'banquets', label: 'Banquets & Events', icon: PartyPopper },
+              { id: 'inventory', label: 'Inventory Control', icon: Boxes },
+            ]
+          },
+          {
+            title: 'Guest Care & Reports',
+            items: [
+              { id: 'ai-receptionist', label: 'AI Concierge Desk', icon: Bot },
+              { id: 'reports', label: 'Daily Night Audit', icon: BarChart3 },
+              { id: 'settings', label: 'Property Settings', icon: Settings },
+            ]
+          }
         ];
     }
   };
 
-  const navLinks = getNavLinks();
+  const sections = getNavSections();
 
   const handleNavClick = (link) => {
     setCurrentView(link.id);
@@ -191,57 +155,95 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between h-screen sticky top-0 shrink-0 z-20">
-      {/* Brand Logo Header */}
+    <aside
+      className={`bg-white border-r border-slate-200/90 flex flex-col justify-between h-screen sticky top-0 shrink-0 z-20 transition-all duration-300 shadow-sm ${
+        isCollapsed ? 'w-20' : 'w-68'
+      }`}
+    >
+      {/* Brand Header */}
       <div>
-        <div className="h-16 px-6 flex items-center gap-3 border-b border-slate-100">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-600 to-indigo-700 flex items-center justify-center text-white shadow-sm">
-            <Building2 className="w-5 h-5" />
+        <div className="h-16 px-5 flex items-center justify-between border-b border-slate-100">
+          <div className="flex items-center gap-3 overflow-hidden">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-700 to-indigo-800 flex items-center justify-center text-white shadow-md shadow-indigo-600/20 shrink-0 border border-indigo-400/30">
+              <Compass className="w-5 h-5 text-amber-300" />
+            </div>
+
+            {!isCollapsed && (
+              <div className="min-w-0">
+                <div className="font-royal font-black text-base text-slate-900 tracking-wider flex items-center gap-1.5 leading-none">
+                  <span>NEXUS</span>
+                  <span className="font-sans font-extrabold text-[10px] px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 uppercase">OS</span>
+                </div>
+                <div className="text-[10px] font-semibold text-slate-400 mt-0.5 tracking-wider uppercase font-display truncate">
+                  Multi-Hotel Cloud PMS
+                </div>
+              </div>
+            )}
           </div>
-          <div>
-            <div className="font-bold text-lg text-slate-900 tracking-tight leading-none">PMS</div>
-            <div className="text-[10px] font-medium text-slate-400 mt-0.5 tracking-wider uppercase">Hospitality OS</div>
-          </div>
+
+          <button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            title={isCollapsed ? 'Expand Navigation' : 'Collapse Navigation'}
+          >
+            {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+          </button>
         </div>
 
-        {/* Navigation Items */}
-        <nav className="p-4 space-y-1.5 overflow-y-auto max-h-[calc(100vh-140px)]">
-          {navLinks.map((link) => {
-            const Icon = link.icon;
-            const isActive = currentView === link.id;
-            return (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link)}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                  isActive
-                    ? 'bg-indigo-50 text-indigo-600 font-semibold shadow-xs'
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-indigo-600' : 'text-slate-400'}`} />
-                  <span className="truncate">{link.label}</span>
+        {/* Grouped Navigation Links */}
+        <nav className="p-3 space-y-6 overflow-y-auto max-h-[calc(100vh-140px)]">
+          {sections.map((sec, idx) => (
+            <div key={idx} className="space-y-1">
+              {!isCollapsed && (
+                <div className="px-3 pb-1 text-[10px] font-extrabold text-slate-400 uppercase tracking-wider font-display">
+                  {sec.title}
                 </div>
-                {link.badge > 0 && (
-                  <span className="px-2 py-0.5 text-xs font-bold rounded-full bg-amber-100 text-amber-800">
-                    {link.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+              )}
+
+              {sec.items.map((link) => {
+                const Icon = link.icon;
+                const isActive = currentView === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => handleNavClick(link)}
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer group ${
+                      isActive
+                        ? 'bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-md shadow-indigo-500/20 font-display'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-sans'
+                    }`}
+                    title={isCollapsed ? link.label : undefined}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <Icon
+                        className={`w-4 h-4 shrink-0 transition-transform group-hover:scale-110 ${
+                          isActive ? 'text-amber-300' : 'text-slate-400 group-hover:text-indigo-600'
+                        }`}
+                      />
+                      {!isCollapsed && <span className="truncate">{link.label}</span>}
+                    </div>
+
+                    {!isCollapsed && link.badge > 0 && (
+                      <span className="px-2 py-0.5 text-[10px] font-mono font-black rounded-full bg-amber-400 text-slate-950 shadow-2xs">
+                        {link.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
         </nav>
       </div>
 
-      {/* Logout / Login Demo trigger */}
-      <div className="p-4 border-t border-slate-100">
+      {/* Footer Profile & Demo Switch */}
+      <div className="p-3 border-t border-slate-100 space-y-2">
         <button
           onClick={() => setCurrentRole('login')}
-          className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition-colors"
+          className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-500 hover:bg-rose-50 hover:text-rose-600 transition-colors cursor-pointer"
         >
-          <LogOut className="w-4 h-4" />
-          <span>Demo Login / Logout</span>
+          <LogOut className="w-4 h-4 text-slate-400 shrink-0" />
+          {!isCollapsed && <span>Switch to Demo Login</span>}
         </button>
       </div>
     </aside>

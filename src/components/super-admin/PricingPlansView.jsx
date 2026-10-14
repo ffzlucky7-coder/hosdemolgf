@@ -6,184 +6,261 @@ import {
   Crown,
   Hotel,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Zap,
+  Globe2,
+  ShieldCheck,
+  Bot,
+  UtensilsCrossed,
+  PartyPopper
 } from 'lucide-react';
 
 export default function PricingPlansView() {
   const { showToast, setCurrentView } = useApp();
 
   const handleSelect = (planName) => {
-    showToast(`Plan ${planName} selected for billing!`);
+    showToast(`Plan ${planName} selected for demonstration! Invoice contract preview initiated.`);
   };
 
   return (
-    <div className="p-10 max-w-6xl mx-auto space-y-10 animate-in fade-in duration-200">
+    <div className="p-8 max-w-7xl mx-auto space-y-12 animate-in fade-in duration-200">
       {/* Top Header */}
-      <div className="text-center max-w-2xl mx-auto">
-        <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider">Module 2 • SaaS Subscription Architecture</span>
-        <h1 className="text-3xl font-display font-extrabold text-slate-900 tracking-tight mt-1">
-          Choose the Right Plan for Your Hospitality Organization
+      <div className="text-center max-w-3xl mx-auto space-y-2">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-mono font-bold uppercase tracking-wider">
+          <Sparkles className="w-3.5 h-3.5" />
+          Enterprise SaaS Licensing & Multi-Property Plans
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-display font-black text-slate-900 tracking-tight">
+          Flexible Subscription Plans for Hotels, Resorts & Chains
         </h1>
-        <p className="text-xs text-slate-500 mt-2 font-medium">
-          All plans include core PMS features. Upgrade anytime as you grow your hotel network.
+        <p className="text-sm text-slate-500 font-medium">
+          Whether you manage a boutique heritage hotel, a collection of private pool resorts, or a nationwide hotel chain, Nexus HotelOS scales effortlessly with your portfolio.
         </p>
       </div>
 
       {/* 3 Tier Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-        {/* Basic Plan */}
-        <div className="custom-card p-8 flex flex-col justify-between hover:shadow-lg transition-all border border-slate-200">
+        {/* Starter Plan */}
+        <div className="luxury-card p-8 flex flex-col justify-between border-slate-200 hover:border-slate-300">
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 border border-blue-100">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5 border border-blue-100 shadow-2xs">
               <Building className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-display font-bold text-slate-900">Basic</h3>
-            <p className="text-xs text-slate-500 mt-1 font-medium">Perfect for small boutique stays</p>
+            <div className="flex items-center gap-2">
+              <h3 className="text-xl font-display font-bold text-slate-900">Boutique & Heritage</h3>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600">Starter</span>
+            </div>
+            <p className="text-xs text-slate-500 mt-1 font-medium">Ideal for independent boutique hotels & standalone heritage resorts</p>
 
             <div className="mt-6 mb-2">
               <div className="flex items-baseline">
-                <span className="text-3xl font-mono font-black text-slate-900">₹2,999</span>
+                <span className="text-3xl font-mono font-black text-slate-900">₹4,999</span>
                 <span className="text-xs text-slate-500 ml-1.5 font-medium">/ month</span>
               </div>
-              <span className="text-[11px] text-slate-400 font-medium">Billed annually</span>
+              <span className="text-[11px] text-slate-400 font-mono">Billed annually • 14-day free trial</span>
             </div>
 
             <div className="border-t border-slate-100 pt-6 mt-6 space-y-3.5 text-xs text-slate-700 font-medium">
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Up to 10 hotels</span>
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Up to <strong>3 Properties</strong></span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Up to 20 staff users</span>
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Up to <strong>25 Active Staff Logins</strong></span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Reservations & Front Desk</span>
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Front Desk 360° & Room Floor Matrix</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Housekeeping Management</span>
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Housekeeping Kanban Turnover Board</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Check className="w-4 h-4 text-blue-600 shrink-0" />
-                <span>Basic Reports & Analytics</span>
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Single-Outlet Restaurant POS</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-slate-400">
+                <span className="w-4 h-4 rounded-full border border-slate-300 flex items-center justify-center text-[10px] shrink-0">✕</span>
+                <span>2-Way STAAH Channel Manager Sync</span>
               </div>
             </div>
           </div>
 
           <button
-            onClick={() => handleSelect('Basic')}
-            className="w-full mt-8 py-3 bg-white border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-bold text-xs rounded-xl transition-colors"
+            onClick={() => handleSelect('Boutique & Heritage')}
+            className="w-full mt-8 py-3 bg-white border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 font-bold text-xs rounded-xl transition-all cursor-pointer shadow-xs active:scale-95"
           >
-            Select Basic
+            Start Free 14-Day Trial
           </button>
         </div>
 
         {/* Pro Plan (Recommended) */}
-        <div className="custom-card p-8 flex flex-col justify-between relative ring-2 ring-indigo-600 shadow-xl bg-white">
+        <div className="luxury-card-gold p-8 flex flex-col justify-between relative ring-2 ring-amber-500 shadow-2xl vip-shimmer">
           {/* Badge */}
-          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-600 text-white rounded-full text-xs font-bold shadow-sm flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Recommended</span>
+          <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black rounded-full text-xs shadow-md flex items-center gap-1.5 uppercase tracking-wider font-display">
+            <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+            <span>Most Popular Enterprise Choice</span>
           </div>
 
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 border border-indigo-100">
+            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-5 border border-amber-200/80 shadow-2xs">
               <Crown className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-display font-bold text-indigo-950">Pro</h3>
-            <p className="text-xs text-slate-500 mt-1 font-medium">Best for growing multi-hotel chains</p>
+            <div className="flex items-center gap-2">
+              <h3 className="text-xl font-display font-bold text-slate-950">Resort Cluster Pro</h3>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-200 text-amber-900">Recommended</span>
+            </div>
+            <p className="text-xs text-amber-900 mt-1 font-medium">Perfect for regional hotel chains, luxury villa clusters & franchise groups</p>
 
             <div className="mt-6 mb-2">
               <div className="flex items-baseline">
-                <span className="text-3xl font-mono font-black text-indigo-600">₹6,999</span>
-                <span className="text-xs text-indigo-400 ml-1.5 font-medium">/ month</span>
+                <span className="text-3xl font-mono font-black text-amber-950">₹14,999</span>
+                <span className="text-xs text-amber-800 ml-1.5 font-medium">/ month</span>
               </div>
-              <span className="text-[11px] text-slate-400 font-medium">Billed annually</span>
+              <span className="text-[11px] text-amber-700 font-mono">Billed annually • Includes 2-Way OTA Engine</span>
             </div>
 
-            <div className="border-t border-slate-100 pt-6 mt-6 space-y-3.5 text-xs text-slate-700">
-              <div className="flex items-center gap-2.5 font-medium">
-                <Check className="w-4 h-4 text-indigo-600 shrink-0" />
-                <span>Up to 50 hotels</span>
+            <div className="border-t border-amber-200/60 pt-6 mt-6 space-y-3.5 text-xs text-slate-800 font-medium">
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Up to <strong>25 Connected Properties</strong></span>
               </div>
-              <div className="flex items-center gap-2.5 font-medium">
-                <Check className="w-4 h-4 text-indigo-600 shrink-0" />
-                <span>Up to 100 staff users</span>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Up to <strong>150 Multi-Role Users</strong></span>
               </div>
-              <div className="flex items-center gap-2.5 font-medium">
-                <Check className="w-4 h-4 text-indigo-600 shrink-0" />
-                <span>All Basic features included</span>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Full STAAH 2-Way Live Channel Manager</span>
               </div>
-              <div className="flex items-center gap-2.5 font-medium">
-                <Check className="w-4 h-4 text-indigo-600 shrink-0" />
-                <span>Advanced Reports & Analytics</span>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Multi-Outlet Restaurant POS & Kitchen KDS</span>
               </div>
-              <div className="flex items-center gap-2.5 font-medium">
-                <Check className="w-4 h-4 text-indigo-600 shrink-0" />
-                <span>Priority 24/7 Support</span>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Banquets & Destination Wedding Engine</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>AI Virtual Concierge (WhatsApp Guest Desk)</span>
               </div>
             </div>
           </div>
 
           <button
-            onClick={() => handleSelect('Pro')}
-            className="w-full mt-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-md transition-colors"
+            onClick={() => handleSelect('Resort Cluster Pro')}
+            className="w-full mt-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs rounded-xl shadow-lg shadow-amber-500/20 transition-all cursor-pointer active:scale-95 uppercase tracking-wider font-display"
           >
-            Select Pro
+            Upgrade to Cluster Pro →
           </button>
         </div>
 
-        {/* Enterprise Plan */}
-        <div className="custom-card p-8 flex flex-col justify-between hover:shadow-lg transition-all border border-slate-200">
+        {/* Enterprise Sovereign Plan */}
+        <div className="luxury-card p-8 flex flex-col justify-between border-slate-200 hover:border-slate-300">
           <div>
-            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 border border-emerald-100">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-5 border border-emerald-100 shadow-2xs">
               <Hotel className="w-6 h-6" />
             </div>
 
-            <h3 className="text-xl font-display font-bold text-slate-900">Enterprise</h3>
-            <p className="text-xs text-slate-500 mt-1 font-medium">For large hotel chains & luxury resort franchises</p>
+            <div className="flex items-center gap-2">
+              <h3 className="text-xl font-display font-bold text-slate-900">National Chain Sovereign</h3>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Unlimited</span>
+            </div>
+            <p className="text-xs text-slate-500 mt-1 font-medium">For national hospitality brands, luxury palace franchises & global operators</p>
 
             <div className="mt-6 mb-2">
               <div className="flex items-baseline">
-                <span className="text-3xl font-display font-black text-slate-900">Custom</span>
+                <span className="text-3xl font-display font-black text-slate-900">₹39,999</span>
+                <span className="text-xs text-slate-500 ml-1.5 font-medium">/ month or Custom</span>
               </div>
-              <span className="text-[11px] text-slate-400 font-medium">Contact sales for tailored pricing</span>
+              <span className="text-[11px] text-slate-400 font-mono">Dedicated Private Cloud • Custom SLA</span>
             </div>
 
             <div className="border-t border-slate-100 pt-6 mt-6 space-y-3.5 text-xs text-slate-700 font-medium">
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Unlimited hotels</span>
+                <span><strong>Unlimited Properties & Villas</strong></span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Unlimited staff users</span>
+                <span><strong>Unlimited Users & Staff Logins</strong></span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>All Pro features included</span>
+                <span>Custom ERP & Hardware RFID Keycard Integration</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Custom ERP & Hardware Integrations</span>
+                <span>Dedicated Cloud Database & Region Residency</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Check className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Dedicated Account Manager & SLA</span>
+                <span>99.99% Uptime Guarantee with 24/7 SLA</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Dedicated Technical Solutions Architect</span>
               </div>
             </div>
           </div>
 
           <button
-            onClick={() => handleSelect('Enterprise')}
-            className="w-full mt-8 py-3 bg-white border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50 font-bold text-xs rounded-xl transition-colors"
+            onClick={() => handleSelect('National Chain Sovereign')}
+            className="w-full mt-8 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all cursor-pointer shadow-sm active:scale-95"
           >
-            Contact Sales
+            Contact Enterprise Sales
           </button>
+        </div>
+      </div>
+
+      {/* Add-on Modules Showcase */}
+      <div className="luxury-card p-8 space-y-6">
+        <div>
+          <h3 className="text-xl font-display font-bold text-slate-900">Nexus SaaS Modular Add-On Marketplace</h3>
+          <p className="text-xs text-slate-500 font-medium mt-0.5">Customize your PMS stack by turning on modular engines on-demand.</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <div className="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center">
+              <Globe2 className="w-4 h-4" />
+            </div>
+            <div className="font-display font-bold text-slate-900 text-sm">STAAH OTA Engine</div>
+            <div className="text-xs text-slate-500 font-medium">Instant 2-way rate parity across Booking.com, Agoda, and MakeMyTrip.</div>
+            <div className="text-xs font-mono font-bold text-indigo-600 pt-1">+₹1,999/mo/hotel</div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+              <Bot className="w-4 h-4" />
+            </div>
+            <div className="font-display font-bold text-slate-900 text-sm">AI Virtual Concierge</div>
+            <div className="text-xs text-slate-500 font-medium">24/7 WhatsApp guest concierge answering pool, Wi-Fi, and late checkout queries.</div>
+            <div className="text-xs font-mono font-bold text-emerald-600 pt-1">+₹2,499/mo/hotel</div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <div className="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center">
+              <UtensilsCrossed className="w-4 h-4" />
+            </div>
+            <div className="font-display font-bold text-slate-900 text-sm">Multi-Kitchen KDS</div>
+            <div className="text-xs text-slate-500 font-medium">Interactive kitchen display system with direct room folio billing & table management.</div>
+            <div className="text-xs font-mono font-bold text-amber-600 pt-1">+₹1,499/mo/outlet</div>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+            <div className="w-8 h-8 rounded-xl bg-pink-100 text-pink-700 flex items-center justify-center">
+              <PartyPopper className="w-4 h-4" />
+            </div>
+            <div className="font-display font-bold text-slate-900 text-sm">Wedding & Banquets</div>
+            <div className="text-xs text-slate-500 font-medium">Venue inventory, plate catering calculators, advance milestone invoicing.</div>
+            <div className="text-xs font-mono font-bold text-pink-600 pt-1">+₹2,999/mo/hotel</div>
+          </div>
         </div>
       </div>
     </div>
