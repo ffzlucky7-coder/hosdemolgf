@@ -30,7 +30,7 @@
 }
 
 /* Modern Enterprise SaaS Card System */
-.luxury-card, .saas-card {
+.luxury-card, .saas-card, .custom-card {
   background: #ffffff;
   border: 1px solid #E2E8F0;
   border-radius: 16px;
@@ -39,7 +39,7 @@
   position: relative;
 }
 
-.luxury-card:hover, .saas-card:hover {
+.luxury-card:hover, .saas-card:hover, .custom-card:hover {
   border-color: #CBD5E1;
   box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
   transform: translateY(-1px);

@@ -86,46 +86,46 @@ export default function Header() {
   const activeUser = userAvatars[currentRole] || { name: 'Devendra Singhania', initials: 'DS' };
 
   return (
-    <header className="h-16 bg-white border-b border-slate-200/90 px-6 flex items-center justify-between sticky top-0 z-30 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-      {/* Left: Global Search & Persona Trigger */}
-      <div className="flex items-center gap-3 flex-1 max-w-xl">
+    <header className="h-16 shrink-0 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between z-10">
+      {/* Left: Global Search & Live Sync Status */}
+      <div className="flex items-center gap-2 sm:gap-3 flex-1 max-w-xs sm:max-w-sm md:max-w-md">
         {/* Quick Command Search Bar */}
         <button
           onClick={() => setIsCommandPaletteOpen(true)}
-          className="flex-1 flex items-center justify-between px-3.5 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-500 transition-all cursor-pointer group"
+          className="w-full flex items-center justify-between px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs text-slate-500 transition-all cursor-pointer group"
         >
-          <div className="flex items-center gap-2.5">
-            <Search className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
-            <span className="font-medium text-slate-500">Quick search rooms, guests, folios, KOTs (Cmd + K)...</span>
+          <div className="flex items-center gap-2 min-w-0">
+            <Search className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors shrink-0" />
+            <span className="font-medium text-slate-500 truncate">Quick search (Cmd + K)...</span>
           </div>
-          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-2 py-0.5 text-[10px] font-mono font-bold text-slate-500 bg-white border border-slate-200 rounded-md shadow-2xs">
+          <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[10px] font-mono font-bold text-slate-500 bg-white border border-slate-200 rounded-md shrink-0">
             <Command className="w-3 h-3" /> K
           </kbd>
         </button>
+
+        {/* Live STAAH Sync Pulse */}
+        <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] font-mono font-bold text-emerald-800 shrink-0">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>STAAH 2-Way (22ms)</span>
+        </div>
       </div>
 
       {/* Right Controls: Weather, Occupancy, Property Switcher, Fast Actions, Currency, Notifications, Profile */}
-      <div className="flex items-center gap-3">
-        {/* Dynamic Weather Widget */}
-        <div className="hidden 2xl:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-600">
-          <CloudSun className="w-4 h-4 text-amber-500" />
-          <span>{selectedHotel.city.split(',')[0]} 29°C</span>
-        </div>
-
+      <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
         {/* Live Occupancy Gauge */}
-        <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-900">
+        <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-indigo-50 border border-indigo-200 text-xs font-semibold text-indigo-900 shrink-0">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
           </span>
-          <span className="font-mono font-bold text-emerald-800">{selectedHotel.occupancy}%</span>
-          <span className="text-[11px] text-emerald-700 font-medium">Occupancy</span>
+          <span className="font-mono font-bold text-indigo-800">{selectedHotel.occupancy}%</span>
+          <span className="text-[11px] text-indigo-700 font-medium">Occ</span>
         </div>
 
         {/* Multi-Hotel Property Switcher */}
         {currentRole !== 'super-admin' && (
           <div className="relative flex items-center">
-            <Hotel className="w-3.5 h-3.5 text-indigo-600 absolute left-3 pointer-events-none" />
+            <Hotel className="w-3.5 h-3.5 text-indigo-600 absolute left-2.5 pointer-events-none" />
             <select
               value={selectedHotelId}
               onChange={(e) => {
@@ -133,33 +133,39 @@ export default function Header() {
                 const hName = hotels.find(h => h.id === e.target.value)?.name.split(',')[0];
                 showToast(`Switched active property to "${hName}"!`);
               }}
-              className="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold py-2 pl-8 pr-8 rounded-xl cursor-pointer outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-2xs"
+              className="appearance-none bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 text-xs font-bold py-1.5 pl-7 pr-7 rounded-xl cursor-pointer outline-none focus:ring-2 focus:ring-indigo-500/20 max-w-[140px] sm:max-w-[180px] md:max-w-[220px] truncate"
             >
               {hotels.map(h => (
                 <option key={h.id} value={h.id}>
-                  {h.name.split(',')[0]} ({h.city})
+                  {h.name.split(',')[0]}
                 </option>
               ))}
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         )}
 
         {/* Fast Action Buttons in Header */}
         <button
-          onClick={() => setIsCheckInModalOpen(true)}
-          className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 text-xs font-bold rounded-xl transition-all cursor-pointer active:scale-95"
+          onClick={() => {
+            setIsCheckInModalOpen(true);
+            showToast('Opening 5-Step Express Check-In Wizard');
+          }}
+          className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-700 text-xs font-bold rounded-xl transition-all cursor-pointer active:scale-95 shrink-0"
         >
           <BedDouble className="w-3.5 h-3.5" />
           <span>Check-In</span>
         </button>
 
         <button
-          onClick={() => setIsNewReservationModalOpen(true)}
-          className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-all cursor-pointer active:scale-95"
+          onClick={() => {
+            setIsNewReservationModalOpen(true);
+            showToast('Opening Direct Walk-In Booking Engine');
+          }}
+          className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold rounded-xl transition-all cursor-pointer active:scale-95 shrink-0"
         >
           <Plus className="w-3.5 h-3.5" />
-          <span>Booking</span>
+          <span>+ Booking</span>
         </button>
 
         {/* Currency Switcher */}
@@ -169,7 +175,7 @@ export default function Header() {
             setSelectedCurrency(e.target.value);
             showToast(`Display currency switched to ${e.target.value}`);
           }}
-          className="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-bold py-2 px-2.5 rounded-xl cursor-pointer outline-none shadow-2xs"
+          className="hidden sm:block bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-bold py-1.5 px-2 rounded-xl cursor-pointer outline-none shrink-0"
         >
           <option value="INR">₹ INR</option>
           <option value="USD">$ USD</option>

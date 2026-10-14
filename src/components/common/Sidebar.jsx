@@ -160,13 +160,13 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`bg-white border-r border-slate-200 flex flex-col justify-between h-screen sticky top-0 shrink-0 z-20 transition-all duration-300 shadow-2xs ${
+      className={`bg-white border-r border-slate-200 flex flex-col justify-between h-full shrink-0 z-20 transition-all duration-300 shadow-2xs ${
         isCollapsed ? 'w-20' : 'w-68'
       }`}
     >
-      {/* Brand Header */}
-      <div>
-        <div className="h-16 px-5 flex items-center justify-between border-b border-slate-100">
+      {/* Brand Header & Navigation */}
+      <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+        <div className="h-16 px-5 flex items-center justify-between border-b border-slate-100 shrink-0">
           <div className="flex items-center gap-3 overflow-hidden">
             <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-sm shrink-0">
               <Layers className="w-5 h-5 text-white" />
@@ -195,7 +195,7 @@ export default function Sidebar() {
         </div>
 
         {/* Grouped Navigation Links */}
-        <nav className="p-3 space-y-5 overflow-y-auto max-h-[calc(100vh-140px)]">
+        <nav className="flex-1 overflow-y-auto p-3 space-y-5">
           {sections.map((sec, idx) => (
             <div key={idx} className="space-y-1">
               {!isCollapsed && (

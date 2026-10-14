@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Header from './components/common/Header';
 import Sidebar from './components/common/Sidebar';
 import RoleSwitcher from './components/common/RoleSwitcher';
-import QuickActionHero from './components/common/QuickActionHero';
 import QuickCommandPalette from './components/common/QuickCommandPalette';
 import UsersListView from './components/common/UsersListView';
 
@@ -147,7 +146,7 @@ function MainAppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col antialiased text-slate-800">
+    <div className="h-screen w-screen overflow-hidden flex bg-slate-50 antialiased text-slate-800">
       {/* Global Animated Action Feedback Toast */}
       <AnimatePresence>
         {notificationToast && (
@@ -170,18 +169,16 @@ function MainAppContent() {
         )}
       </AnimatePresence>
 
-      {/* Main SaaS Platform Layout */}
-      <div className="flex flex-1 relative">
-        <Sidebar />
+      {/* Persistent Left Navigation Sidebar */}
+      <Sidebar />
 
-        <div className="flex-1 flex flex-col min-w-0">
-          <Header />
+      {/* Main SaaS Content Workspace */}
+      <div className="flex-1 flex flex-col h-full min-w-0 overflow-hidden">
+        <Header />
 
-          {/* Quick Command Hero Deck */}
-          <QuickActionHero />
-
-          {/* Dynamic View Content */}
-          <main className="flex-1 pb-24 overflow-y-auto">
+        {/* Dynamic View Scrollable Body */}
+        <main className="flex-1 overflow-y-auto overflow-x-hidden p-5 sm:p-6 lg:p-8 min-w-0">
+          <div className="max-w-7xl mx-auto w-full pb-16">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentView + currentRole}
@@ -193,8 +190,8 @@ function MainAppContent() {
                 {renderView()}
               </motion.div>
             </AnimatePresence>
-          </main>
-        </div>
+          </div>
+        </main>
       </div>
 
       {/* Floating Demo Persona Presentation Dock */}

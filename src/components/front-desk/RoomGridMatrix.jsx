@@ -71,7 +71,7 @@ export default function RoomGridMatrix() {
   const occupiedCount = rooms.filter(r => r.status === 'occupied').length;
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-6 animate-in fade-in duration-200">
+    <div className="space-y-6 animate-in fade-in duration-200">
       {/* Header & Controls */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
@@ -148,7 +148,7 @@ export default function RoomGridMatrix() {
       </div>
 
       {/* Room Matrix Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5">
         {filteredRooms.map((room) => (
           <div
             key={room.id}

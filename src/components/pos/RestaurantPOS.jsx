@@ -109,7 +109,7 @@ export default function RestaurantPOS() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-6 animate-in fade-in duration-200">
+    <div className="space-y-6 animate-in fade-in duration-200">
       {/* Top Header & Navigation Tabs */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -160,7 +160,7 @@ export default function RestaurantPOS() {
 
       {/* 1. POS MENU ORDERING VIEW */}
       {activeTab === 'menu' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left: Menu & Categories */}
           <div className="lg:col-span-8 space-y-5">
             {/* Category Tabs & Search Bar */}
@@ -235,7 +235,7 @@ export default function RestaurantPOS() {
           </div>
 
           {/* Right: Live Cart & Bill Folio */}
-          <div className="lg:col-span-4 luxury-card p-6 space-y-5 sticky top-20 shadow-xl border border-slate-200">
+          <div className="lg:col-span-4 luxury-card p-6 space-y-5 sticky top-4 shadow-xl border border-slate-200">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
               <div className="flex items-center gap-2">
                 <ShoppingBag className="w-5 h-5 text-indigo-600" />

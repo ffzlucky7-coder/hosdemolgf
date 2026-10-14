@@ -52,7 +52,7 @@ export default function FrontDeskDashboard() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8 animate-in fade-in duration-200">
+    <div className="space-y-6 animate-in fade-in duration-200">
       {/* Top Banner & Quick Action */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -96,9 +96,9 @@ export default function FrontDeskDashboard() {
       </div>
 
       {/* KPI Cards — Luxury Cards with Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Arrivals Today */}
-        <div className="luxury-card p-6 flex flex-col justify-between">
+        <div className="luxury-card p-5 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
               Arrivals Today
@@ -117,7 +117,7 @@ export default function FrontDeskDashboard() {
         </div>
 
         {/* Departures Today */}
-        <div className="luxury-card p-6 flex flex-col justify-between">
+        <div className="luxury-card p-5 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
               Departures Today
@@ -136,7 +136,7 @@ export default function FrontDeskDashboard() {
         </div>
 
         {/* In-House Rooms & Occupancy Rate */}
-        <div className="luxury-card p-6 flex flex-col justify-between">
+        <div className="luxury-card p-5 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
               In-House Stays
@@ -163,7 +163,7 @@ export default function FrontDeskDashboard() {
         </div>
 
         {/* Ready Clean Rooms */}
-        <div className="luxury-card p-6 flex flex-col justify-between">
+        <div className="luxury-card p-5 flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="text-xs font-extrabold text-slate-400 uppercase tracking-wider font-display">
               Ready & Inspected
@@ -183,9 +183,9 @@ export default function FrontDeskDashboard() {
       </div>
 
       {/* Two Column Lists: Today's Arrivals vs Today's Departures */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Today's Arrivals */}
-        <div className="luxury-card p-6 flex flex-col justify-between">
+        <div className="luxury-card p-5 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div>
@@ -258,7 +258,7 @@ export default function FrontDeskDashboard() {
         </div>
 
         {/* Today's Departures */}
-        <div className="luxury-card p-6 flex flex-col justify-between">
+        <div className="luxury-card p-5 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div>

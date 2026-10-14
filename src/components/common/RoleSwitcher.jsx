@@ -88,8 +88,8 @@ export default function RoleSwitcher() {
 
   return (
     <>
-      {/* Sleek Floating Demo Presentation Dock (Bottom Center) */}
-      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 transition-all">
+      {/* Sleek Floating Demo Presentation Dock (Bottom Right) */}
+      <div className="fixed bottom-5 right-6 z-40 transition-all">
         {isMinimized ? (
           <button
             onClick={() => setIsMinimized(false)}
